@@ -1,23 +1,23 @@
 import Login from "./components/login/Login";
-import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
+import React, { useState } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
-import { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import HomeDataProvider from "./context/homeContext";
+
 import "./App.css";
 
 const App = () => {
-	const [isLogin, setIsLogin] = useState(false);
-
-	// make useEffect instead
-	if (!isLogin) {
-		return <Login />;
-	} else
-		return (
-			<BrowserRouter>
-				<Route exact path="/">
-					<Dashboard />
-				</Route>
-			</BrowserRouter>
-		);
+	return (
+		<BrowserRouter>
+			<HomeDataProvider>
+				<Switch>
+					<Route exact path="/">
+						<Dashboard />
+					</Route>
+				</Switch>
+			</HomeDataProvider>
+		</BrowserRouter>
+	);
 };
 
 export default App;

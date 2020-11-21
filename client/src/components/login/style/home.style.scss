@@ -1,6 +1,6 @@
 // TODO ----  color,font
 
-$font-title: montserrat, sans-serif;
+// $font-title: montserrat, sans-serif;
 $base-color: #333;
 $sub-title-color: #333232;
 $bg-color: #489dec;
@@ -18,6 +18,7 @@ body,
 .form-container {
 	background-color: $base-color;
 	overflow-x: hidden;
+	// overflow-y: hidden;
 	width: 100%;
 	height: 100%;
 	display: grid;
@@ -26,10 +27,9 @@ body,
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: 40px 1fr 5fr;
 }
-h2 {
+.form-title {
 	grid-column: 1/-1;
 	margin-top: 20px;
-	font-family: $font-stack, sans-serif;
 	line-height: 20px;
 	color: $title-color;
 	font-weight: 600;
@@ -92,8 +92,9 @@ h2 {
 // small tablets
 @media screen and (min-width: 620px) {
 	.form-container {
-		background-color: $base-color;
+		background-color: #333;
 		overflow-x: hidden;
+		overflow-y: hidden;
 		width: 60%;
 		height: 80%;
 		display: grid;
@@ -103,12 +104,12 @@ h2 {
 		box-shadow: $shadow;
 		grid-template-rows: 1fr 2fr;
 	}
-	h2 {
+	.form-title {
 		grid-column: 7/-1;
 		margin-top: 20px;
 		line-height: 20px;
 		grid-row: 1/2;
-		font-size: 2rem;
+		font-size: 1.8rem;
 		align-self: center;
 	}
 	.home-img {
@@ -176,6 +177,8 @@ h2 {
 @media screen and (min-width: 960px) {
 	.form-container {
 		overflow-x: hidden;
+		background-color: #333;
+		overflow-y: hidden;
 		width: 60%;
 		height: 80%;
 		display: grid;
@@ -185,12 +188,12 @@ h2 {
 		box-shadow: $shadow;
 		grid-template-rows: 1fr 2fr;
 	}
-	h2 {
+	.form-title {
 		grid-column: 7/-1;
 		margin-top: 20px;
 		line-height: 20px;
 		grid-row: 1/2;
-		font-size: 2rem;
+		font-size: 1.8rem;
 		align-self: center;
 	}
 	.home-img {
@@ -257,6 +260,8 @@ h2 {
 	.form-container {
 		width: 60%;
 		height: 80%;
+		background-color: #333;
+		overflow-x: hidden;
 
 		.form-group {
 			width: 90%;
@@ -268,5 +273,13 @@ h2 {
 				font-size: 1rem;
 			}
 		}
+	}
+	.form-title {
+		grid-column: 7/-1;
+		margin-top: 20px;
+		line-height: 20px;
+		grid-row: 1/2;
+		font-size: 1.8rem;
+		align-self: center;
 	}
 }

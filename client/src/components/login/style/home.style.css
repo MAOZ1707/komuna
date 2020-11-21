@@ -21,13 +21,12 @@ body,
       grid-template-rows: 40px 1fr 5fr;
 }
 
-h2 {
+.form-title {
   grid-column: 1/-1;
   margin-top: 20px;
-  font-family: sans-serif, sans-serif;
   line-height: 20px;
-  color: #ffffff;
-  font-weight: 400;
+  color: #ffff;
+  font-weight: 600;
 }
 
 .home-img {
@@ -64,8 +63,8 @@ h2 {
   display: -ms-grid;
   display: grid;
   justify-items: center;
-  -webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
-          box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
+  -webkit-box-shadow: 2px 8px 2px #00000073;
+          box-shadow: 2px 8px 2px #00000073;
 }
 
 .form-group {
@@ -83,8 +82,8 @@ h2 {
   font-size: 1.2rem;
   border-radius: 10px;
   border: none;
-  -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.452);
-          box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.452);
+  -webkit-box-shadow: 2px 8px 2px #00000073;
+          box-shadow: 2px 8px 2px #00000073;
 }
 
 .form-group label {
@@ -109,8 +108,9 @@ h2 {
 
 @media screen and (min-width: 620px) {
   .form-container {
-    background-color: #ffffff;
+    background-color: #333;
     overflow-x: hidden;
+    overflow-y: hidden;
     width: 60%;
     height: 80%;
     display: -ms-grid;
@@ -119,19 +119,19 @@ h2 {
     gap: 5px;
     -ms-grid-columns: (1fr)[12];
         grid-template-columns: repeat(12, 1fr);
-    -webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
-            box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
+    -webkit-box-shadow: 2px 8px 2px #00000073;
+            box-shadow: 2px 8px 2px #00000073;
     -ms-grid-rows: 1fr 2fr;
         grid-template-rows: 1fr 2fr;
   }
-  h2 {
+  .form-title {
     grid-column: 7/-1;
     margin-top: 20px;
     line-height: 20px;
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1/2;
-    font-size: 2rem;
+    font-size: 1.8rem;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
@@ -174,8 +174,8 @@ h2 {
     display: -ms-grid;
     display: grid;
     justify-items: center;
-    -webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
-            box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
+    -webkit-box-shadow: 2px 8px 2px #00000073;
+            box-shadow: 2px 8px 2px #00000073;
   }
   .form-group {
     display: -ms-grid;
@@ -221,8 +221,9 @@ h2 {
 
 @media screen and (min-width: 960px) {
   .form-container {
-    background-color: #ffffff;
     overflow-x: hidden;
+    background-color: #333;
+    overflow-y: hidden;
     width: 60%;
     height: 80%;
     display: -ms-grid;
@@ -231,19 +232,19 @@ h2 {
     gap: 5px;
     -ms-grid-columns: (1fr)[12];
         grid-template-columns: repeat(12, 1fr);
-    -webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
-            box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
+    -webkit-box-shadow: 2px 8px 2px #00000073;
+            box-shadow: 2px 8px 2px #00000073;
     -ms-grid-rows: 1fr 2fr;
         grid-template-rows: 1fr 2fr;
   }
-  h2 {
+  .form-title {
     grid-column: 7/-1;
     margin-top: 20px;
     line-height: 20px;
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1/2;
-    font-size: 2rem;
+    font-size: 1.8rem;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
@@ -280,14 +281,13 @@ h2 {
     -ms-grid-column: 1;
     -ms-grid-column-span: 6;
     grid-column: 1/7;
-    background-color: #489dec;
     width: 100%;
     border-radius: 0px 0px 0px 0px;
     display: -ms-grid;
     display: grid;
     justify-items: center;
-    -webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
-            box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.452);
+    -webkit-box-shadow: 2px 8px 2px #00000073;
+            box-shadow: 2px 8px 2px #00000073;
   }
   .form-group {
     display: -ms-grid;
@@ -334,6 +334,8 @@ h2 {
   .form-container {
     width: 60%;
     height: 80%;
+    background-color: #333;
+    overflow-x: hidden;
   }
   .form-container .form-group {
     width: 90%;
@@ -344,6 +346,18 @@ h2 {
   }
   .form-container .form-group span {
     font-size: 1rem;
+  }
+  .form-title {
+    grid-column: 7/-1;
+    margin-top: 20px;
+    line-height: 20px;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+    font-size: 1.8rem;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
   }
 }
 /*# sourceMappingURL=home.style.css.map */

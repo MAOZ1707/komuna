@@ -31,11 +31,12 @@ const HomeLogin = () => {
 	return (
 		<div className="form-container">
 			<motion.h2
+				className="form-title"
 				animate={{
 					x: [-200, 0],
 				}}
 			>
-				Add Your Home
+				ADD YOUR HOME
 			</motion.h2>
 			<div className="form-elements">
 				<motion.img
