@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import partnersSvg from "../../assets/img/partners-img.svg";
-import "./style/home.style.css";
 import { createUser } from "../../axios/axios";
+
+import "./style/user.style.css";
 
 const UsersLogin = () => {
 	const [field, setField] = useState({
@@ -32,6 +33,7 @@ const UsersLogin = () => {
 	return (
 		<div className="form-container">
 			<motion.h2
+				className="form-title"
 				animate={{
 					x: [-200, 0],
 				}}

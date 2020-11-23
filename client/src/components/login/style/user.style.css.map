@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "login.style.scss"
+        "user.style.scss"
     ],
     "names": [],
-    "file": "login.style.css"
+    "file": "user.style.css"
 }

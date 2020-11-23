@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import homeSvg from "../../assets/img/home-login.svg";
 import "./style/home.style.css";
-
+import { HomeContext } from "../../context/homeContext";
 import { createHome } from "../../axios/axios";
+import { Redirect } from "react-router-dom";
 
 const HomeLogin = () => {
+	const context = React.useContext(HomeContext);
+
 	const [field, setField] = useState({
 		city: "",
 		street: "",
@@ -13,7 +16,6 @@ const HomeLogin = () => {
 		zipCode: "",
 	});
 
-	console.log(field);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		//todo -> Send post request to server
@@ -27,7 +29,8 @@ const HomeLogin = () => {
 			zipCode: "",
 		});
 	};
-
+	console.log(context.home);
+	if (context.home > 0) return <Redirect to="/user" />;
 	return (
 		<div className="form-container">
 			<motion.h2

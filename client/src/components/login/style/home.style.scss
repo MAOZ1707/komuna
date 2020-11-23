@@ -1,11 +1,10 @@
 // TODO ----  color,font
 
-// $font-title: montserrat, sans-serif;
 $base-color: #333;
 $sub-title-color: #333232;
 $bg-color: #489dec;
 $title-color: #ffff;
-$shadow: 2px 8px 2px #00000073;
+$shadow: 2px 4px 4px #0000002f;
 
 // reset defaults settings
 body,
@@ -109,7 +108,7 @@ body,
 		margin-top: 20px;
 		line-height: 20px;
 		grid-row: 1/2;
-		font-size: 1.8rem;
+		font-size: 1.2rem;
 		align-self: center;
 	}
 	.home-img {
@@ -193,7 +192,7 @@ body,
 		margin-top: 20px;
 		line-height: 20px;
 		grid-row: 1/2;
-		font-size: 1.8rem;
+		font-size: 1.4rem;
 		align-self: center;
 	}
 	.home-img {
@@ -243,7 +242,7 @@ body,
 				display: flex;
 				align-items: flex-end;
 				margin-bottom: 10px;
-				font-size: 0.9rem;
+				font-size: 1rem;
 			}
 		}
 	}
@@ -266,7 +265,7 @@ body,
 		.form-group {
 			width: 90%;
 			input {
-				height: 2rem;
+				height: 1.7rem;
 				font-size: 1rem;
 			}
 			span {
@@ -279,7 +278,7 @@ body,
 		margin-top: 20px;
 		line-height: 20px;
 		grid-row: 1/2;
-		font-size: 1.8rem;
+		font-size: 1.4rem;
 		align-self: center;
 	}
 }

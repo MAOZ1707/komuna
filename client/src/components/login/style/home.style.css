@@ -63,8 +63,8 @@ body,
   display: -ms-grid;
   display: grid;
   justify-items: center;
-  -webkit-box-shadow: 2px 8px 2px #00000073;
-          box-shadow: 2px 8px 2px #00000073;
+  -webkit-box-shadow: 2px 4px 4px #0000002f;
+          box-shadow: 2px 4px 4px #0000002f;
 }
 
 .form-group {
@@ -82,8 +82,8 @@ body,
   font-size: 1.2rem;
   border-radius: 10px;
   border: none;
-  -webkit-box-shadow: 2px 8px 2px #00000073;
-          box-shadow: 2px 8px 2px #00000073;
+  -webkit-box-shadow: 2px 4px 4px #0000002f;
+          box-shadow: 2px 4px 4px #0000002f;
 }
 
 .form-group label {
@@ -119,8 +119,8 @@ body,
     gap: 5px;
     -ms-grid-columns: (1fr)[12];
         grid-template-columns: repeat(12, 1fr);
-    -webkit-box-shadow: 2px 8px 2px #00000073;
-            box-shadow: 2px 8px 2px #00000073;
+    -webkit-box-shadow: 2px 4px 4px #0000002f;
+            box-shadow: 2px 4px 4px #0000002f;
     -ms-grid-rows: 1fr 2fr;
         grid-template-rows: 1fr 2fr;
   }
@@ -131,7 +131,7 @@ body,
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1/2;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
@@ -174,8 +174,8 @@ body,
     display: -ms-grid;
     display: grid;
     justify-items: center;
-    -webkit-box-shadow: 2px 8px 2px #00000073;
-            box-shadow: 2px 8px 2px #00000073;
+    -webkit-box-shadow: 2px 4px 4px #0000002f;
+            box-shadow: 2px 4px 4px #0000002f;
   }
   .form-group {
     display: -ms-grid;
@@ -232,8 +232,8 @@ body,
     gap: 5px;
     -ms-grid-columns: (1fr)[12];
         grid-template-columns: repeat(12, 1fr);
-    -webkit-box-shadow: 2px 8px 2px #00000073;
-            box-shadow: 2px 8px 2px #00000073;
+    -webkit-box-shadow: 2px 4px 4px #0000002f;
+            box-shadow: 2px 4px 4px #0000002f;
     -ms-grid-rows: 1fr 2fr;
         grid-template-rows: 1fr 2fr;
   }
@@ -244,7 +244,7 @@ body,
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1/2;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
@@ -286,8 +286,8 @@ body,
     display: -ms-grid;
     display: grid;
     justify-items: center;
-    -webkit-box-shadow: 2px 8px 2px #00000073;
-            box-shadow: 2px 8px 2px #00000073;
+    -webkit-box-shadow: 2px 4px 4px #0000002f;
+            box-shadow: 2px 4px 4px #0000002f;
   }
   .form-group {
     display: -ms-grid;
@@ -320,7 +320,7 @@ body,
         -ms-flex-align: end;
             align-items: flex-end;
     margin-bottom: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   .submit-btn {
     width: 40%;
@@ -341,7 +341,7 @@ body,
     width: 90%;
   }
   .form-container .form-group input {
-    height: 2rem;
+    height: 1.7rem;
     font-size: 1rem;
   }
   .form-container .form-group span {
@@ -354,7 +354,7 @@ body,
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1/2;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
