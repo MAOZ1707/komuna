@@ -21,6 +21,7 @@ const UsersLogin = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		//todo -> Send post request to server
+		// setField({ ...field, isLogin: !field.isLogin });
 		createUser({ ...field, isLogin: !field.isLogin });
 
 		// Rest field
@@ -122,7 +123,7 @@ const UsersLogin = () => {
 					<div className="gender_title">
 						<span className="content-name">Gender</span>
 					</div>
-					<label className="radio">
+					<motion.label whileTap={{ scale: 1.2 }} className="radio">
 						<input
 							type="radio"
 							value="Male"
@@ -135,8 +136,8 @@ const UsersLogin = () => {
 						/>
 						<div className="radio_radio"></div>
 						Male
-					</label>
-					<label className="radio">
+					</motion.label>
+					<motion.label whileTap={{ scale: 1.2 }} className="radio">
 						<input
 							type="radio"
 							value="Female"
@@ -149,7 +150,7 @@ const UsersLogin = () => {
 						/>
 						<div className="radio_radio"></div>
 						Female
-					</label>
+					</motion.label>
 				</motion.div>
 				{field.firstName && field.lastName && field.age && field.gender ? (
 					<motion.button

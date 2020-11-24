@@ -10,7 +10,7 @@ export const createHome = async (data) => {
 			street: data.street,
 			houseNumber: Number(data.houseNumber),
 			zipCode: Number(data.zipCode),
-			isHomeAdded: true,
+			isHomeAdded: data.isHomeAdded,
 		},
 	});
 	const response = await fetchReq;
@@ -32,14 +32,17 @@ export const createUser = async (data) => {
 	console.log(data);
 	const fetchReq = await axios({
 		method: "POST",
-		url: "http://localhost:9000/api/home",
-		// data: {
-		// 	city: data.city,
-		// 	street: data.street,
-		// 	houseNumber: Number(data.houseNumber),
-		// 	zipCode: Number(data.zipCode),
-		// },
+		url: "http://localhost:9000/api/user",
+		data: {
+			firstName: data.firstName,
+			lastName: data.lastName,
+			age: Number(data.age),
+			gender: data.gender,
+			isLogin: data.isLogin,
+		},
 	});
 	const response = await fetchReq;
-	console.log(response);
+	console.log(response.data.data.home);
+
+	return response.data.data.home;
 };

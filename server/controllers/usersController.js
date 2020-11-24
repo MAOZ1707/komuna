@@ -54,6 +54,7 @@ exports.getUserById = async (req, res) => {
 
 exports.createUser = async (req, res) => {
 	try {
+		console.log(req.body);
 		const newUser = await User.create(req.body);
 
 		res.status(201).json({
@@ -65,7 +66,7 @@ exports.createUser = async (req, res) => {
 	} catch (error) {
 		res.status(400).json({
 			status: "error",
-			message: "Invalid data sent!",
+			message: error,
 		});
 	}
 };

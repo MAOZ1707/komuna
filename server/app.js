@@ -11,6 +11,6 @@ app.use(morgan("dev"));
 
 // Route
 app.use("/api/home", homeRouter);
-app.use("/api/users", userRouter);
+app.use("/api/user", userRouter);
 
 module.exports = app;
