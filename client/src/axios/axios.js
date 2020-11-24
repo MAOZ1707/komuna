@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const createHome = async (data) => {
+	console.log(data);
 	const fetchReq = await axios({
 		method: "POST",
 		url: "http://localhost:9000/api/home",
@@ -9,6 +10,7 @@ export const createHome = async (data) => {
 			street: data.street,
 			houseNumber: Number(data.houseNumber),
 			zipCode: Number(data.zipCode),
+			isHomeAdded: true,
 		},
 	});
 	const response = await fetchReq;
@@ -21,7 +23,8 @@ export const getHome = async () => {
 		url: "http://localhost:9000/api/home",
 	});
 	const response = await fetchData;
-	return response.data;
+	// console.log(response.data.data.home);
+	return response.data.data.home;
 };
 
 // user fetch

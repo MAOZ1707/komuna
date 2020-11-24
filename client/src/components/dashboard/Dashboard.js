@@ -6,8 +6,11 @@ import { motion } from "framer-motion";
 const Dashboard = () => {
 	const context = React.useContext(HomeContext);
 
-	console.log(context.home);
-	if (context.home === 2) return <Redirect to="/home" />;
+	if (!context[0]) {
+		return <h1>Loading</h1>;
+	}
+
+	if (!context[0].isHomeAdded) return <Redirect to="home" />;
 	return (
 		<motion.div
 			initial={{ x: "1300px" }}

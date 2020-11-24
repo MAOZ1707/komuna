@@ -21,6 +21,9 @@ const homeSchema = new mongoose.Schema({
 		required: [true, "Zip code is required"],
 		trim: true,
 	},
+	isHomeAdded: {
+		type: Boolean,
+	},
 });
 
 const Home = mongoose.model("Home", homeSchema);

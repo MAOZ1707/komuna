@@ -2,33 +2,42 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import partnersSvg from "../../assets/img/partners-img.svg";
 import { createUser } from "../../axios/axios";
-
-import "./style/user.style.css";
+import "./style/home.style.css";
+import { HomeContext } from "../../context/homeContext";
+import { Redirect } from "react-router-dom";
 
 const UsersLogin = () => {
+	const context = React.useContext(HomeContext);
+
 	const [field, setField] = useState({
 		firstName: "",
 		lastName: "",
 		age: "",
-		nickName: "",
-		isLoading: false,
+		gender: "",
+		isLogin: false,
 	});
 
-	// console.log(field);
+	console.log(field);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		//todo -> Send post request to server
-		createUser({ ...field, isLoading: !field.isLoading });
+		createUser({ ...field, isLogin: !field.isLogin });
 
 		// Rest field
 		setField({
 			firstName: "",
 			lastName: "",
 			age: "",
-			nickName: "",
-			isLoading: false,
+			gender: "",
+			isLogin: false,
 		});
 	};
+
+	if (!context[0]) {
+		return <h1>Loading</h1>;
+	}
+	//TODO --> WE NEED TO PUT HERE IF WE ADD USERS   LIKE    isHomeAdded && isUsersAdded -> redirect to="/"
+	// if (context[0].isHomeAdded) return <Redirect to="/" />;
 
 	return (
 		<div className="form-container">
@@ -104,24 +113,45 @@ const UsersLogin = () => {
 						onChange={(e) => setField({ ...field, age: e.target.value })}
 					/>
 				</motion.div>
+
 				<motion.div
 					animate={{ x: [-300, 0] }}
 					transition={{ duration: 1.5 }}
-					className="form-group"
+					className="gender-field"
 				>
-					<label htmlFor="nickName" className="label-address">
-						<span className="content-name">Nickname</span>
+					<div className="gender_title">
+						<span className="content-name">Gender</span>
+					</div>
+					<label className="radio">
+						<input
+							type="radio"
+							value="Male"
+							id="radio"
+							className="radio_input"
+							name="gender"
+							checked={field.gender === "Male"}
+							required
+							onChange={(e) => setField({ ...field, gender: e.target.value })}
+						/>
+						<div className="radio_radio"></div>
+						Male
 					</label>
-					<input
-						type="text"
-						value={field.nickName}
-						name="nickName"
-						autoComplete="none"
-						required
-						onChange={(e) => setField({ ...field, nickName: e.target.value })}
-					/>
+					<label className="radio">
+						<input
+							type="radio"
+							value="Female"
+							id="radio"
+							className="radio_input"
+							name="gender"
+							checked={field.gender === "Female"}
+							required
+							onChange={(e) => setField({ ...field, gender: e.target.value })}
+						/>
+						<div className="radio_radio"></div>
+						Female
+					</label>
 				</motion.div>
-				{field.firstName && field.lastName && field.age && field.nickName ? (
+				{field.firstName && field.lastName && field.age && field.gender ? (
 					<motion.button
 						whileHover={{ scale: 1.1 }}
 						style={{ background: " rgb(107, 183, 255)" }}

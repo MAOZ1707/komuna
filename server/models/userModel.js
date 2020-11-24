@@ -34,7 +34,6 @@ const usersSchema = new mongoose.Schema({
 		max: 60,
 	},
 	isLogin: Boolean,
-	images: [String],
 });
 
 const User = mongoose.model("User", usersSchema);
