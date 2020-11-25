@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import partnersSvg from "../../assets/img/partners-img.svg";
 import { createUser } from "../../axios/axios";
 import "./style/home.style.css";
 import { HomeContext } from "../../context/homeContext";
-import { Redirect } from "react-router-dom";
+import { UsersContext } from "../../context/userContext";
+import { Redirect, Link } from "react-router-dom";
 
 const UsersLogin = () => {
-	const context = React.useContext(HomeContext);
+	const userContext = React.useContext(UsersContext);
 
 	const [field, setField] = useState({
 		firstName: "",
 		lastName: "",
 		age: "",
 		gender: "",
-		isLogin: false,
 	});
 
-	console.log(field);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		//todo -> Send post request to server
-		// setField({ ...field, isLogin: !field.isLogin });
-		createUser({ ...field, isLogin: !field.isLogin });
+		createUser(field);
 
 		// Rest field
 		setField({
@@ -30,15 +28,10 @@ const UsersLogin = () => {
 			lastName: "",
 			age: "",
 			gender: "",
-			isLogin: false,
 		});
 	};
 
-	if (!context[0]) {
-		return <h1>Loading</h1>;
-	}
-	//TODO --> WE NEED TO PUT HERE IF WE ADD USERS   LIKE    isHomeAdded && isUsersAdded -> redirect to="/"
-	// if (context[0].isHomeAdded) return <Redirect to="/" />;
+	if (userContext.length) return <Redirect to="/" />;
 
 	return (
 		<div className="form-container">

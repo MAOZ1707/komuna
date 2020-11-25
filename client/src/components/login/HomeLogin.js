@@ -7,22 +7,18 @@ import { createHome } from "../../axios/axios";
 import { Redirect } from "react-router-dom";
 
 const HomeLogin = () => {
-	const context = React.useContext(HomeContext);
+	const homeContext = React.useContext(HomeContext);
 
 	const [field, setField] = useState({
 		city: "",
 		street: "",
 		houseNumber: "",
 		zipCode: "",
-		isHomeAdded: false,
 	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		//todo -> Send post request to server
-		setField({ ...field, isHomeAdded: !field.isHomeAdded });
 		createHome(field);
-
 		// Rest field
 		setField({
 			city: "",
@@ -32,11 +28,7 @@ const HomeLogin = () => {
 		});
 	};
 
-	if (!context[0]) {
-		return <h1>Loading</h1>;
-	}
-
-	if (context[0].isHomeAdded) return <Redirect to="user" />;
+	if (homeContext.length) return <Redirect to="/user" />;
 	return (
 		<div className="form-container">
 			<motion.h2

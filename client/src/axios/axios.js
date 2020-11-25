@@ -10,7 +10,7 @@ export const createHome = async (data) => {
 			street: data.street,
 			houseNumber: Number(data.houseNumber),
 			zipCode: Number(data.zipCode),
-			isHomeAdded: data.isHomeAdded,
+			isHomeAdded: !data.isHomeAdded,
 		},
 	});
 	const response = await fetchReq;
@@ -23,7 +23,6 @@ export const getHome = async () => {
 		url: "http://localhost:9000/api/home",
 	});
 	const response = await fetchData;
-	// console.log(response.data.data.home);
 	return response.data.data.home;
 };
 
@@ -34,15 +33,19 @@ export const createUser = async (data) => {
 		method: "POST",
 		url: "http://localhost:9000/api/user",
 		data: {
-			firstName: data.firstName,
-			lastName: data.lastName,
+			firstname: data.firstName,
+			lastname: data.lastName,
 			age: Number(data.age),
 			gender: data.gender,
-			isLogin: data.isLogin,
+			islogin: !data.isLogin,
 		},
 	});
 	const response = await fetchReq;
-	console.log(response.data.data.home);
+	console.log(response);
+};
 
-	return response.data.data.home;
+export const getUsers = async () => {
+	const fetchUser = await axios.get("http://localhost:9000/api/user");
+	const response = await fetchUser;
+	return response.data;
 };

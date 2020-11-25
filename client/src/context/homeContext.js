@@ -9,10 +9,10 @@ const HomeContextProvider = ({ children }) => {
 	useEffect(() => {
 		const get = async () => {
 			const result = await getHome();
-			await setHomeData(result);
+			setHomeData(result);
 		};
 		get();
-	}, [setHomeData]);
+	}, []);
 
 	return (
 		<HomeContext.Provider value={homeData}>{children}</HomeContext.Provider>

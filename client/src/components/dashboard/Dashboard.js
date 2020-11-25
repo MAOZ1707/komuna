@@ -1,16 +1,16 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { HomeContext } from "../../context/homeContext";
+import { UsersContext } from "../../context/userContext";
 import { motion } from "framer-motion";
 
 const Dashboard = () => {
-	const context = React.useContext(HomeContext);
+	const homeContext = React.useContext(HomeContext);
+	const userContext = React.useContext(UsersContext);
 
-	if (!context[0]) {
-		return <h1>Loading</h1>;
-	}
+	if (!userContext.length || !homeContext.length)
+		return <Redirect to="/home" />;
 
-	if (!context[0].isHomeAdded) return <Redirect to="home" />;
 	return (
 		<motion.div
 			initial={{ x: "1300px" }}
