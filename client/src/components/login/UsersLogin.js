@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import partnersSvg from "../../assets/img/partners-img.svg";
 import { createUser } from "../../axios/axios";
 import "./style/home.style.css";
-import { HomeContext } from "../../context/homeContext";
 import { UsersContext } from "../../context/userContext";
-import { Redirect, Link } from "react-router-dom";
+// import { homeContext } from "../../context/userContext";
+import { Redirect } from "react-router-dom";
 
 const UsersLogin = () => {
-	const userContext = React.useContext(UsersContext);
+	const { user, setUser } = React.useContext(UsersContext);
 
 	const [field, setField] = useState({
 		firstName: "",
@@ -17,11 +17,13 @@ const UsersLogin = () => {
 		gender: "",
 	});
 
+	console.log(user);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		//todo -> Send post request to server
-		createUser(field);
 
+		createUser(field);
+		setUser(field);
 		// Rest field
 		setField({
 			firstName: "",
@@ -31,7 +33,7 @@ const UsersLogin = () => {
 		});
 	};
 
-	if (userContext.length) return <Redirect to="/" />;
+	// if (user ?? user.length) return <Redirect to="/" />;
 
 	return (
 		<div className="form-container">
@@ -46,7 +48,8 @@ const UsersLogin = () => {
 			<div className="form-elements">
 				<motion.img
 					animate={{
-						y: [-300, 0],
+						x: [700, 0],
+						duration: 2,
 					}}
 					src={partnersSvg}
 					alt="home"
@@ -55,6 +58,7 @@ const UsersLogin = () => {
 					className="home-img"
 				/>
 			</div>
+
 			<motion.form
 				animate={{ y: [600, 0], duration: [1, 2] }}
 				className="form"
@@ -145,21 +149,23 @@ const UsersLogin = () => {
 						Female
 					</motion.label>
 				</motion.div>
-				{field.firstName && field.lastName && field.age && field.gender ? (
-					<motion.button
-						whileHover={{ scale: 1.1 }}
-						style={{ background: " rgb(107, 183, 255)" }}
-						className="submit-btn"
-					>
-						<span>Add your home</span>
-					</motion.button>
-				) : (
-					<motion.button
-						disabled
-						className="submit-btn"
-						style={{ background: "#489dec" }}
-					></motion.button>
-				)}
+				<div className="buttons-wrapper">
+					{field.firstName && field.lastName && field.age && field.gender ? (
+						<motion.button
+							whileHover={{ scale: 1.1 }}
+							style={{ background: "#ffff6b" }}
+							className="submit-btn"
+						>
+							<span>ADD PARTNER</span>
+						</motion.button>
+					) : (
+						<motion.button
+							disabled
+							className="submit-btn"
+							style={{ display: "none" }}
+						></motion.button>
+					)}
+				</div>
 			</motion.form>
 		</div>
 	);

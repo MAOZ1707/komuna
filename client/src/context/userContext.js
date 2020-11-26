@@ -14,7 +14,11 @@ const UsersContextProvider = ({ children }) => {
 		get();
 	}, []);
 
-	return <UsersContext.Provider value={user}>{children}</UsersContext.Provider>;
+	return (
+		<UsersContext.Provider value={{ user, setUser }}>
+			{children}
+		</UsersContext.Provider>
+	);
 };
 
 export default UsersContextProvider;

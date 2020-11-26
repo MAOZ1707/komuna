@@ -7,7 +7,7 @@ import { createHome } from "../../axios/axios";
 import { Redirect } from "react-router-dom";
 
 const HomeLogin = () => {
-	const homeContext = React.useContext(HomeContext);
+	const { homeData, setHomeData } = React.useContext(HomeContext);
 
 	const [field, setField] = useState({
 		city: "",
@@ -19,6 +19,7 @@ const HomeLogin = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		createHome(field);
+		setHomeData(field);
 		// Rest field
 		setField({
 			city: "",
@@ -27,8 +28,8 @@ const HomeLogin = () => {
 			zipCode: "",
 		});
 	};
-
-	if (homeContext.length) return <Redirect to="/user" />;
+	console.log(homeData);
+	if (homeData) return <Redirect to="/user" />;
 	return (
 		<div className="form-container">
 			<motion.h2
@@ -125,7 +126,7 @@ const HomeLogin = () => {
 				{field.city && field.street && field.houseNumber && field.zipCode ? (
 					<motion.button
 						whileHover={{ scale: 1.1 }}
-						style={{ background: " rgb(107, 183, 255)" }}
+						style={{ background: "#ffff6b" }}
 						className="submit-btn"
 					>
 						<span>ADD YOUR HOME</span>
@@ -134,7 +135,7 @@ const HomeLogin = () => {
 					<motion.button
 						disabled
 						className="submit-btn"
-						style={{ background: "#489dec" }}
+						style={{ display: "none" }}
 					></motion.button>
 				)}
 			</motion.form>
