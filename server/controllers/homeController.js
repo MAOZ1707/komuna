@@ -19,6 +19,23 @@ exports.getHome = async (req, res) => {
 	}
 };
 
+exports.getHomeById = async (req, res) => {
+	try {
+		const homeId = req.params.id;
+		const home = await Home.findById(homeId);
+		res.status(200).json({
+			data: {
+				home,
+			},
+		});
+	} catch (error) {
+		res.status(404).json({
+			status: "fail",
+			message: error,
+		});
+	}
+};
+
 exports.creatHome = async (req, res) => {
 	console.log(req.body);
 	try {

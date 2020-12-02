@@ -1,31 +1,43 @@
 import React from "react";
-import Dashboard from "./components/dashboard/Dashboard";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import HomeDataProvider from "./context/homeContext";
-import UserLogin from "./components/login/UsersLogin";
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from "react-router-dom";
 import "./App.css";
-import HomeLogin from "./components/login/HomeLogin";
-import UserContextProvider from "./context/userContext";
+import MainNavigation from "./components/Navigation/MainNavigation";
+import Users from "./components/users/User";
+import UserTodos from "./components/Todos/UserTodos";
+import NewTodos from "./components/Todos/NewTodos";
+import UpdateTodo from "./components/Todos/UpdateTodo";
+import Authentication from "./Auth/Authentication";
 
 const App = () => {
 	return (
-		<BrowserRouter>
-			<HomeDataProvider>
-				<UserContextProvider>
-					<Switch>
-						<Route exact path="/">
-							<Dashboard />
-						</Route>
-						<Route path="/home">
-							<HomeLogin />
-						</Route>
-						<Route path="/user">
-							<UserLogin />
-						</Route>
-					</Switch>
-				</UserContextProvider>
-			</HomeDataProvider>
-		</BrowserRouter>
+		<Router>
+			<MainNavigation />
+			<main>
+				<Switch>
+					<Route exact path="/">
+						<Users />
+					</Route>
+					<Route exact path="/:userId/todos">
+						<UserTodos />
+					</Route>
+					<Route exact path="/todos/new">
+						<NewTodos />
+					</Route>
+					<Route path="/todos/:todoId">
+						<UpdateTodo />
+					</Route>
+					<Route path="/auth">
+						<Authentication />
+					</Route>
+					<Redirect to="/" />
+				</Switch>
+			</main>
+		</Router>
 	);
 };
 

@@ -2,7 +2,6 @@ const User = require("../models/userModel");
 
 exports.getAllUsers = async (req, res) => {
 	try {
-		//Build the query
 		// Filtering
 		const queryObj = { ...req.query };
 		const excludedField = ["page", "sort", "limit", "field"];

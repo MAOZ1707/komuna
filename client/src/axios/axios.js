@@ -17,7 +17,15 @@ export const createHome = async (data) => {
 	console.log(response);
 };
 
-export const getHome = async () => {
+export const getHomeById = async (id) => {
+	const fetchData = await axios({
+		method: "GET",
+		url: `http://localhost:9000/api/home/${id}`,
+	});
+	const response = await fetchData;
+	return response.data.data.home;
+};
+export const getHome = async (path) => {
 	const fetchData = await axios({
 		method: "GET",
 		url: "http://localhost:9000/api/home",
@@ -28,24 +36,34 @@ export const getHome = async () => {
 
 // user fetch
 export const createUser = async (data) => {
-	console.log(data);
-	const fetchReq = await axios({
-		method: "POST",
-		url: "http://localhost:9000/api/user",
-		data: {
-			firstname: data.firstName,
-			lastname: data.lastName,
-			age: Number(data.age),
-			gender: data.gender,
-			islogin: !data.isLogin,
-		},
-	});
-	const response = await fetchReq;
-	console.log(response);
+	try {
+		const fetchReq = await axios({
+			method: "POST",
+			url: "http://localhost:9000/api/user/signup",
+			data: {
+				firstname: data.firstName,
+				lastname: data.lastName,
+				email: data.email,
+				password: data.password,
+				gender: data.gender,
+				islogin: data.isLogin,
+			},
+		});
+		const response = await fetchReq;
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const getUsers = async () => {
-	const fetchUser = await axios.get("http://localhost:9000/api/user");
+	const fetchUsers = await axios.get("http://localhost:9000/api/user");
+	const response = await fetchUsers;
+	return response.data;
+};
+
+export const getUserById = async (id) => {
+	const fetchUser = await axios.get(`http://localhost:9000/api/user/${id}`);
 	const response = await fetchUser;
 	return response.data;
 };

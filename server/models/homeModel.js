@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
+const { ObjectID } = require("mongodb");
 
 const homeSchema = new mongoose.Schema({
+	user: {
+		type: ObjectID,
+		ref: "User",
+	},
 	city: {
 		type: String,
 		required: [true, "City is required"],
