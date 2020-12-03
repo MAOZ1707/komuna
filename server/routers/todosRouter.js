@@ -14,6 +14,6 @@ router
 	.patch(todosController.updateTodos)
 	.delete(todosController.deleteTodos);
 
-router.get("/user/:id").get(todosController.getTodoByUserId);
+router.get("/user/:id").get(todosController.getTodosByUserId);
 
 module.exports = router;

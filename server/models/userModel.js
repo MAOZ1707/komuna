@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcryptjs");
 
 const usersSchema = new mongoose.Schema({
@@ -29,10 +30,12 @@ const usersSchema = new mongoose.Schema({
 		required: [true, "Please provide your password"],
 		minlength: [8, "Password must be more or equal to 8 characters"],
 	},
-	islogin: {
-		type: Boolean,
+	todos: {
+		type: String,
 	},
 });
+
+usersSchema.plugin(uniqueValidator);
 
 usersSchema.pre("save", async function (next) {
 	if (!this.isModified) return next();

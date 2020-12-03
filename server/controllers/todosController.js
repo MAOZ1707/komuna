@@ -32,15 +32,15 @@ exports.getAllTodos = async (req, res, next) => {
 	}
 };
 
-exports.getTodoByUserId = async (req, res, next) => {
+exports.getTodosByUserId = async (req, res, next) => {
 	try {
 		const userId = req.params.id;
 
-		const userTodo = await User.findById(userId);
+		const userTodos = await User.findById(userId);
 
 		res.status(200).json({
 			data: {
-				todos: userTodo,
+				todos: userTodos,
 			},
 		});
 	} catch (error) {
@@ -73,15 +73,20 @@ exports.getTodoById = async (req, res, next) => {
 };
 
 exports.createTodos = async (req, res, next) => {
-	console.log(chalk.bgBlue(req.body));
 	try {
-		const newTodos = await Todos.create(req.body);
+		console.log(chalk.bgBlue(req.body));
+		const newTodos = await Todos.create({
+			...req.body,
+			createAt: new Date().getDate(),
+			creator: "maoz",
+		});
+
 		res.json({
 			data: {
 				todos: newTodos,
 			},
 		});
-		console.log(chalk.bgGreenBright("Create success"));
+		console.log(chalk.bgGreenBright.black("Create success"));
 	} catch (error) {
 		const err = new HttpError(
 			"Create Todo is failed, please check again .",

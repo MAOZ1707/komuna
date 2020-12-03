@@ -15,8 +15,13 @@ const todosSchema = new mongoose.Schema({
 		required: [true, "selected category is require"],
 		trim: true,
 	},
-	createAt: Date,
-	// creatorID:
+	createAt: {
+		type: Date,
+	},
+	creator: {
+		type: String,
+		required: true,
+	},
 });
 
 const Todos = mongoose.model("Todos", todosSchema);
