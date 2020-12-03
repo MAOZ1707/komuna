@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import Card from "../UiElements/Card";
 
 import "../components/Todos/NewTodo.style.css";
+import { AuthContext } from "../context/AuthContext";
 
 const Authentication = () => {
-	const [isSignUp, setIsSignUp] = useState(true);
+	const authContext = useContext(AuthContext);
+
+	const [isSignUp, setIsSignUp] = useState(false);
 
 	const [signUpState, setSignUpState] = useState({
 		firstName: "",
 		lastName: "",
-		email: "",
-		password: "",
-		confirmPassword: "",
-	});
-
-	const [loginState, setLoginState] = useState({
 		email: "",
 		password: "",
 	});
@@ -29,85 +26,51 @@ const Authentication = () => {
 
 	const handleSignUpSubmit = (e) => {
 		e.preventDefault();
-		console.log(signUpState); //TODO -- SEND TO BACKEND
-	};
 
-	const onLoginChangeHandler = (e) => {
-		setLoginState({
-			...loginState,
-			[e.target.name]: e.target.value,
-		});
-	};
+		if (isSignUp) {
+			setSignUpState({
+				...signUpState,
+				firstName: undefined,
+				lastName: undefined,
+			});
+		} else {
+			setSignUpState(signUpState);
+		}
 
-	const handleLoginUpSubmit = (e) => {
-		e.preventDefault();
-		console.log(loginState); //TODO -- SEND TO BACKEND
+		authContext.login();
 	};
-
 	console.log(signUpState);
-	console.log(loginState);
-
-	if (isSignUp) {
-		return (
-			<Card className="authentication">
-				<form onSubmit={handleLoginUpSubmit}>
-					<div className="form-control">
-						<label htmlFor="email">Email</label>
-						<input
-							type="text"
-							id="email"
-							name="email"
-							value={loginState.email}
-							placeholder="email"
-							onChange={onLoginChangeHandler}
-						/>
-					</div>
-
-					<div className="form-control">
-						<label htmlFor="password">Password</label>
-						<input
-							type="password"
-							id="password"
-							name="password"
-							value={loginState.password}
-							placeholder="password"
-							onChange={onLoginChangeHandler}
-						/>
-					</div>
-
-					<button style={{ background: "lightBlue", border: "none" }}>
-						Log in
-					</button>
-				</form>
-			</Card>
-		);
-	}
 
 	return (
 		<Card className="authentication">
 			<form onSubmit={handleSignUpSubmit}>
-				<div className="form-control">
-					<label htmlFor="firstname">First Name</label>
-					<input
-						type="text"
-						id="firstname"
-						name="firstName"
-						value={signUpState.firstName}
-						placeholder="first name"
-						onChange={onChangeHandler}
-					/>
-				</div>
-				<div className="form-control">
-					<label htmlFor="lastname">Last Name</label>
-					<input
-						type="text"
-						id="lastname"
-						name="lastName"
-						value={signUpState.lastName}
-						placeholder="last name"
-						onChange={onChangeHandler}
-					/>
-				</div>
+				{!isSignUp && (
+					<React.Fragment>
+						<div className="form-control">
+							<label htmlFor="firstname">First Name</label>
+							<input
+								type="text"
+								id="firstname"
+								name="firstName"
+								value={signUpState.firstName}
+								placeholder="first name"
+								onChange={onChangeHandler}
+							/>
+						</div>
+						<div className="form-control">
+							<label htmlFor="lastname">Last Name</label>
+							<input
+								type="text"
+								id="lastname"
+								name="lastName"
+								value={signUpState.lastName}
+								placeholder="last name"
+								onChange={onChangeHandler}
+							/>
+						</div>
+					</React.Fragment>
+				)}
+
 				<div className="form-control">
 					<label htmlFor="email">Email</label>
 					<input
@@ -130,21 +93,25 @@ const Authentication = () => {
 						onChange={onChangeHandler}
 					/>
 				</div>
-				<div className="form-control">
-					<label htmlFor="confirmPassword">Confirm Password</label>
-					<input
-						type="password"
-						id="confirmPassword"
-						name="confirmPassword"
-						value={signUpState.confirmPassword}
-						placeholder="confirm password"
-						onChange={onChangeHandler}
-					/>
+				<div>
+					<button style={{ background: "lightBlue", border: "none" }}>
+						{isSignUp ? "LOG IN" : "SIGN UP"}
+					</button>
 				</div>
-				<button style={{ background: "lightBlue", border: "none" }}>
-					Sign Up
-				</button>
 			</form>
+			<div>
+				{!isSignUp && (
+					<p>
+						Already sign up?
+						<button
+							style={{ background: "lightBlue", border: "none" }}
+							onClick={() => setIsSignUp((prevState) => !prevState)}
+						>
+							Log in
+						</button>
+					</p>
+				)}
+			</div>
 		</Card>
 	);
 };

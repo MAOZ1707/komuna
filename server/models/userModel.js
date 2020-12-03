@@ -17,11 +17,6 @@ const usersSchema = new mongoose.Schema({
 		minlength: [3, "A name must have a more or equal to 3 characters"],
 		required: [true, "last name is required"],
 	},
-	gender: {
-		type: String,
-		trim: true,
-		required: [true, "gender is required"],
-	},
 	email: {
 		type: String,
 		lowercase: true,

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 import Card from "../../UiElements/Card";
 import Modal from "../../UiElements/Modal";
@@ -7,6 +8,7 @@ import Modal from "../../UiElements/Modal";
 import "./TodoItem.style.css";
 
 const TodoItem = (props) => {
+	const authContext = useContext(AuthContext);
 	const [showModal, setShowModal] = useState(false);
 
 	const showDeleteModal = () => {
@@ -44,10 +46,14 @@ const TodoItem = (props) => {
 						<p>{props.body}</p>
 					</div>
 					<div className="todo-item__actions">
-						<button>
-							<Link to={`/todos/${props.id}`}>EDIT</Link>
-						</button>
-						<button onClick={showDeleteModal}>DELETE</button>
+						{authContext.isLoggedIn && (
+							<button>
+								<Link to={`/todos/${props.id}`}>EDIT</Link>
+							</button>
+						)}
+						{authContext.isLoggedIn && (
+							<button onClick={showDeleteModal}>DELETE</button>
+						)}
 					</div>
 				</Card>
 			</li>
