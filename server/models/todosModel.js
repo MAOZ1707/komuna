@@ -19,8 +19,9 @@ const todosSchema = new mongoose.Schema({
 		type: Date,
 	},
 	creator: {
-		type: String,
+		type: mongoose.Types.ObjectId,
 		required: true,
+		ref: "User",
 	},
 });
 

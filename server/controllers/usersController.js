@@ -2,23 +2,9 @@ const User = require("../models/userModel");
 
 exports.getAllUsers = async (req, res) => {
 	try {
-		// Filtering
-		const queryObj = { ...req.query };
-		const excludedField = ["page", "sort", "limit", "field"];
-		excludedField.forEach((ele) => delete queryObj[ele]);
+		const users = await User.find();
 
-		let query = User.find(req.query);
-
-		// Sorting
-		if (req.query.sort) {
-			const sortBy = req.query.sort.split(",").join(",");
-			query = query.sort(sortBy);
-		}
-		// Execute the query
-		const users = await query;
-
-		// Send the response
-		res.status(200).json({
+		res.json({
 			status: "success",
 			users: users.length,
 			data: {
@@ -37,7 +23,7 @@ exports.getUserById = async (req, res) => {
 	try {
 		const user = await User.findById(req.params.id);
 
-		res.status(200).json({
+		res.json({
 			status: "success",
 			data: {
 				user,
@@ -78,7 +64,7 @@ exports.updateUser = async (req, res) => {
 			runValidators: true,
 		});
 
-		res.status(200).json({
+		res.json({
 			status: "success",
 			data: {
 				user: userUpdate,
