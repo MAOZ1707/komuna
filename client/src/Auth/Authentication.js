@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 
 import Card from "../UiElements/Card";
+import ErrorModal from "../UiElements/ErrorModal";
+import LoadingSpinner from "../UiElements/LoadingSpinner";
 
 import "../components/Todos/NewTodo.style.css";
 import { AuthContext } from "../context/AuthContext";
@@ -30,8 +32,8 @@ const Authentication = () => {
 		e.preventDefault();
 
 		if (isSignUp) {
-			setIsLoading(true);
 			try {
+				setIsLoading(true);
 				const response = await axios({
 					method: "POST",
 					url: " http://localhost:9000/api/user/login",
@@ -41,12 +43,18 @@ const Authentication = () => {
 					},
 				});
 				const data = await response.data;
+
+				if (response.status >= 300) {
+					console.log("status code >= 300");
+					throw new Error(data.message);
+				}
 				setIsLoading(false);
 				authContext.login();
-				console.log(data);
 			} catch (err) {
 				setIsLoading(false);
-				setError("We have som problem, please try again");
+				setError(
+					err.response.data.message || "We have som problem, please try again"
+				);
 			}
 		} else {
 			try {
@@ -62,25 +70,31 @@ const Authentication = () => {
 					},
 				});
 				const data = await response.data;
+				if (response.status >= 300) {
+					throw new Error(data.message);
+				}
+
 				setIsLoading(false);
 				authContext.login();
-				console.log(data);
 			} catch (err) {
 				setIsLoading(false);
-				setError("We have som problem, please try again");
+				setError(
+					err.response.data.message ||
+						"We have some problem, please try again and check your fields"
+				);
 			}
 		}
 	};
 
+	const errorHandler = () => {
+		setError(null);
+	};
+
 	return (
 		<React.Fragment>
-			{/* //TODO ------->  MAKE LOADING SPINNER HERE */}
-			{isLoading && <div>Loading...</div>}
-			{/* //TODO ------->  MAKE MODAL-> ERROR MESSAGE HERE */}
-			{error && (
-				<div style={{ color: "black", background: "red" }}>{error}</div>
-			)}
+			{<ErrorModal error={error} onClear={errorHandler} />}
 			<Card className="authentication">
+				{isLoading && <LoadingSpinner asOverlay />}
 				<form onSubmit={handleSignUpSubmit}>
 					{!isSignUp && (
 						<React.Fragment>

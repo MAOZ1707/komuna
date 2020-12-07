@@ -7,21 +7,22 @@ exports.signup = async (req, res, next) => {
 	const { firstname, lastname, email, password } = req.body;
 
 	console.log(req.body);
-	let hasUser;
+
+	let existingUser;
 	try {
-		hasUser = await User.findOne({ email });
+		existingUser = await User.findOne({ email });
 	} catch (error) {
-		const err = new HttpError("Signup failed, please try again later 2.", 404);
+		const err = new HttpError("Signup failed, please try again later .", 404);
 		return next(err);
 	}
 
-	if (hasUser) {
+	if (existingUser) {
 		console.log(true);
-		const error = new HttpError(
+		const err = new HttpError(
 			"User exists already, please login instead.",
 			422
 		);
-		return next(error);
+		return next(err);
 	}
 
 	try {
@@ -34,9 +35,7 @@ exports.signup = async (req, res, next) => {
 		});
 
 		res.status(201).json({
-			data: {
-				user: newUser,
-			},
+			user: newUser,
 		});
 	} catch (error) {
 		const err = new HttpError("Signup failed, please try again later.", 404);
@@ -51,14 +50,14 @@ exports.login = async (req, res, next) => {
 
 	try {
 		existingUser = await User.findOne({ email: email });
-	} catch (err) {
-		const error = new HttpError("Login failed, please try again later.", 500);
-		return next(error);
+	} catch (error) {
+		const err = new HttpError("Login failed, please try again later.", 500);
+		return next(err);
 	}
 
 	if (!existingUser || password !== existingUser.password) {
-		const error = new HttpError("Login failed, could not log you in.", 401);
-		return next(error);
+		const err = new HttpError("Login failed, could not log you in.", 401);
+		return next(err);
 	}
 
 	res.json({ message: "Logged in!" });
