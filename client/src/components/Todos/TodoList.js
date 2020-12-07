@@ -14,6 +14,9 @@ const TodoList = (props) => {
 					<button>
 						<Link to="/todos/new">Create Task</Link>
 					</button>
+					<button>
+						<Link to="/">Back to users</Link>
+					</button>
 				</Card>
 			</div>
 		);

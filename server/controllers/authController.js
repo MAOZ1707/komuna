@@ -7,18 +7,22 @@ exports.signup = async (req, res, next) => {
 	const { firstname, lastname, email, password } = req.body;
 
 	console.log(req.body);
-
+	let hasUser;
 	try {
-		const hasUser = await User.findOne({ email });
-		if (hasUser) {
-			throw new HttpError("Signup failed, email already exist.", 422);
-		}
+		hasUser = await User.findOne({ email });
 	} catch (error) {
 		const err = new HttpError("Signup failed, please try again later 2.", 404);
 		return next(err);
 	}
 
-	// let newUser;
+	if (hasUser) {
+		console.log(true);
+		const error = new HttpError(
+			"User exists already, please login instead.",
+			422
+		);
+		return next(error);
+	}
 
 	try {
 		const newUser = await User.create({
@@ -52,7 +56,7 @@ exports.login = async (req, res, next) => {
 		return next(error);
 	}
 
-	if (!existingUser) {
+	if (!existingUser || password !== existingUser.password) {
 		const error = new HttpError("Login failed, could not log you in.", 401);
 		return next(error);
 	}

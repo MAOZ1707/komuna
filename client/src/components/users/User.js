@@ -1,24 +1,35 @@
-import React from "react";
+import Axios from "axios";
+import React, { useState, useEffect } from "react";
 
 import UserList from "./components/UserList";
 
 const User = () => {
-	const USERS = [
-		{
-			id: "u1",
-			name: "User 1",
-			image:
-				" https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-		},
-		{
-			id: "u2",
-			name: "User 2",
-			image:
-				" https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-		},
-	];
+	const [users, setUsers] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(null);
 
-	return <UserList items={USERS} />;
+	useEffect(() => {
+		const fetchAllUsers = async () => {
+			setIsLoading(true);
+			const response = await Axios({
+				method: "GET",
+				url: "http://localhost:9000/api/user",
+			});
+			const data = await response.data;
+			console.log(data);
+			setUsers(data.users);
+			setIsLoading(false);
+		};
+		fetchAllUsers();
+	}, []);
+
+	return (
+		<React.Fragment>
+			{isLoading && <div className="center">Loading...</div>}
+			{error && <div>{error}</div>}
+			{users && <UserList items={users} />}
+		</React.Fragment>
+	);
 };
 
 export default User;
