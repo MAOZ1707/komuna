@@ -18,10 +18,7 @@ exports.signup = async (req, res, next) => {
 
 	if (existingUser) {
 		console.log(true);
-		const err = new HttpError(
-			"User exists already, please login instead.",
-			422
-		);
+		const err = new HttpError("User exists already, please login instead.", 422);
 		return next(err);
 	}
 
@@ -60,5 +57,5 @@ exports.login = async (req, res, next) => {
 		return next(err);
 	}
 
-	res.json({ message: "Logged in!" });
+	res.json({ message: "Logged in!", user: existingUser });
 };

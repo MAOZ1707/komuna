@@ -1,31 +1,34 @@
-import Axios from "axios";
 import React, { useState, useEffect } from "react";
 
+import LoadingSpinner from "../../UiElements/LoadingSpinner";
+import ErrorModal from "../../UiElements/ErrorModal";
+
 import UserList from "./components/UserList";
+import { useFetch } from "../../hooks/useFetch";
 
 const User = () => {
 	const [users, setUsers] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState(null);
+	const [error, isLoading, sendRequest, clearError] = useFetch();
 
 	useEffect(() => {
 		const fetchAllUsers = async () => {
-			setIsLoading(true);
-			const response = await Axios({
-				method: "GET",
-				url: "http://localhost:9000/api/user",
-			});
-			const data = await response.data;
-			console.log(data);
-			setUsers(data.users);
-			setIsLoading(false);
+			try {
+				const responseData = await sendRequest("http://localhost:9000/api/user");
+				console.log(responseData);
+				setUsers(responseData.users);
+			} catch (error) {}
 		};
 		fetchAllUsers();
-	}, []);
+	}, [sendRequest]);
 
 	return (
 		<React.Fragment>
-			{isLoading && <div className="center">Loading...</div>}
+			<ErrorModal onClear={clearError} />
+			{isLoading && (
+				<div className="center">
+					<LoadingSpinner />
+				</div>
+			)}
 			{error && <div>{error}</div>}
 			{users && <UserList items={users} />}
 		</React.Fragment>

@@ -32,7 +32,7 @@ const Authentication = () => {
 
 		if (isSignUp) {
 			try {
-				await sendRequest(
+				const responseData = await sendRequest(
 					" http://localhost:9000/api/user/login",
 					"POST",
 					{
@@ -44,11 +44,11 @@ const Authentication = () => {
 					}
 				);
 
-				authContext.login();
+				authContext.login(responseData.user._id);
 			} catch (err) {}
 		} else {
 			try {
-				await sendRequest(
+				const responseData = await sendRequest(
 					" http://localhost:9000/api/user/signup",
 					"POST",
 					{
@@ -61,8 +61,8 @@ const Authentication = () => {
 						"Content-Type": "application/json",
 					}
 				);
-
-				authContext.login();
+				console.log(responseData);
+				authContext.login(responseData.user._id);
 			} catch (error) {
 				console.log(error);
 			}
