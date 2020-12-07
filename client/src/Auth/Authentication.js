@@ -1,25 +1,24 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
 
 import Card from "../UiElements/Card";
 import ErrorModal from "../UiElements/ErrorModal";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
+import { AuthContext } from "../context/AuthContext";
+import { useFetch } from "../hooks/useFetch";
 
 import "../components/Todos/NewTodo.style.css";
-import { AuthContext } from "../context/AuthContext";
 
 const Authentication = () => {
 	const authContext = useContext(AuthContext);
-
 	const [isSignUp, setIsSignUp] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState(null);
 	const [signUpState, setSignUpState] = useState({
 		firstName: "",
 		lastName: "",
 		email: "",
 		password: "",
 	});
+
+	const [error, isLoading, sendRequest, clearError] = useFetch();
 
 	const onChangeHandler = (e) => {
 		setSignUpState({
@@ -33,61 +32,45 @@ const Authentication = () => {
 
 		if (isSignUp) {
 			try {
-				setIsLoading(true);
-				const response = await axios({
-					method: "POST",
-					url: " http://localhost:9000/api/user/login",
-					data: {
+				await sendRequest(
+					" http://localhost:9000/api/user/login",
+					"POST",
+					{
 						email: signUpState.email,
 						password: signUpState.password,
 					},
-				});
-				const data = await response.data;
-
-				if (response.status >= 300) {
-					console.log("status code >= 300");
-					throw new Error(data.message);
-				}
-				setIsLoading(false);
-				authContext.login();
-			} catch (err) {
-				setIsLoading(false);
-				setError(
-					err.response.data.message || "We have som problem, please try again"
+					{
+						"Content-Type": "application/json",
+					}
 				);
-			}
+
+				authContext.login();
+			} catch (err) {}
 		} else {
 			try {
-				setIsLoading(true);
-				const response = await axios({
-					method: "POST",
-					url: " http://localhost:9000/api/user/signup",
-					data: {
+				await sendRequest(
+					" http://localhost:9000/api/user/signup",
+					"POST",
+					{
 						firstname: signUpState.firstName,
 						lastname: signUpState.lastName,
 						email: signUpState.email,
 						password: signUpState.password,
 					},
-				});
-				const data = await response.data;
-				if (response.status >= 300) {
-					throw new Error(data.message);
-				}
-
-				setIsLoading(false);
-				authContext.login();
-			} catch (err) {
-				setIsLoading(false);
-				setError(
-					err.response.data.message ||
-						"We have some problem, please try again and check your fields"
+					{
+						"Content-Type": "application/json",
+					}
 				);
+
+				authContext.login();
+			} catch (error) {
+				console.log(error);
 			}
 		}
 	};
 
 	const errorHandler = () => {
-		setError(null);
+		clearError(null);
 	};
 
 	return (

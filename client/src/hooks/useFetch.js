@@ -8,23 +8,27 @@ export const useFetch = () => {
 	const sendRequest = useCallback(async (url, method = "GET", body = null, headers = {}) => {
 		setIsLoading(true);
 		try {
-			const response = await axios(url, {
+			const response = await axios({
+				url,
 				method,
+				data: body,
 				headers,
-				body,
 			});
 
-			const data = response.data;
+			const data = await response.data;
+			console.log(data);
 			if (response.status >= 300) {
 				console.log("status code >= 300");
 				throw new Error(data.message);
 			}
 
+			setIsLoading(false);
 			return data;
 		} catch (error) {
-			setError(error);
+			setError(error.message);
+			setIsLoading(false);
+			throw error;
 		}
-		setIsLoading(false);
 	}, []);
 
 	const clearError = () => {
