@@ -6,7 +6,6 @@ import TodoItem from "./TodoItem";
 import "./TodoList.style.css";
 
 const TodoList = (props) => {
-	console.log(props.items);
 	if (props.items.length === 0) {
 		return (
 			<div className="place-list center">

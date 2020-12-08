@@ -25,7 +25,6 @@ exports.getTodosByUserId = async (req, res, next) => {
 	let userTodos;
 	try {
 		userTodos = await Todos.find({ creator: userId });
-		console.log(userTodos);
 	} catch (error) {
 		const err = new HttpError("Fetching User Todo failed, please try again later.", 404);
 		return next(err);
@@ -47,9 +46,7 @@ exports.getTodoById = async (req, res, next) => {
 		const todo = await Todos.findById(id);
 
 		res.status(200).json({
-			data: {
-				todo,
-			},
+			todo,
 		});
 		console.log(chalk.bgGreenBright("GET success"));
 	} catch (error) {

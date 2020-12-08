@@ -1,6 +1,5 @@
 const express = require("express");
 const morgan = require("morgan");
-
 const userRouter = require("./routers/userRoutes");
 const homeRouter = require("./routers/homeRouter");
 const todosRouter = require("./routers/todosRouter");
@@ -22,9 +21,7 @@ app.use((err, req, res, next) => {
 		return next(err);
 	}
 
-	res
-		.status(err.code || 500)
-		.json({ message: err.message || "Something get wrong ! " });
+	res.status(err.code || 500).json({ message: err.message || "Something get wrong ! " });
 });
 
 module.exports = app;

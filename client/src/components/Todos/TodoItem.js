@@ -51,9 +51,7 @@ const TodoItem = (props) => {
 								<Link to={`/todos/${props.id}`}>EDIT</Link>
 							</button>
 						)}
-						{authContext.isLoggedIn && (
-							<button onClick={showDeleteModal}>DELETE</button>
-						)}
+						{authContext.isLoggedIn && <button onClick={showDeleteModal}>DELETE</button>}
 					</div>
 				</Card>
 			</li>

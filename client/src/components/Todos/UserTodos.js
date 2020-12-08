@@ -12,13 +12,10 @@ const UserTodos = () => {
 	const [loadedTodos, setLoadedTodos] = useState([]);
 	const userId = useParams().userId;
 
-	console.log(userId);
-
 	useEffect(() => {
 		const fetchTodosByUserId = async () => {
 			try {
 				const responseData = await sendRequest(`http://localhost:9000/api/todos/user/${userId}`);
-				console.log(responseData.todos);
 				setLoadedTodos(responseData.todos);
 			} catch (err) {
 				console.log(err);

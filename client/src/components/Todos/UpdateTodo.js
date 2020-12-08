@@ -1,43 +1,40 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+import { useFetch } from "../../hooks/useFetch";
+import LoadingSpinner from "../../UiElements/LoadingSpinner";
 
 import "./NewTodo.style.css";
 
-const DUMMY_TODOS = [
-	{
-		id: 1,
-		category: "Shopping",
-		title: "Go to shopping",
-		body: "buy Milk, Egg , fish",
-		user_id: "u1",
-	},
-	{
-		id: 2,
-		category: "Payments",
-		title: "bills",
-		body: "water,electric",
-		user_id: "u1",
-	},
-	{
-		id: 3,
-		category: "Cleaning",
-		title: "Wash the floor",
-		body: "and clean room",
-		user_id: "u2",
-	},
-];
-
 const UpdateTodo = () => {
 	const todoId = useParams().todoId;
-	const findTodoById = DUMMY_TODOS.find((todo) => todo.id === +todoId);
+	const [error, isLoading, sendRequest, clearError] = useFetch();
+	const [loadedTodo, setLoadedTodos] = useState(null);
 
 	const [updateState, setUpdateState] = useState({
-		title: findTodoById.title,
-		category: findTodoById.category,
-		body: findTodoById.body,
+		title: "",
+		category: "",
+		body: "",
 	});
+	console.log("TODO-ID", todoId);
 
-	console.log(updateState);
+	useEffect(() => {
+		const fetchTodo = async () => {
+			try {
+				const responseData = await sendRequest(`http://localhost:9000/api/todos/${todoId}`);
+				console.log(responseData);
+				setLoadedTodos(responseData.todo);
+				setUpdateState({
+					title: responseData.todo.title,
+					category: responseData.todo.category,
+					body: responseData.todo.body,
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchTodo();
+	}, [setUpdateState, sendRequest, todoId]);
 
 	const inputHandler = useCallback(
 		(e) => {
@@ -54,51 +51,59 @@ const UpdateTodo = () => {
 		console.log(updateState); // TODO -- SAVE TO DATABASE
 	};
 
-	if (!findTodoById) {
+	if (!loadedTodo) {
 		return (
 			<div className="center">
-				<h2>Could not find todo!</h2>
+				<LoadingSpinner asOverlay />
 			</div>
 		);
 	}
 
 	return (
-		<form onSubmit={updateTodoSubmitHandler}>
-			<div className="form-control">
-				<label htmlFor="title">Title</label>
-				<input
-					type="text"
-					id="title"
-					name="title"
-					value={updateState.title}
-					placeholder="title"
-					onChange={inputHandler}
-				/>
-			</div>
-			<div className="form-control">
-				<label htmlFor="category">Category</label>
-				<input
-					type="text"
-					id="category"
-					name="category"
-					value={updateState.category}
-					placeholder="category"
-					onChange={inputHandler}
-				/>
-			</div>
-			<div className="form-control">
-				<label htmlFor="body">Body</label>
-				<input
-					type="text"
-					id="body"
-					name="body"
-					value={updateState.body}
-					placeholder="body"
-					onChange={inputHandler}
-				/>
-			</div>
-			<button type="submit">Update Task</button>
-		</form>
+		<React.Fragment>
+			<form onSubmit={updateTodoSubmitHandler}>
+				<div className="form-control">
+					<label htmlFor="title">Title</label>
+					{loadedTodo && (
+						<input
+							type="text"
+							id="title"
+							name="title"
+							value={loadedTodo.title}
+							placeholder="title"
+							onChange={inputHandler}
+						/>
+					)}
+				</div>
+				<div className="form-control">
+					<label htmlFor="category">Category</label>
+					{loadedTodo && (
+						<input
+							type="text"
+							id="category"
+							name="category"
+							value={loadedTodo.category}
+							placeholder="category"
+							onChange={inputHandler}
+						/>
+					)}
+				</div>
+				<div className="form-control">
+					<label htmlFor="body">Body</label>
+					{loadedTodo && (
+						<input
+							type="text"
+							id="body"
+							name="body"
+							value={loadedTodo.body}
+							placeholder="body"
+							onChange={inputHandler}
+						/>
+					)}
+				</div>
+				<button type="submit">Update Task</button>
+			</form>
+		</React.Fragment>
 	);
 };
 
