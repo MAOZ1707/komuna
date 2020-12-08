@@ -1,38 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
+import ErrorModal from "../../UiElements/ErrorModal";
+import LoadingSpinner from "../../UiElements/LoadingSpinner";
 
 import TodoList from "./TodoList";
 
-const DUMMY_TODOS = [
-	{
-		id: 1,
-		category: "Shopping",
-		title: "Go to shopping",
-		body: "buy Milk, Egg , fish",
-		user_id: "u1",
-	},
-	{
-		id: 2,
-		category: "Payments",
-		title: "bills",
-		body: "water,electric",
-		user_id: "u1",
-	},
-	{
-		id: 3,
-		category: "Cleaning",
-		title: "Wash the floor",
-		body: "and clean room",
-		user_id: "u2",
-	},
-];
-
 const UserTodos = () => {
+	const [error, isLoading, sendRequest, clearError] = useFetch();
+	const [loadedTodos, setLoadedTodos] = useState([]);
 	const userId = useParams().userId;
 
-	const filterTodos = DUMMY_TODOS.filter((todo) => userId === todo.user_id);
+	console.log(userId);
 
-	return <TodoList items={filterTodos} />;
+	useEffect(() => {
+		const fetchTodosByUserId = async () => {
+			try {
+				const responseData = await sendRequest(`http://localhost:9000/api/todos/user/${userId}`);
+				console.log(responseData.todos);
+				setLoadedTodos(responseData.todos);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+
+		fetchTodosByUserId();
+	}, [sendRequest, userId]);
+
+	return (
+		<React.Fragment>
+			<ErrorModal error={error} onClear={clearError} />
+			{isLoading && <LoadingSpinner asOverlay />}
+			{!isLoading && loadedTodos && <TodoList items={loadedTodos} />}
+		</React.Fragment>
+	);
 };
 
 export default UserTodos;

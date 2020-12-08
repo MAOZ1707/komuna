@@ -14,39 +14,30 @@ exports.getAllTodos = async (req, res, next) => {
 			},
 		});
 	} catch (error) {
-		const err = new HttpError(
-			"Fetching Todos failed, please try again later.",
-			404
-		);
+		const err = new HttpError("Fetching Todos failed, please try again later.", 404);
 		return next(err);
 	}
 };
 
 exports.getTodosByUserId = async (req, res, next) => {
+	const userId = req.params.id;
+
 	let userTodos;
 	try {
-		const userId = req.params.id;
 		userTodos = await Todos.find({ creator: userId });
+		console.log(userTodos);
 	} catch (error) {
-		const err = new HttpError(
-			"Fetching User Todo failed, please try again later.",
-			404
-		);
+		const err = new HttpError("Fetching User Todo failed, please try again later.", 404);
 		return next(err);
 	}
 
 	if (!userTodos || userTodos.length === 0) {
-		const err = new HttpError(
-			"Could not find places for the provided user id",
-			404
-		);
+		const err = new HttpError("Could not find todos for the provided user id", 404);
 		return next(err);
 	}
 
 	res.status(200).json({
-		data: {
-			todos: userTodos,
-		},
+		todos: userTodos,
 	});
 };
 
@@ -62,10 +53,7 @@ exports.getTodoById = async (req, res, next) => {
 		});
 		console.log(chalk.bgGreenBright("GET success"));
 	} catch (error) {
-		const err = new HttpError(
-			"Fetching this Todo failed, please try again later.",
-			404
-		);
+		const err = new HttpError("Fetching this Todo failed, please try again later.", 404);
 		return next(err);
 	}
 };
@@ -164,10 +152,7 @@ exports.updateTodos = async (req, res, next) => {
 		console.log(chalk.bgGreenBright("Update success"));
 	} catch (error) {
 		console.log(chalk.bold.red(error));
-		const err = new HttpError(
-			"Update Todo is failed, please check again .",
-			404
-		);
+		const err = new HttpError("Update Todo is failed, please check again .", 404);
 		return next(err);
 	}
 };
@@ -181,10 +166,7 @@ exports.deleteTodos = async (req, res, next) => {
 		res.json({ data: null });
 	} catch (error) {
 		console.log(chalk.bold.red(error));
-		const err = new HttpError(
-			"Update Todo is failed, please check again .",
-			404
-		);
+		const err = new HttpError("Update Todo is failed, please check again .", 404);
 		return next(err);
 	}
 };

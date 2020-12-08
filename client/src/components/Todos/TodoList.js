@@ -6,6 +6,7 @@ import TodoItem from "./TodoItem";
 import "./TodoList.style.css";
 
 const TodoList = (props) => {
+	console.log(props.items);
 	if (props.items.length === 0) {
 		return (
 			<div className="place-list center">
@@ -26,8 +27,8 @@ const TodoList = (props) => {
 		<ul className="todo-list">
 			{props.items.map((task) => (
 				<TodoItem
-					key={task.id}
-					id={task.id}
+					key={task._id}
+					id={task._id}
 					title={task.title}
 					body={task.body}
 					category={task.category}

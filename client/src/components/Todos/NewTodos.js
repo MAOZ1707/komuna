@@ -1,4 +1,6 @@
 import React, { useCallback, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+
 import { AuthContext } from "../../context/AuthContext";
 import { useFetch } from "../../hooks/useFetch";
 import ErrorModal from "../../UiElements/ErrorModal";
@@ -8,6 +10,7 @@ import "./NewTodo.style.css";
 
 const NewTodos = () => {
 	const authContext = useContext(AuthContext);
+	const history = useHistory();
 
 	const [formState, setFormState] = useState({
 		title: "",
@@ -43,7 +46,7 @@ const NewTodos = () => {
 				}
 			);
 
-			// TODO---> Redirect to user to different page
+			history.push("/");
 		} catch (error) {}
 	};
 
