@@ -5,12 +5,12 @@ import ErrorModal from "../UiElements/ErrorModal";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
 import { AuthContext } from "../context/AuthContext";
 import { useFetch } from "../hooks/useFetch";
-
 import "../components/Todos/NewTodo.style.css";
 
 const Authentication = () => {
 	const authContext = useContext(AuthContext);
 	const [isSignUp, setIsSignUp] = useState(false);
+
 	const [signUpState, setSignUpState] = useState({
 		firstName: "",
 		lastName: "",
@@ -76,7 +76,7 @@ const Authentication = () => {
 	return (
 		<React.Fragment>
 			{<ErrorModal error={error} onClear={errorHandler} />}
-			<Card className="authentication">
+			<Card className="authentication ">
 				{isLoading && <LoadingSpinner asOverlay />}
 				<form onSubmit={handleSignUpSubmit}>
 					{!isSignUp && (
@@ -88,7 +88,6 @@ const Authentication = () => {
 									id="firstname"
 									name="firstName"
 									value={signUpState.firstName}
-									placeholder="first name"
 									onChange={onChangeHandler}
 								/>
 							</div>
@@ -99,21 +98,18 @@ const Authentication = () => {
 									id="lastname"
 									name="lastName"
 									value={signUpState.lastName}
-									placeholder="last name"
 									onChange={onChangeHandler}
 								/>
 							</div>
 						</React.Fragment>
 					)}
-
 					<div className="form-control">
 						<label htmlFor="email">Email</label>
 						<input
-							type="text"
+							type="email"
 							id="email"
 							name="email"
 							value={signUpState.email}
-							placeholder="email"
 							onChange={onChangeHandler}
 						/>
 					</div>
@@ -124,7 +120,6 @@ const Authentication = () => {
 							id="password"
 							name="password"
 							value={signUpState.password}
-							placeholder="password"
 							onChange={onChangeHandler}
 						/>
 					</div>

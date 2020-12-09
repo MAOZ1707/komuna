@@ -1,11 +1,12 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const userRouter = require("./routers/userRoutes");
 const homeRouter = require("./routers/homeRouter");
 const todosRouter = require("./routers/todosRouter");
 
 const app = express();
-
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(morgan("dev"));
 

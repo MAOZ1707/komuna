@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import { useFetch } from "../../hooks/useFetch";
+import Card from "../../UiElements/Card";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 
 import "./NewTodo.style.css";
@@ -9,6 +10,7 @@ import "./NewTodo.style.css";
 const UpdateTodo = () => {
 	const todoId = useParams().todoId;
 	const [error, isLoading, sendRequest, clearError] = useFetch();
+
 	const [loadedTodo, setLoadedTodos] = useState(null);
 
 	const [updateState, setUpdateState] = useState({
@@ -16,12 +18,16 @@ const UpdateTodo = () => {
 		category: "",
 		body: "",
 	});
+	const history = useHistory();
+
 	console.log("TODO-ID", todoId);
 
 	useEffect(() => {
 		const fetchTodo = async () => {
 			try {
-				const responseData = await sendRequest(`http://localhost:9000/api/todos/${todoId}`);
+				const responseData = await sendRequest(
+					`http://localhost:9000/api/todos/${todoId}`
+				);
 				console.log(responseData);
 				setLoadedTodos(responseData.todo);
 				setUpdateState({
@@ -45,10 +51,31 @@ const UpdateTodo = () => {
 		},
 		[updateState]
 	);
-
-	const updateTodoSubmitHandler = (event) => {
+	const updateTodoSubmitHandler = async (event) => {
 		event.preventDefault();
-		console.log(updateState); // TODO -- SAVE TO DATABASE
+		try {
+			// await axios.patch("http://localhost:9000/api/todos/5fceaf431baf041ee49f7871", {
+			// 	data: { title: "update todo" },
+			// });
+			await sendRequest(
+				`http://localhost:9000/api/todos/${todoId}`,
+				"PATCH",
+				{
+					title: updateState.title,
+					category: updateState.category,
+					body: updateState.body,
+				},
+				{
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Methods": "GET,DELETE,POST,PATCH,PUT",
+					"Access-Control-Allow-Origin": "*",
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+
+		history.push("/");
 	};
 
 	if (!loadedTodo) {
@@ -61,48 +88,50 @@ const UpdateTodo = () => {
 
 	return (
 		<React.Fragment>
-			<form onSubmit={updateTodoSubmitHandler}>
-				<div className="form-control">
-					<label htmlFor="title">Title</label>
-					{loadedTodo && (
-						<input
-							type="text"
-							id="title"
-							name="title"
-							value={loadedTodo.title}
-							placeholder="title"
-							onChange={inputHandler}
-						/>
-					)}
-				</div>
-				<div className="form-control">
-					<label htmlFor="category">Category</label>
-					{loadedTodo && (
-						<input
-							type="text"
-							id="category"
-							name="category"
-							value={loadedTodo.category}
-							placeholder="category"
-							onChange={inputHandler}
-						/>
-					)}
-				</div>
-				<div className="form-control">
-					<label htmlFor="body">Body</label>
-					{loadedTodo && (
-						<input
-							type="text"
-							id="body"
-							name="body"
-							value={loadedTodo.body}
-							placeholder="body"
-							onChange={inputHandler}
-						/>
-					)}
-				</div>
-				<button type="submit">Update Task</button>
-			</form>
+			<Card className="update-todo">
+				<form onSubmit={updateTodoSubmitHandler}>
+					<div className="form-control">
+						<label htmlFor="title">Title</label>
+						{loadedTodo && (
+							<input
+								type="text"
+								id="title"
+								name="title"
+								value={updateState.title}
+								placeholder="title"
+								onChange={inputHandler}
+							/>
+						)}
+					</div>
+					<div className="form-control">
+						<label htmlFor="category">Category</label>
+						{loadedTodo && (
+							<input
+								type="text"
+								id="category"
+								name="category"
+								value={updateState.category}
+								placeholder="category"
+								onChange={inputHandler}
+							/>
+						)}
+					</div>
+					<div className="form-control">
+						<label htmlFor="body">Body</label>
+						{loadedTodo && (
+							<input
+								type="text"
+								id="body"
+								name="body"
+								value={updateState.body}
+								placeholder="body"
+								onChange={inputHandler}
+							/>
+						)}
+					</div>
+					<button type="submit">Update Task</button>
+				</form>
+			</Card>
 		</React.Fragment>
 	);
 };

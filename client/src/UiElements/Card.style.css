@@ -1,10 +1,18 @@
 .card {
   margin: 0;
-  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.514);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.514);
   border-radius: 6px;
   padding: 1rem;
   overflow: hidden;
   background: white;
+}
+
+.authentication {
+  width: 80%;
+}
+
+.update-todo {
+  width: 90%;
 }
 /*# sourceMappingURL=Card.style.css.map */
