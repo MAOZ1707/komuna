@@ -10,12 +10,21 @@ app.use(cors());
 app.use(cors({ origin: true, credentials: true }));
 
 app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
-	res.header(
-		"Access-Control-Allow-Headers",
-		"x-access-token, Origin, X-Requested-With, Content-Type, Accept"
+	res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+	res.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
+
+	res.setHeader(
+		"Access-Control-Allow-Methods",
+		"GET, POST, OPTIONS, PUT, PATCH, DELETE"
 	);
+
+	res.setHeader(
+		"Access-Control-Allow-Headers",
+		"X-Requested-With,content-type"
+	);
+	d;
+	res.setHeader("Access-Control-Allow-Credentials", true);
+
 	next();
 });
 
@@ -35,5 +44,5 @@ mongoose
 // server
 const port = process.env.PORT || 9000;
 app.listen(port, () => {
-	console.log("App running !!");
+	console.log(chalk.magentaBright("App running !!"));
 });

@@ -54,23 +54,11 @@ const UpdateTodo = () => {
 	const updateTodoSubmitHandler = async (event) => {
 		event.preventDefault();
 		try {
-			// await axios.patch("http://localhost:9000/api/todos/5fceaf431baf041ee49f7871", {
-			// 	data: { title: "update todo" },
-			// });
-			await sendRequest(
-				`http://localhost:9000/api/todos/${todoId}`,
-				"PATCH",
-				{
-					title: updateState.title,
-					category: updateState.category,
-					body: updateState.body,
-				},
-				{
-					"Content-Type": "application/json",
-					"Access-Control-Allow-Methods": "GET,DELETE,POST,PATCH,PUT",
-					"Access-Control-Allow-Origin": "*",
-				}
-			);
+			await sendRequest(`/api/todos/${todoId}`, "PATCH", {
+				title: updateState.title,
+				category: updateState.category,
+				body: updateState.body,
+			});
 		} catch (error) {
 			console.log(error);
 		}
