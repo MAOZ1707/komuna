@@ -9,7 +9,7 @@ import "./NewTodo.style.css";
 
 const UpdateTodo = () => {
 	const todoId = useParams().todoId;
-	const [error, isLoading, sendRequest, clearError] = useFetch();
+	const [isLoading, sendRequest] = useFetch();
 
 	const [loadedTodo, setLoadedTodos] = useState(null);
 
@@ -78,6 +78,7 @@ const UpdateTodo = () => {
 		<React.Fragment>
 			<Card className="update-todo">
 				<form onSubmit={updateTodoSubmitHandler}>
+					{isLoading && <LoadingSpinner asOverlay />}
 					<div className="form-control">
 						<label htmlFor="title">Title</label>
 						{loadedTodo && (

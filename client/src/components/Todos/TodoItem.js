@@ -59,12 +59,12 @@ const TodoItem = (props) => {
 					</div>
 					<div className="todo-item__actions">
 						{authContext.isLoggedIn && (
-							<button>
-								<Link to={`/todos/${props.id}`}>EDIT</Link>
-							</button>
-						)}
-						{authContext.isLoggedIn && (
-							<button onClick={showDeleteModal}>DELETE</button>
+							<React.Fragment>
+								<button>
+									<Link to={`/todos/${props.id}`}>EDIT</Link>
+								</button>
+								<button onClick={showDeleteModal}>DELETE</button>
+							</React.Fragment>
 						)}
 					</div>
 				</Card>

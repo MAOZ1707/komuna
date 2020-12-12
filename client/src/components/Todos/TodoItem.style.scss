@@ -1,3 +1,10 @@
+//color variable
+$baseBg: #050709;
+$primary-color: #4f5a65;
+$secondary-color: #00a566;
+$danger: #f64747;
+$success: #3498db;
+
 .todo-item {
 	margin: 1rem 0;
 }
@@ -33,7 +40,7 @@
 .todo-item__actions {
 	padding: 1rem;
 	text-align: center;
-	border-top: 1px solid #ccc;
+	border-top: 1px solid $secondary-color;
 }
 
 .todo-item__modal-content {
@@ -47,6 +54,8 @@
 .todo-item__actions button,
 .todo-item__actions a {
 	margin: 0.5rem;
+	text-decoration: none;
+	color: #050709;
 }
 
 .map-container {
@@ -54,8 +63,8 @@
 	width: 100%;
 }
 
-@media (min-width: 768px) {
-	.todo-item__image {
-		height: 20rem;
-	}
-}
+// @media (min-width: 768px) {
+// 	.todo-item__image {
+// 		height: 20rem;
+// 	}
+// }

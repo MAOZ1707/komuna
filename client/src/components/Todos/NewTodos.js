@@ -17,6 +17,7 @@ const NewTodos = () => {
 		category: "",
 		body: "",
 	});
+
 	const [error, isLoading, sendRequest, clearError] = useFetch();
 	console.log(formState);
 	const inputHandler = useCallback(
