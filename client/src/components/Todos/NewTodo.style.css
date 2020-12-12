@@ -1,5 +1,6 @@
-.place-form {
+.todos-form {
   list-style: none;
+  color: #f8f8f8;
   margin: 0 auto;
   padding: 1rem;
   width: 90%;
@@ -7,22 +8,22 @@
   -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 6px;
-  background: white;
 }
 
 .form-control {
   margin: 1rem 0;
 }
 
-.form-control label,
 .form-control input,
 .form-control textarea {
   display: block;
+  color: #000000;
 }
 
 .form-control label {
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: #ffffff;
 }
 
 .form-control input,
@@ -39,5 +40,19 @@
   outline: none;
   background: #c8e9fc91;
   border-color: #2b98c4;
+}
+
+.footer-control {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.footer-control p {
+  color: #f8f8f8;
 }
 /*# sourceMappingURL=NewTodo.style.css.map */

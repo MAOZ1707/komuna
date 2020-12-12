@@ -1,3 +1,10 @@
+//color variable
+$baseBg: #050709;
+$primary-color: #4f5a65;
+$secondary-color: #00a566;
+$danger: #f64747;
+$success: #3498db;
+
 .nav-links {
 	list-style: none;
 	margin: 0;
@@ -24,14 +31,12 @@
 .nav-links a:hover,
 .nav-links a:active,
 .nav-links a.active {
-	background: #f8df00;
-	border-color: #292929;
+	background: #00a566;
 	color: #292929;
 }
 
 .nav-links button {
 	cursor: pointer;
-	border: 1px solid #292929;
 	color: #292929;
 	background: transparent;
 	padding: 0.5rem;
@@ -70,7 +75,7 @@
 
 	.nav-links button:hover,
 	.nav-links button:active {
-		background: #f8df00;
+		background: #00a566;
 		color: #292929;
 	}
 }

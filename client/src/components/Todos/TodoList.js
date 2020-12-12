@@ -8,8 +8,8 @@ import "./TodoList.style.css";
 const TodoList = (props) => {
 	if (props.items.length === 0) {
 		return (
-			<div className="place-list center">
-				<Card>
+			<div>
+				<Card className="todos-list--empty">
 					<h2>No tasks found, You want to create one? </h2>
 					<button>
 						<Link to="/todos/new">Create Task</Link>
@@ -31,6 +31,7 @@ const TodoList = (props) => {
 					title={task.title}
 					body={task.body}
 					category={task.category}
+					onDelete={props.onDelete}
 				/>
 			))}
 		</ul>

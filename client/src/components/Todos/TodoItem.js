@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
+
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-
+import { useFetch } from "../../hooks/useFetch";
 import Card from "../../UiElements/Card";
+import LoadingSpinner from "../../UiElements/LoadingSpinner";
 import Modal from "../../UiElements/Modal";
 
 import "./TodoItem.style.css";
@@ -10,6 +12,7 @@ import "./TodoItem.style.css";
 const TodoItem = (props) => {
 	const authContext = useContext(AuthContext);
 	const [showModal, setShowModal] = useState(false);
+	const [isLoading, sendRequest] = useFetch();
 
 	const showDeleteModal = () => {
 		setShowModal(true);
@@ -17,7 +20,15 @@ const TodoItem = (props) => {
 	const closeDeleteModal = () => {
 		setShowModal(false);
 	};
-	const confirmDeleteModal = () => {
+
+	const confirmDeleteModal = async () => {
+		try {
+			await sendRequest(`/api/todos/${props.id}`, "DELETE");
+			props.onDelete(props.id);
+		} catch (error) {
+			console.log(error);
+		}
+		// closeDeleteModal();
 		console.log("task delete!!");
 	};
 
@@ -35,11 +46,12 @@ const TodoItem = (props) => {
 				}
 			>
 				<p>Do you sure you want to delete this task?</p>
-				{/* TODO --   ADD IMAGE! */}
+				{/* //TODO --   ADD IMAGE! */}
 			</Modal>
 
 			<li className="todo-item">
 				<Card className="todo-item__content">
+					{isLoading && <LoadingSpinner asOverlay />}
 					<div className="todo-item__info">
 						<h2>{props.title}</h2>
 						<h3>{props.category}</h3>
@@ -51,7 +63,9 @@ const TodoItem = (props) => {
 								<Link to={`/todos/${props.id}`}>EDIT</Link>
 							</button>
 						)}
-						{authContext.isLoggedIn && <button onClick={showDeleteModal}>DELETE</button>}
+						{authContext.isLoggedIn && (
+							<button onClick={showDeleteModal}>DELETE</button>
+						)}
 					</div>
 				</Card>
 			</li>

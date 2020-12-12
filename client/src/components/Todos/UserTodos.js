@@ -15,7 +15,9 @@ const UserTodos = () => {
 	useEffect(() => {
 		const fetchTodosByUserId = async () => {
 			try {
-				const responseData = await sendRequest(`http://localhost:9000/api/todos/user/${userId}`);
+				const responseData = await sendRequest(
+					`http://localhost:9000/api/todos/user/${userId}`
+				);
 				setLoadedTodos(responseData.todos);
 			} catch (err) {
 				console.log(err);
@@ -25,11 +27,19 @@ const UserTodos = () => {
 		fetchTodosByUserId();
 	}, [sendRequest, userId]);
 
+	const deleteTodo = (todoId) => {
+		setLoadedTodos((prevState) =>
+			prevState.filter((todo) => todo.id !== todoId)
+		);
+	};
+
 	return (
 		<React.Fragment>
 			<ErrorModal error={error} onClear={clearError} />
 			{isLoading && <LoadingSpinner asOverlay />}
-			{!isLoading && loadedTodos && <TodoList items={loadedTodos} />}
+			{!isLoading && loadedTodos && (
+				<TodoList onDelete={deleteTodo} items={loadedTodos} />
+			)}
 		</React.Fragment>
 	);
 };

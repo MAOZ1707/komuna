@@ -124,12 +124,13 @@ const Authentication = () => {
 						/>
 					</div>
 					<div>
+						{/* //TODO ----- FIX TO DISABLE AND NOT TO LOG IN SIGN UP */}
 						<button style={{ background: "lightBlue", border: "none" }}>
 							{isSignUp ? "LOG IN" : "SIGN UP"}
 						</button>
 					</div>
 				</form>
-				<div>
+				<div className="footer-control">
 					{!isSignUp && (
 						<p>
 							Already sign up?

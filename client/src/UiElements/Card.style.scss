@@ -1,10 +1,17 @@
+//color variable
+$baseBg: #050709;
+$primary-color: #a9d7fc1c;
+$secondary-color: #00a566;
+$danger: #f64747;
+$success: #3498db;
+
 .card {
 	margin: 0;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.514);
-	border-radius: 6px;
 	padding: 1rem;
+	border: 2px solid white;
 	overflow: hidden;
-	background: rgb(255, 255, 255);
+	background: $primary-color;
 }
 
 .authentication {
@@ -13,4 +20,36 @@
 
 .update-todo {
 	width: 90%;
+}
+.new-todo {
+	width: 90%;
+}
+
+.todos-list--empty {
+	color: #ffffff;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	align-items: center;
+	h2 {
+		grid-column: 1/-1;
+	}
+	button {
+		height: 40px;
+		width: max-content;
+
+		a {
+			text-decoration: none;
+			color: #050709;
+		}
+	}
+
+	button:nth-child(2) {
+		justify-self: end;
+		margin-right: 20px;
+	}
+	button:nth-child(3) {
+		justify-self: start;
+		margin-left: 20px;
+	}
 }
