@@ -18,7 +18,7 @@ const Authentication = () => {
 		password: "",
 	});
 
-	const [error, isLoading, sendRequest, clearError] = useFetch();
+	const { error, isLoading, sendRequest, clearError } = useFetch();
 
 	const onChangeHandler = (e) => {
 		setSignUpState({

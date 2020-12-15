@@ -8,10 +8,13 @@ import NewTodos from "./components/Todos/NewTodos";
 import UpdateTodo from "./components/Todos/UpdateTodo";
 import Authentication from "./Auth/Authentication";
 import { AuthContext } from "./context/AuthContext";
+import { TodoContext } from "./context/TodoContext";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userId, setUserId] = useState(null);
+	const [loadedTodos, setLoadedTodos] = useState([]);
 
 	const login = useCallback((uID) => {
 		setIsLoggedIn(true);
@@ -30,6 +33,9 @@ const App = () => {
 			<Switch>
 				<Route exact path="/">
 					<Users />
+				</Route>
+				<Route exact path="/:userId/dashboard">
+					<Dashboard />
 				</Route>
 				<Route exact path="/:userId/todos">
 					<UserTodos />
@@ -60,19 +66,26 @@ const App = () => {
 		);
 	}
 
+	const authContextValue = {
+		userId: userId,
+		isLoggedIn: isLoggedIn,
+		login: login,
+		logout: logout,
+	};
+
+	const todoContextValue = {
+		loadedTodos,
+		setLoadedTodos,
+	};
+
 	return (
-		<AuthContext.Provider
-			value={{
-				userId: userId,
-				isLoggedIn: isLoggedIn,
-				login: login,
-				logout: logout,
-			}}
-		>
-			<Router>
-				<MainNavigation />
-				<main>{routes}</main>
-			</Router>
+		<AuthContext.Provider value={authContextValue}>
+			<TodoContext.Provider value={todoContextValue}>
+				<Router>
+					<MainNavigation />
+					<main>{routes}</main>
+				</Router>
+			</TodoContext.Provider>
 		</AuthContext.Provider>
 	);
 };

@@ -35,5 +35,5 @@ export const useFetch = () => {
 		setError(null);
 	};
 
-	return [error, isLoading, sendRequest, clearError];
+	return { error, isLoading, sendRequest, clearError };
 };

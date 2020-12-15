@@ -2,17 +2,22 @@ import React, { useState, useContext } from "react";
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { useFetch } from "../../hooks/useFetch";
+import { TodoContext } from "../../context/TodoContext";
 import Card from "../../UiElements/Card";
+import { useFetch } from "../../hooks/useFetch";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 import Modal from "../../UiElements/Modal";
-
 import "./TodoItem.style.css";
+import ErrorModal from "../../UiElements/ErrorModal";
 
 const TodoItem = (props) => {
 	const authContext = useContext(AuthContext);
+	const todoContext = useContext(TodoContext);
 	const [showModal, setShowModal] = useState(false);
-	const [isLoading, sendRequest] = useFetch();
+	const { error, isLoading, sendRequest, clearError } = useFetch();
+	const [isComplete, setIsComplete] = useState(props.isComplete);
+
+	console.log(isComplete);
 
 	const showDeleteModal = () => {
 		setShowModal(true);
@@ -22,18 +27,32 @@ const TodoItem = (props) => {
 	};
 
 	const confirmDeleteModal = async () => {
+		setShowModal(false);
 		try {
 			await sendRequest(`/api/todos/${props.id}`, "DELETE");
-			props.onDelete(props.id);
+			todoContext.setLoadedTodos((prevState) => {
+				return prevState.filter((todo) => todo._id !== props.id);
+			});
 		} catch (error) {
 			console.log(error);
 		}
-		// closeDeleteModal();
 		console.log("task delete!!");
+	};
+
+	const completeTodo = async () => {
+		try {
+			await sendRequest(`/api/todos/${props.id}`, "PATCH", {
+				isComplete: !isComplete,
+			});
+			setIsComplete((prevState) => !prevState);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
 		<React.Fragment>
+			<ErrorModal error={error} onClear={clearError} />
 			<Modal
 				show={showModal}
 				onCancel={closeDeleteModal}
@@ -52,18 +71,25 @@ const TodoItem = (props) => {
 			<li className="todo-item">
 				<Card className="todo-item__content">
 					{isLoading && <LoadingSpinner asOverlay />}
-					<div className="todo-item__info">
+					{isComplete && <p className="todo-item__message">TASK COMPLETE</p>}
+					<div className={isComplete ? "todo-item__info complete" : "todo-item__info "}>
 						<h2>{props.title}</h2>
 						<h3>{props.category}</h3>
 						<p>{props.body}</p>
 					</div>
+					)
 					<div className="todo-item__actions">
 						{authContext.isLoggedIn && (
 							<React.Fragment>
-								<button>
-									<Link to={`/todos/${props.id}`}>EDIT</Link>
-								</button>
+								{!isComplete && (
+									<button>
+										<Link to={`/todos/${props.id}`}>EDIT</Link>
+									</button>
+								)}
+
 								<button onClick={showDeleteModal}>DELETE</button>
+
+								<button onClick={completeTodo}>{isComplete ? "COMPLETED" : "UNCOMPLETED"}</button>
 							</React.Fragment>
 						)}
 					</div>

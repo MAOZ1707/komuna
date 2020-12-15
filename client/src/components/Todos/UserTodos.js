@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
-import ErrorModal from "../../UiElements/ErrorModal";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
+import { TodoContext } from "../../context/TodoContext";
 
 import TodoList from "./TodoList";
 
 const UserTodos = () => {
-	const [error, isLoading, sendRequest, clearError] = useFetch();
-	const [loadedTodos, setLoadedTodos] = useState([]);
+	const { loadedTodos, setLoadedTodos } = useContext(TodoContext);
+
+	const { isLoading, sendRequest } = useFetch();
 	const userId = useParams().userId;
 
 	useEffect(() => {
 		const fetchTodosByUserId = async () => {
 			try {
-				const responseData = await sendRequest(
-					`http://localhost:9000/api/todos/user/${userId}`
-				);
+				// Todo ---- fix the error modal if
+				const responseData = await sendRequest(`http://localhost:9000/api/todos/user/${userId}`);
 				setLoadedTodos(responseData.todos);
 			} catch (err) {
 				console.log(err);
@@ -25,21 +25,12 @@ const UserTodos = () => {
 		};
 
 		fetchTodosByUserId();
-	}, [sendRequest, userId]);
-
-	const deleteTodo = (todoId) => {
-		setLoadedTodos((prevState) =>
-			prevState.filter((todo) => todo.id !== todoId)
-		);
-	};
+	}, [sendRequest, setLoadedTodos, userId]);
 
 	return (
 		<React.Fragment>
-			<ErrorModal error={error} onClear={clearError} />
 			{isLoading && <LoadingSpinner asOverlay />}
-			{!isLoading && loadedTodos && (
-				<TodoList onDelete={deleteTodo} items={loadedTodos} />
-			)}
+			{!isLoading && loadedTodos && <TodoList items={loadedTodos} />}
 		</React.Fragment>
 	);
 };

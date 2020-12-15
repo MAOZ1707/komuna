@@ -30,13 +30,13 @@ const usersSchema = new mongoose.Schema({
 		required: [true, "Please provide your password"],
 		minlength: [8, "Password must be more or equal to 8 characters"],
 	},
-	todos: [
-		{
-			type: mongoose.Types.ObjectId,
-			required: true,
-			ref: "Todos",
-		},
-	],
+	// todos: [
+	// 	{
+	// 		type: mongoose.Types.ObjectId,
+	// 		required: true,
+	// 		ref: "Todos",
+	// 	},
+	// ],
 });
 
 usersSchema.plugin(uniqueValidator);

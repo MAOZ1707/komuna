@@ -18,6 +18,9 @@ const todosSchema = new mongoose.Schema({
 	createAt: {
 		type: Date,
 	},
+	isComplete: {
+		type: Boolean,
+	},
 	creator: {
 		type: mongoose.Types.ObjectId,
 		required: true,

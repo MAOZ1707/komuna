@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACN,gBAAgB,EAAE,UAAU;CAC5B",
+    "sources": [
+        "UserProfileBox.style.scss"
+    ],
+    "names": [],
+    "file": "UserProfileBox.style.css"
+}

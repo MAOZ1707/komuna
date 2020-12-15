@@ -31,7 +31,7 @@ const TodoList = (props) => {
 					title={task.title}
 					body={task.body}
 					category={task.category}
-					onDelete={props.onDelete}
+					isComplete={task.isComplete}
 				/>
 			))}
 		</ul>

@@ -18,8 +18,7 @@ const NewTodos = () => {
 		body: "",
 	});
 
-	const [error, isLoading, sendRequest, clearError] = useFetch();
-	console.log(formState);
+	const { error, isLoading, sendRequest, clearError } = useFetch();
 	const inputHandler = useCallback(
 		(e) => {
 			setFormState({
@@ -40,6 +39,8 @@ const NewTodos = () => {
 					title: formState.title,
 					category: formState.category,
 					body: formState.body,
+					createAt: new Date().getDate(),
+					isComplete: false,
 					creator: authContext.userId,
 				},
 				{
@@ -58,17 +59,6 @@ const NewTodos = () => {
 				<form className="place-form" onSubmit={creatTodoSubmitHandler}>
 					{isLoading && <LoadingSpinner asOverlay />}
 					<div className="form-control">
-						<label htmlFor="title">Title</label>
-						<input
-							type="text"
-							id="title"
-							name="title"
-							value={formState.title}
-							placeholder="title"
-							onChange={inputHandler}
-						/>
-					</div>
-					<div className="form-control">
 						<label htmlFor="category">Category</label>
 						<input
 							type="text"
@@ -76,6 +66,17 @@ const NewTodos = () => {
 							name="category"
 							value={formState.category}
 							placeholder="category"
+							onChange={inputHandler}
+						/>
+					</div>
+					<div className="form-control">
+						<label htmlFor="title">Title</label>
+						<input
+							type="text"
+							id="title"
+							name="title"
+							value={formState.title}
+							placeholder="title"
 							onChange={inputHandler}
 						/>
 					</div>

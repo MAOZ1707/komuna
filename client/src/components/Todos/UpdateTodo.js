@@ -9,7 +9,7 @@ import "./NewTodo.style.css";
 
 const UpdateTodo = () => {
 	const todoId = useParams().todoId;
-	const [isLoading, sendRequest] = useFetch();
+	const { isLoading, sendRequest } = useFetch();
 
 	const [loadedTodo, setLoadedTodos] = useState(null);
 
@@ -25,10 +25,7 @@ const UpdateTodo = () => {
 	useEffect(() => {
 		const fetchTodo = async () => {
 			try {
-				const responseData = await sendRequest(
-					`http://localhost:9000/api/todos/${todoId}`
-				);
-				console.log(responseData);
+				const responseData = await sendRequest(`http://localhost:9000/api/todos/${todoId}`);
 				setLoadedTodos(responseData.todo);
 				setUpdateState({
 					title: responseData.todo.title,

@@ -8,13 +8,12 @@ import { useFetch } from "../../hooks/useFetch";
 
 const User = () => {
 	const [users, setUsers] = useState(null);
-	const [error, isLoading, sendRequest, clearError] = useFetch();
+	const { error, isLoading, sendRequest, clearError } = useFetch();
 
 	useEffect(() => {
 		const fetchAllUsers = async () => {
 			try {
 				const responseData = await sendRequest("http://localhost:9000/api/user");
-				console.log(responseData);
 				setUsers(responseData.users);
 			} catch (error) {}
 		};
