@@ -23,31 +23,146 @@
 .form-control label {
 	font-weight: bold;
 	margin-bottom: 0.5rem;
-	color: #ffffff;
+	color: #000000;
 }
 
 .form-control input,
 .form-control textarea {
-	// color: #f8f8f8;
 	width: 100%;
 	font: inherit;
-	border: 1px solid rgb(139, 139, 139);
-	background: #f8f8f8;
+	border: 1px solid rgb(201, 201, 201);
+	border-radius: 8px;
+	background: #ffffff;
 	padding: 0.15rem 0.25rem;
 }
 
 .form-control input:focus,
 .form-control textarea:focus {
 	outline: none;
-	background: #c8e9fc91;
-	border-color: #2b98c4;
+	border-width: 3px;
+	border-color: #43ffa7;
 }
 
+.radio {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	margin-right: 10px;
+
+	input {
+		display: none;
+	}
+
+	.radio__check {
+		width: 1.25em;
+		height: 1.25em;
+		border: 2px solid #000000;
+		border-radius: 50%;
+		margin-right: 10px;
+		padding: 2px;
+
+		&::after {
+			content: "";
+			width: 100%;
+			height: 100%;
+			display: block;
+			background: #43ffa7;
+			border-radius: 50%;
+
+			transform: scale(0);
+			transition: transform 0.15s;
+		}
+	}
+
+	input:checked + .radio__check::after {
+		transform: scale(1);
+	}
+}
+
+.form-control-radio {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.authentication {
+	width: 80%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: auto;
+}
+.signup {
+	background: linear-gradient(90deg, rgb(240, 105, 127) 30%, rgba(255, 255, 255, 1) 30%);
+}
+.login {
+	background: linear-gradient(90deg, rgb(108, 154, 252) 30%, rgba(255, 255, 255, 1) 30%);
+}
+.auth-image-controller {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	img {
+		width: 70%;
+		height: 100%;
+	}
+}
 .footer-control {
+	grid-column: 1/-1;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	p {
-		color: #f8f8f8;
+		color: #000000;
+	}
+}
+
+.new-todo {
+	background: linear-gradient(90deg, rgb(255, 242, 121) 30%, rgba(255, 255, 255, 1) 30%);
+	display: flex;
+
+	form {
+		flex: 1;
+	}
+
+	.new-todo-image-controller {
+		flex: 1;
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+@media (max-width: 960px) {
+	.new-todo {
+		form {
+			flex: 2;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.auth-image-controller {
+		display: none;
+	}
+	form {
+		grid-column: 1/-1;
+	}
+
+	.new-todo-image-controller {
+		display: none;
+	}
+}
+
+@media (max-width: 375px) {
+	.authentication {
+		width: 90%;
+	}
+}
+
+@media (max-width: 430px) {
+	.form-control-radio {
+		display: flex;
+		flex-direction: column;
 	}
 }

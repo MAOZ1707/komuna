@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,0BAA0B,CAAC;EAC1B,KAAK,EAAE,KAAK;CACZ",
+    "mappings": "AAAA,AAAA,0BAA0B,CAAC;EAC1B,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,eAAe;EACtC,kBAAkB,EAAE,IAAI;EACxB,KAAK,EAAE,KAAK;EACZ,GAAG,EAAE,IAAI;CACT",
     "sources": [
         "Dashboard.style.scss"
     ],

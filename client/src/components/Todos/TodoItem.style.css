@@ -1,5 +1,6 @@
 .todo-item {
   margin: 1rem 0;
+  width: 80%;
 }
 
 .todo-item__content {
@@ -15,17 +16,16 @@
 .todo-item__info h3,
 .todo-item__info p {
   margin: 0 0 0.5rem 0;
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
 .todo-item__message {
   margin: 0;
   text-align: center;
-  color: white;
+  color: #07ff13;
   font-size: 1.2rem;
   font-weight: 600;
-  background-color: #00a566;
 }
 
 .complete h2,
@@ -39,7 +39,7 @@
 .todo-item__actions {
   padding: 1rem;
   text-align: center;
-  border-top: 1px solid #00a566;
+  background-color: rgba(2, 77, 107, 0.226);
 }
 
 .todo-item__modal-content {

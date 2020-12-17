@@ -16,7 +16,6 @@ const UserTodos = () => {
 	useEffect(() => {
 		const fetchTodosByUserId = async () => {
 			try {
-				// Todo ---- fix the error modal if
 				const responseData = await sendRequest(`http://localhost:9000/api/todos/user/${userId}`);
 				setLoadedTodos(responseData.todos);
 			} catch (err) {

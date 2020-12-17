@@ -16,7 +16,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: #050709;
+  background: #fff;
 }
 
 .slide-in-left-enter {

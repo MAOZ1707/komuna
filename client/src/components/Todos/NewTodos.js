@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useFetch } from "../../hooks/useFetch";
 import ErrorModal from "../../UiElements/ErrorModal";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
+import newTodoImage from "../../assets/img/new-todo.svg";
 
 import "./NewTodo.style.css";
 
@@ -18,6 +19,7 @@ const NewTodos = () => {
 		body: "",
 	});
 
+	console.log(formState);
 	const { error, isLoading, sendRequest, clearError } = useFetch();
 	const inputHandler = useCallback(
 		(e) => {
@@ -58,16 +60,40 @@ const NewTodos = () => {
 			<Card className="new-todo">
 				<form className="place-form" onSubmit={creatTodoSubmitHandler}>
 					{isLoading && <LoadingSpinner asOverlay />}
-					<div className="form-control">
-						<label htmlFor="category">Category</label>
-						<input
-							type="text"
-							id="category"
-							name="category"
-							value={formState.category}
-							placeholder="category"
-							onChange={inputHandler}
-						/>
+					<div className="form-control form-control-radio">
+						<label htmlFor="shopping" className="radio">
+							<input
+								type="radio"
+								id="shopping"
+								name="category"
+								value="Shopping"
+								onChange={inputHandler}
+							/>
+							<div className="radio__check"></div>
+							<span>Shopping</span>
+						</label>
+						<label htmlFor="payments" className="radio">
+							<input
+								type="radio"
+								id="payments"
+								name="category"
+								value="Payments"
+								onChange={inputHandler}
+							/>
+							<div className="radio__check"></div>
+							<span>Payments</span>
+						</label>
+						<label htmlFor="outers" className="radio">
+							<input
+								type="radio"
+								id="outers"
+								name="category"
+								value="Outers"
+								onChange={inputHandler}
+							/>
+							<div className="radio__check"></div>
+							<span>Outers</span>
+						</label>
 					</div>
 					<div className="form-control">
 						<label htmlFor="title">Title</label>
@@ -76,7 +102,6 @@ const NewTodos = () => {
 							id="title"
 							name="title"
 							value={formState.title}
-							placeholder="title"
 							onChange={inputHandler}
 						/>
 					</div>
@@ -87,13 +112,15 @@ const NewTodos = () => {
 							id="body"
 							name="body"
 							value={formState.body}
-							placeholder="body"
 							onChange={inputHandler}
 						/>
 					</div>
 
 					<button type="submit">Create Task</button>
 				</form>
+				<div className="new-todo-image-controller">
+					<img src={newTodoImage} alt="todo" className="new-todo-image" />
+				</div>
 			</Card>
 		</React.Fragment>
 	);

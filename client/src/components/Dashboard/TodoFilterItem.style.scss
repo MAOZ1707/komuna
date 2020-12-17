@@ -1,0 +1,39 @@
+//color variable
+$baseBg: #050709;
+$primary-color: #a9d7fc1c;
+$secondary-color: #00a566;
+$danger: #f64747;
+$success: #3498db;
+
+.todo-filter-item {
+	padding: 0;
+	height: 10rem;
+
+	.todo-filter-item__title {
+		margin: 0;
+		padding-left: 1em;
+		margin-bottom: 10px;
+		background-color: $success;
+	}
+	.todo-filter-item__body {
+		padding: 0 1em;
+		background-color: #758ab86e;
+		margin-bottom: 8px;
+		display: flex;
+		justify-content: space-between;
+	}
+	.finish {
+		background-color: #4e4e4e3a;
+	}
+	.todo-title-complete {
+		text-decoration: line-through;
+		color: #9e9c9c79;
+	}
+	.todo-complete {
+		color: $secondary-color;
+		font-weight: bold;
+	}
+	.todo-active {
+		color: rgb(252, 236, 20);
+	}
+}

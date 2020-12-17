@@ -23,26 +23,121 @@
 .form-control label {
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: #ffffff;
+  color: #000000;
 }
 
 .form-control input,
 .form-control textarea {
   width: 100%;
   font: inherit;
-  border: 1px solid #8b8b8b;
-  background: #f8f8f8;
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  background: #ffffff;
   padding: 0.15rem 0.25rem;
 }
 
 .form-control input:focus,
 .form-control textarea:focus {
   outline: none;
-  background: #c8e9fc91;
-  border-color: #2b98c4;
+  border-width: 3px;
+  border-color: #43ffa7;
+}
+
+.radio {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.radio input {
+  display: none;
+}
+
+.radio .radio__check {
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  margin-right: 10px;
+  padding: 2px;
+}
+
+.radio .radio__check::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #43ffa7;
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: -webkit-transform 0.15s;
+  transition: -webkit-transform 0.15s;
+  transition: transform 0.15s;
+  transition: transform 0.15s, -webkit-transform 0.15s;
+}
+
+.radio input:checked + .radio__check::after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.form-control-radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.authentication {
+  width: 80%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+}
+
+.signup {
+  background: -webkit-gradient(linear, left top, right top, color-stop(30%, #f0697f), color-stop(30%, white));
+  background: linear-gradient(90deg, #f0697f 30%, white 30%);
+}
+
+.login {
+  background: -webkit-gradient(linear, left top, right top, color-stop(30%, #6c9afc), color-stop(30%, white));
+  background: linear-gradient(90deg, #6c9afc 30%, white 30%);
+}
+
+.auth-image-controller {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.auth-image-controller img {
+  width: 70%;
+  height: 100%;
 }
 
 .footer-control {
+  grid-column: 1/-1;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -53,6 +148,69 @@
 }
 
 .footer-control p {
-  color: #f8f8f8;
+  color: #000000;
+}
+
+.new-todo {
+  background: -webkit-gradient(linear, left top, right top, color-stop(30%, #fff279), color-stop(30%, white));
+  background: linear-gradient(90deg, #fff279 30%, white 30%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.new-todo form {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.new-todo .new-todo-image-controller {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.new-todo .new-todo-image-controller img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 960px) {
+  .new-todo form {
+    -webkit-box-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-image-controller {
+    display: none;
+  }
+  form {
+    grid-column: 1/-1;
+  }
+  .new-todo-image-controller {
+    display: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .authentication {
+    width: 90%;
+  }
+}
+
+@media (max-width: 430px) {
+  .form-control-radio {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 /*# sourceMappingURL=NewTodo.style.css.map */

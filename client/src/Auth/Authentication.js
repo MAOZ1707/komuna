@@ -6,6 +6,8 @@ import LoadingSpinner from "../UiElements/LoadingSpinner";
 import { AuthContext } from "../context/AuthContext";
 import { useFetch } from "../hooks/useFetch";
 import "../components/Todos/NewTodo.style.css";
+import signupImage from "../assets/img/signup.jpg";
+import loginImage from "../assets/img/login.jpg";
 
 const Authentication = () => {
 	const authContext = useContext(AuthContext);
@@ -76,7 +78,7 @@ const Authentication = () => {
 	return (
 		<React.Fragment>
 			{<ErrorModal error={error} onClear={errorHandler} />}
-			<Card className="authentication ">
+			<Card className={`authentication ${!isSignUp ? "signup" : "login"}`}>
 				{isLoading && <LoadingSpinner asOverlay />}
 				<form onSubmit={handleSignUpSubmit}>
 					{!isSignUp && (
@@ -130,6 +132,9 @@ const Authentication = () => {
 						</button>
 					</div>
 				</form>
+				<div className="auth-image-controller">
+					<img src={isSignUp ? loginImage : signupImage} alt="signup" />
+				</div>
 				<div className="footer-control">
 					{!isSignUp && (
 						<p>

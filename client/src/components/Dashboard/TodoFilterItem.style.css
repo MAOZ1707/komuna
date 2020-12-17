@@ -1,0 +1,42 @@
+.todo-filter-item {
+  padding: 0;
+  height: 10rem;
+}
+
+.todo-filter-item .todo-filter-item__title {
+  margin: 0;
+  padding-left: 1em;
+  margin-bottom: 10px;
+  background-color: #3498db;
+}
+
+.todo-filter-item .todo-filter-item__body {
+  padding: 0 1em;
+  background-color: #758ab86e;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.todo-filter-item .finish {
+  background-color: #4e4e4e3a;
+}
+
+.todo-filter-item .todo-title-complete {
+  text-decoration: line-through;
+  color: #9e9c9c79;
+}
+
+.todo-filter-item .todo-complete {
+  color: #00a566;
+  font-weight: bold;
+}
+
+.todo-filter-item .todo-active {
+  color: #fcec14;
+}
+/*# sourceMappingURL=TodoFilterItem.style.css.map */

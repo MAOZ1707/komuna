@@ -77,7 +77,7 @@ const TodoItem = (props) => {
 						<h3>{props.category}</h3>
 						<p>{props.body}</p>
 					</div>
-					)
+
 					<div className="todo-item__actions">
 						{authContext.isLoggedIn && (
 							<React.Fragment>

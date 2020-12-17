@@ -3,13 +3,8 @@
   -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.514);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.514);
   padding: 1rem;
-  border: 2px solid white;
   overflow: hidden;
-  background: #a9d7fc1c;
-}
-
-.authentication {
-  width: 80%;
+  border-radius: 20px;
 }
 
 .update-todo {

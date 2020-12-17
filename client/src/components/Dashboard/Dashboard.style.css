@@ -1,4 +1,13 @@
 .user-dashboard--container {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[10];
+      grid-template-columns: repeat(10, 1fr);
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
   color: white;
+  gap: 10px;
 }
 /*# sourceMappingURL=Dashboard.style.css.map */
