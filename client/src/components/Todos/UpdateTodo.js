@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 import { useFetch } from "../../hooks/useFetch";
 import Card from "../../UiElements/Card";
+import editTodo from "../../assets/img/edit-todo.svg";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 
 import "./NewTodo.style.css";
@@ -25,7 +26,7 @@ const UpdateTodo = () => {
 	useEffect(() => {
 		const fetchTodo = async () => {
 			try {
-				const responseData = await sendRequest(`http://localhost:9000/api/todos/${todoId}`);
+				const responseData = await sendRequest(`/api/todos/${todoId}`);
 				setLoadedTodos(responseData.todo);
 				setUpdateState({
 					title: responseData.todo.title,
@@ -105,8 +106,8 @@ const UpdateTodo = () => {
 					<div className="form-control">
 						<label htmlFor="body">Body</label>
 						{loadedTodo && (
-							<input
-								type="text"
+							<textarea
+								type="textarea"
 								id="body"
 								name="body"
 								value={updateState.body}
@@ -117,6 +118,10 @@ const UpdateTodo = () => {
 					</div>
 					<button type="submit">Update Task</button>
 				</form>
+
+				<div className="edit-todo-image-controller">
+					<img src={editTodo} alt="edit" className="edit-todo-image" />
+				</div>
 			</Card>
 		</React.Fragment>
 	);

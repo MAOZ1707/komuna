@@ -54,11 +54,13 @@ const NewTodos = () => {
 		} catch (error) {}
 	};
 
+	console.log(formState);
+
 	return (
 		<React.Fragment>
 			<ErrorModal error={error} onClear={clearError} />
 			<Card className="new-todo">
-				<form className="place-form" onSubmit={creatTodoSubmitHandler}>
+				<form className="todo-form" onSubmit={creatTodoSubmitHandler}>
 					{isLoading && <LoadingSpinner asOverlay />}
 					<div className="form-control form-control-radio">
 						<label htmlFor="shopping" className="radio">
@@ -107,8 +109,9 @@ const NewTodos = () => {
 					</div>
 					<div className="form-control">
 						<label htmlFor="body">body</label>
-						<input
-							type="text"
+						<textarea
+							type="textarea"
+							className="body-text"
 							id="body"
 							name="body"
 							value={formState.body}

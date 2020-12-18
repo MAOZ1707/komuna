@@ -25,5 +25,5 @@ const UserItem = (props) => {
 		</li>
 	);
 };
-const asd = "adjustments";
+
 export default UserItem;
