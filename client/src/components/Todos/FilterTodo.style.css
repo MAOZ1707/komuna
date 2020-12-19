@@ -57,4 +57,27 @@
 .filter-todos--container .filter-todos--outers::before {
   background: #7ccbff;
 }
+
+@media (max-width: 750px) {
+  .filter-todos--container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: fixed;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    height: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 100%;
+    left: 0;
+    top: 65px;
+  }
+}
 /*# sourceMappingURL=FilterTodo.style.css.map */
