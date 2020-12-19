@@ -1,10 +1,13 @@
 import React, { useCallback, useState, useContext } from "react";
+import moment from "moment";
+
 import { useHistory } from "react-router-dom";
 import Card from "../../UiElements/Card";
 import { AuthContext } from "../../context/AuthContext";
 import { useFetch } from "../../hooks/useFetch";
 import ErrorModal from "../../UiElements/ErrorModal";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
+import Button from "../../FormElements/Button";
 import newTodoImage from "../../assets/img/new-todo.svg";
 
 import "./NewTodo.style.css";
@@ -41,7 +44,7 @@ const NewTodos = () => {
 					title: formState.title,
 					category: formState.category,
 					body: formState.body,
-					createAt: new Date().getDate(),
+					createAt: moment().calendar(),
 					isComplete: false,
 					creator: authContext.userId,
 				},
@@ -53,8 +56,6 @@ const NewTodos = () => {
 			history.push("/");
 		} catch (error) {}
 	};
-
-	console.log(formState);
 
 	return (
 		<React.Fragment>
@@ -119,7 +120,9 @@ const NewTodos = () => {
 						/>
 					</div>
 
-					<button type="submit">Create Task</button>
+					<Button create type="submit">
+						Create Task
+					</Button>
 				</form>
 				<div className="new-todo-image-controller">
 					<img src={newTodoImage} alt="todo" className="new-todo-image" />

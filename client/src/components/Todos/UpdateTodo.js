@@ -1,27 +1,25 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 
 import { useFetch } from "../../hooks/useFetch";
 import Card from "../../UiElements/Card";
 import editTodo from "../../assets/img/edit-todo.svg";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
+import Button from "../../FormElements/Button";
+import { AuthContext } from "../../context/AuthContext";
 
 import "./NewTodo.style.css";
 
 const UpdateTodo = () => {
 	const todoId = useParams().todoId;
+	const { userId } = useContext(AuthContext);
+	const history = useHistory();
 	const { isLoading, sendRequest } = useFetch();
-
 	const [loadedTodo, setLoadedTodos] = useState(null);
-
 	const [updateState, setUpdateState] = useState({
 		title: "",
-		category: "",
 		body: "",
 	});
-	const history = useHistory();
-
-	console.log("TODO-ID", todoId);
 
 	useEffect(() => {
 		const fetchTodo = async () => {
@@ -30,7 +28,6 @@ const UpdateTodo = () => {
 				setLoadedTodos(responseData.todo);
 				setUpdateState({
 					title: responseData.todo.title,
-					category: responseData.todo.category,
 					body: responseData.todo.body,
 				});
 			} catch (error) {
@@ -49,6 +46,7 @@ const UpdateTodo = () => {
 		},
 		[updateState]
 	);
+
 	const updateTodoSubmitHandler = async (event) => {
 		event.preventDefault();
 		try {
@@ -61,7 +59,7 @@ const UpdateTodo = () => {
 			console.log(error);
 		}
 
-		history.push("/");
+		history.push(`/${userId}/todos`);
 	};
 
 	if (!loadedTodo) {
@@ -72,11 +70,13 @@ const UpdateTodo = () => {
 		);
 	}
 
+	console.log("Update-Todo", loadedTodo.category);
 	return (
 		<React.Fragment>
 			<Card className="update-todo">
 				<form onSubmit={updateTodoSubmitHandler}>
 					{isLoading && <LoadingSpinner asOverlay />}
+					{loadedTodo && <h4 className="category-title">{loadedTodo.category}</h4>}
 					<div className="form-control">
 						<label htmlFor="title">Title</label>
 						{loadedTodo && (
@@ -86,19 +86,6 @@ const UpdateTodo = () => {
 								name="title"
 								value={updateState.title}
 								placeholder="title"
-								onChange={inputHandler}
-							/>
-						)}
-					</div>
-					<div className="form-control">
-						<label htmlFor="category">Category</label>
-						{loadedTodo && (
-							<input
-								type="text"
-								id="category"
-								name="category"
-								value={updateState.category}
-								placeholder="category"
 								onChange={inputHandler}
 							/>
 						)}
@@ -116,7 +103,9 @@ const UpdateTodo = () => {
 							/>
 						)}
 					</div>
-					<button type="submit">Update Task</button>
+					<Button edit type="submit">
+						Update
+					</Button>
 				</form>
 
 				<div className="edit-todo-image-controller">

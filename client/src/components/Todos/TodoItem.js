@@ -7,8 +7,10 @@ import Card from "../../UiElements/Card";
 import { useFetch } from "../../hooks/useFetch";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 import Modal from "../../UiElements/Modal";
+import Button from "../../FormElements/Button";
 import "./TodoItem.style.css";
 import ErrorModal from "../../UiElements/ErrorModal";
+import deleteTodo from "../../assets/img/delete-todo.svg";
 
 const TodoItem = (props) => {
 	const authContext = useContext(AuthContext);
@@ -59,11 +61,16 @@ const TodoItem = (props) => {
 				footerClass="place-item__modal-action"
 				footer={
 					<React.Fragment>
-						<button onClick={closeDeleteModal}>Cancel</button>
-						<button onClick={confirmDeleteModal}>Conform Delete</button>
+						<Button link onClick={closeDeleteModal}>
+							Cancel
+						</Button>
+						<Button danger onClick={confirmDeleteModal}>
+							Conform Delete
+						</Button>
 					</React.Fragment>
 				}
 			>
+				<img src={deleteTodo} alt="delete-todo costume" />
 				<p>Do you sure you want to delete this task?</p>
 				{/* //TODO --   ADD IMAGE! */}
 			</Modal>

@@ -7,16 +7,27 @@ $success: #3498db;
 
 .main-header {
 	width: 100%;
-	height: 4rem;
+	height: 3rem;
 	display: flex;
 	align-items: center;
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: $baseBg;
-	box-shadow: 0 2px 6px rgba(164, 165, 165, 0.425);
+	background: #ffff;
 	padding: 0 1rem;
 	z-index: 5;
+
+	::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		bottom: 0;
+		left: 0;
+		background-color: #00dbde;
+		background-image: linear-gradient(90deg, #00bdde 0%, #fc00ff 100%);
+		z-index: -1;
+	}
 }
 
 main {

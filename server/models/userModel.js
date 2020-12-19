@@ -30,16 +30,12 @@ const usersSchema = new mongoose.Schema({
 		required: [true, "Please provide your password"],
 		minlength: [8, "Password must be more or equal to 8 characters"],
 	},
-	// todos: [
-	// 	{
-	// 		type: mongoose.Types.ObjectId,
-	// 		required: true,
-	// 		ref: "Todos",
-	// 	},
-	// ],
+	image: { type: String, required: true },
 });
 
 usersSchema.plugin(uniqueValidator);
+
+// Todo->
 
 // usersSchema.pre("save", async function (next) {
 // 	if (!this.isModified) return next();

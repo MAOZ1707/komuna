@@ -1,7 +1,17 @@
 .modal {
   z-index: 100;
   position: fixed;
-  top: 22vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 7vh;
   left: 10%;
   width: 80%;
   background: white;
@@ -13,7 +23,6 @@
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #2a006e;
   color: white;
 }
 
@@ -23,16 +32,65 @@
 
 .modal__content {
   padding: 1rem 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal__content img {
+  height: 200px;
+  width: 80%;
+}
+
+.modal__content p {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 600;
 }
 
 .modal__footer {
   padding: 1rem 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.modal__footer button {
+  margin: 0;
+  gap: 10px;
 }
 
 @media (min-width: 768px) {
   .modal {
     left: calc(50% - 20rem);
     width: 40rem;
+  }
+}
+
+@media (max-width: 478px) {
+  .modal__footer {
+    padding: 1rem 0.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .modal__footer button {
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
   }
 }
 

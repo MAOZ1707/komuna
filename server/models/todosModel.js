@@ -16,7 +16,7 @@ const todosSchema = new mongoose.Schema({
 		trim: true,
 	},
 	createAt: {
-		type: Date,
+		type: String,
 	},
 	isComplete: {
 		type: Boolean,

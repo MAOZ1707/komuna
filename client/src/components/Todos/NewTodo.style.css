@@ -113,13 +113,13 @@
 }
 
 .signup {
-  background: -webkit-gradient(linear, left top, right top, color-stop(30%, #f0697f), color-stop(30%, white));
-  background: linear-gradient(90deg, #f0697f 30%, white 30%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(40%, #f0697f), color-stop(40%, white));
+  background: linear-gradient(90deg, #f0697f 40%, white 40%);
 }
 
 .login {
-  background: -webkit-gradient(linear, left top, right top, color-stop(30%, #6c9afc), color-stop(30%, white));
-  background: linear-gradient(90deg, #6c9afc 30%, white 30%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(40%, #6c9afc), color-stop(40%, white));
+  background: linear-gradient(90deg, #6c9afc 40%, white 40%);
 }
 
 .auth-image-controller {
@@ -244,12 +244,6 @@
   }
 }
 
-@media (max-width: 375px) {
-  .authentication {
-    width: 90%;
-  }
-}
-
 @media (max-width: 430px) {
   .form-control-radio {
     display: -webkit-box;
@@ -261,6 +255,15 @@
             flex-direction: column;
   }
   .authentication {
+    width: 90%;
+  }
+}
+
+@media (max-width: 375px) {
+  .authentication {
+    width: 90%;
+  }
+  .update-todo {
     width: 90%;
   }
 }

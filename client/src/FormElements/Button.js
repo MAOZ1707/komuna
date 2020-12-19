@@ -5,8 +5,10 @@ import "./Button.style.css";
 const Button = (props) => {
 	return (
 		<button
-			className={`btn ${props.danger && "btn--danger"} ${props.invert && "btn--invert"} 
-      btn--${props.size || "default"} ${props.form && "btn--form"}  `}
+			className={`btn ${props.danger && "btn--danger"} ${props.link && "btn--link"} 
+       ${props.form && "btn--form"}  ${props.edit && "btn--edit"}  ${
+				props.create && "btn--create"
+			}`}
 			onClick={props.onClick}
 			type={props.type}
 			disabled={props.disabled}

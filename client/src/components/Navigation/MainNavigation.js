@@ -7,7 +7,7 @@ import SideBar from "./SideBar";
 import BackDrop from "../../UiElements/BackDrop";
 import "./MainNavigation.style.css";
 
-const MainNavigation = (props) => {
+const MainNavigation = () => {
 	const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
 
 	const openSideBar = () => {
@@ -32,9 +32,11 @@ const MainNavigation = (props) => {
 					<span></span>
 					<span></span>
 				</button>
-				<h1 className="main-navigation__title">
-					<Link to="/">Home Icon</Link>
-				</h1>
+				<h3 className="main-navigation__title">
+					<Link to="/">
+						<span data-item="Komuna">Komuna</span>
+					</Link>
+				</h3>
 				<nav className="main-navigation__header-nav">
 					<NavLinks />
 				</nav>

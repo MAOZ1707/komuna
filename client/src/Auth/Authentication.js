@@ -3,11 +3,13 @@ import React, { useState, useContext } from "react";
 import Card from "../UiElements/Card";
 import ErrorModal from "../UiElements/ErrorModal";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
+import Button from "../FormElements/Button";
 import { AuthContext } from "../context/AuthContext";
 import { useFetch } from "../hooks/useFetch";
-import "../components/Todos/NewTodo.style.css";
 import signupImage from "../assets/img/signup.jpg";
 import loginImage from "../assets/img/login.jpg";
+
+import "../components/Todos/NewTodo.style.css";
 
 const Authentication = () => {
 	const authContext = useContext(AuthContext);
@@ -127,9 +129,9 @@ const Authentication = () => {
 					</div>
 					<div>
 						{/* //TODO ----- FIX TO DISABLE AND NOT TO LOG IN SIGN UP */}
-						<button style={{ background: "lightBlue", border: "none" }}>
+						<Button form type={"submit"}>
 							{isSignUp ? "LOG IN" : "SIGN UP"}
-						</button>
+						</Button>
 					</div>
 				</form>
 				<div className="auth-image-controller">
@@ -139,12 +141,9 @@ const Authentication = () => {
 					{!isSignUp && (
 						<p>
 							Already sign up?
-							<button
-								style={{ background: "lightBlue", border: "none" }}
-								onClick={() => setIsSignUp((prevState) => !prevState)}
-							>
+							<Button link onClick={() => setIsSignUp((prevState) => !prevState)}>
 								Log in
-							</button>
+							</Button>
 						</p>
 					)}
 				</div>
