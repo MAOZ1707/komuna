@@ -1,15 +1,13 @@
 .todo-item {
   margin: 1rem 0;
   width: 80%;
-}
-
-.todo-item__content {
-  padding: 0;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
 }
 
 .todo-item__info {
   padding: 1rem;
-  text-align: center;
 }
 
 .todo-item__info h2,
@@ -29,6 +27,8 @@
 }
 
 .complete h2,
+.complete h5,
+.complete h4,
 .complete h3,
 .complete p {
   margin: 0 0 0.5rem 0;
@@ -37,28 +37,95 @@
 }
 
 .todo-item__actions {
-  padding: 1rem;
   text-align: center;
-  background-color: rgba(2, 77, 107, 0.226);
+  border-top: 2px solid #cfcfcf;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.todo-item__modal-content {
+.todo-item__actions button {
+  cursor: pointer;
+  margin: 0 10px;
+  width: 25px;
   padding: 0;
+  background-color: transparent;
+  border: none;
 }
 
-.todo-item__modal-actions {
-  text-align: right;
-}
-
-.todo-item__actions button,
 .todo-item__actions a {
   margin: 0.5rem;
   text-decoration: none;
   color: #050709;
 }
 
-.map-container {
-  height: 15rem;
-  width: 100%;
+.todo-item__content {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 10px 2fr 1fr;
+      grid-template-columns: 10px 2fr 1fr;
+  -ms-grid-rows: auto 40px;
+      grid-template-rows: auto 40px;
+}
+
+.todo-item__content .todo-item__info {
+  grid-column: 2/-1;
+  -ms-grid-row: 1;
+  grid-row: 1;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  padding: 0;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.todo-item__content span {
+  margin: 0;
+  grid-row: 1/-1;
+  -ms-grid-column: 1;
+  grid-column: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item__content .todo-item__actions {
+  -ms-grid-row: 2;
+  grid-row: 2;
+  padding: 0;
+  margin: 0;
+  grid-column: 2/-1;
+}
+
+.todo-item__content .todo-item__message {
+  -ms-grid-row: 1;
+  grid-row: 1;
+  -ms-grid-column: 3;
+  grid-column: 3;
+  display: none;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 0.8em;
+}
+
+.Shopping {
+  background: #fffc53;
+}
+
+.Payments {
+  background: #fc35e1;
+}
+
+.Outers {
+  background: #3498db;
 }
 /*# sourceMappingURL=TodoItem.style.css.map */

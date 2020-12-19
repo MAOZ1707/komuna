@@ -19,8 +19,6 @@ const TodoItem = (props) => {
 	const { error, isLoading, sendRequest, clearError } = useFetch();
 	const [isComplete, setIsComplete] = useState(props.isComplete);
 
-	console.log(isComplete);
-
 	const showDeleteModal = () => {
 		setShowModal(true);
 	};
@@ -52,6 +50,8 @@ const TodoItem = (props) => {
 		}
 	};
 
+	console.log(props.category);
+
 	return (
 		<React.Fragment>
 			<ErrorModal error={error} onClear={clearError} />
@@ -70,18 +70,18 @@ const TodoItem = (props) => {
 					</React.Fragment>
 				}
 			>
-				<img src={deleteTodo} alt="delete-todo costume" />
+				<img src={deleteTodo} alt="delete-todo " />
 				<p>Do you sure you want to delete this task?</p>
-				{/* //TODO --   ADD IMAGE! */}
 			</Modal>
 
 			<li className="todo-item">
 				<Card className="todo-item__content">
 					{isLoading && <LoadingSpinner asOverlay />}
-					{isComplete && <p className="todo-item__message">TASK COMPLETE</p>}
+
+					<span className={props.category}></span>
+					{isComplete && <p className="todo-item__message">COMPLETE</p>}
 					<div className={isComplete ? "todo-item__info complete" : "todo-item__info "}>
-						<h2>{props.title}</h2>
-						<h3>{props.category}</h3>
+						<h3>{props.title}</h3>
 						<p>{props.body}</p>
 					</div>
 
@@ -90,13 +90,19 @@ const TodoItem = (props) => {
 							<React.Fragment>
 								{!isComplete && (
 									<button>
-										<Link to={`/todos/${props.id}`}>EDIT</Link>
+										<Link to={`/todos/${props.id}`}>
+											<i class="far fa-edit"></i>
+										</Link>
 									</button>
 								)}
 
-								<button onClick={showDeleteModal}>DELETE</button>
+								<button onClick={showDeleteModal}>
+									<i class="far fa-trash-alt"></i>
+								</button>
 
-								<button onClick={completeTodo}>{isComplete ? "COMPLETED" : "UNCOMPLETED"}</button>
+								<button onClick={completeTodo}>
+									{isComplete ? <i class="far fa-check-square"></i> : <i class="far fa-square"></i>}
+								</button>
 							</React.Fragment>
 						)}
 					</div>
