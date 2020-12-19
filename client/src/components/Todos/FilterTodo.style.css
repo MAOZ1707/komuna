@@ -1,0 +1,60 @@
+.filter-todos--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  left: 50px;
+  top: 0;
+}
+
+.filter-todos--container button {
+  cursor: pointer;
+  position: relative;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.filter-todos--container button::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+  border-radius: 50%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.filter-todos--container .filter-todos--all::before {
+  background: #ff2c2c;
+}
+
+.filter-todos--container .filter-todos--active::before {
+  background: #ff52e8;
+}
+
+.filter-todos--container .filter-todos--shopping::before {
+  background: #fffd7e;
+}
+
+.filter-todos--container .filter-todos--payments::before {
+  background: #66ff94;
+}
+
+.filter-todos--container .filter-todos--outers::before {
+  background: #7ccbff;
+}
+/*# sourceMappingURL=FilterTodo.style.css.map */

@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import Card from "../../UiElements/Card";
+import FilterTodos from "./FilterTodos";
 import TodoItem from "./TodoItem";
 import "./TodoList.style.css";
+import { TodoContext } from "../../context/TodoContext";
 
 const TodoList = (props) => {
+	const { showTodos } = useContext(TodoContext);
+
 	if (props.items.length === 0) {
 		return (
 			<div>
@@ -22,19 +26,46 @@ const TodoList = (props) => {
 		);
 	}
 
+	let todos;
+
+	switch (showTodos) {
+		case "All":
+			todos = props.items;
+			break;
+		case "UnCompleted":
+			todos = props.items.filter((todo) => todo.isComplete === false);
+			break;
+		case "Payments":
+			todos = props.items.filter((todo) => todo.category === "Payments");
+			break;
+		case "Shopping":
+			todos = props.items.filter((todo) => todo.category === "Shopping");
+			break;
+		case "Outers":
+			todos = props.items.filter((todo) => todo.category === "Outers");
+			break;
+
+		default:
+			break;
+	}
+
 	return (
-		<ul className="todo-list">
-			{props.items.map((task) => (
-				<TodoItem
-					key={task._id}
-					id={task._id}
-					title={task.title}
-					body={task.body}
-					category={task.category}
-					isComplete={task.isComplete}
-				/>
-			))}
-		</ul>
+		<React.Fragment>
+			<FilterTodos />
+			<ul className="todo-list">
+				{todos.map((task) => (
+					<TodoItem
+						key={task._id}
+						id={task._id}
+						title={task.title}
+						body={task.body}
+						category={task.category}
+						isComplete={task.isComplete}
+						createAt={task.createAt}
+					/>
+				))}
+			</ul>
+		</React.Fragment>
 	);
 };
 

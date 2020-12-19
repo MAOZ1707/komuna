@@ -15,6 +15,7 @@ const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userId, setUserId] = useState(null);
 	const [loadedTodos, setLoadedTodos] = useState([]);
+	const [showTodos, setShowTodos] = useState("All");
 
 	const login = useCallback((uID) => {
 		setIsLoggedIn(true);
@@ -76,6 +77,8 @@ const App = () => {
 	const todoContextValue = {
 		loadedTodos,
 		setLoadedTodos,
+		showTodos,
+		setShowTodos,
 	};
 
 	return (

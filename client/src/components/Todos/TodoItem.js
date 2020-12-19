@@ -50,8 +50,6 @@ const TodoItem = (props) => {
 		}
 	};
 
-	console.log(props.category);
-
 	return (
 		<React.Fragment>
 			<ErrorModal error={error} onClear={clearError} />
@@ -75,10 +73,9 @@ const TodoItem = (props) => {
 			</Modal>
 
 			<li className="todo-item">
-				<Card className="todo-item__content">
+				<span>{props.createAt}</span>
+				<Card className={`todo-item__content ${props.category}`}>
 					{isLoading && <LoadingSpinner asOverlay />}
-
-					<span className={props.category}></span>
 					{isComplete && <p className="todo-item__message">COMPLETE</p>}
 					<div className={isComplete ? "todo-item__info complete" : "todo-item__info "}>
 						<h3>{props.title}</h3>
