@@ -62,19 +62,16 @@ const Authentication = () => {
 			} catch (err) {}
 		} else {
 			try {
-				const responseData = await sendRequest(
-					" http://localhost:9000/api/user/signup",
-					"POST",
-					{
-						firstname: signUpState.firstName,
-						lastname: signUpState.lastName,
-						email: signUpState.email,
-						password: signUpState.password,
-					},
-					{
-						"Content-Type": "application/json",
-					}
-				);
+				const formData = new FormData();
+				formData.append("firstname", signUpState.firstName);
+				formData.append("lastname", signUpState.lastName);
+				formData.append("email", signUpState.email);
+				formData.append("password", signUpState.password);
+				formData.append("image", img);
+
+				const responseData = await sendRequest("/api/user/signup", "POST", formData, {
+					"Content-Type": "multipart/form-data",
+				});
 				console.log(responseData);
 				authContext.login(responseData.user._id);
 			} catch (err) {}
