@@ -1,0 +1,105 @@
+.upload-image-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.upload-image-control .image-upload {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.upload-image-control .image-upload .image-upload--preview {
+  border: 3px solid #f0697f;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 1em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: 10px;
+  height: 80%;
+  text-align: center;
+}
+
+.upload-image-control .image-upload .image-upload--preview img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.upload-image-control .image-upload .image-upload--preview .image-upload-default {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.upload-image-control .image-upload .image-upload--preview .image-upload-default .default-image-profile {
+  opacity: 0.3;
+  width: auto;
+}
+
+.upload-image-control .image-upload .image-upload--preview .image-upload-default p {
+  position: absolute;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.61);
+}
+
+@media (max-width: 750px) {
+  .image-upload {
+    height: 3rem;
+  }
+  .uploade-image--button {
+    width: 100%;
+  }
+  .uploade-image--button button i {
+    font-size: 1.1em;
+    margin-right: 10px;
+  }
+}
+/*# sourceMappingURL=UploadImage.style.css.map */

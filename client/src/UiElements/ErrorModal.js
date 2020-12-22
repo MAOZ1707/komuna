@@ -1,6 +1,7 @@
 import React from "react";
 
 import Modal from "./Modal";
+import errorImage from "../assets/img/error.svg";
 
 const ErrorModal = (props) => {
 	return (
@@ -10,6 +11,7 @@ const ErrorModal = (props) => {
 			show={!!props.error}
 			footer={<button onClick={props.onClear}>Okay</button>}
 		>
+			<img src={errorImage} alt="errorMessage" />
 			<p>{props.error}</p>
 		</Modal>
 	);

@@ -117,6 +117,34 @@
   background: linear-gradient(90deg, #f0697f 40%, white 40%);
 }
 
+.signup form {
+  grid-column: 1/-1;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+}
+
+.signup form .inputs-field {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+.signup form .image-profile {
+  grid-column: 2/-1;
+  grid-column: 2/-1;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  width: 100%;
+  height: 100%;
+}
+
 .login {
   background: -webkit-gradient(linear, left top, right top, color-stop(40%, #6c9afc), color-stop(40%, white));
   background: linear-gradient(90deg, #6c9afc 40%, white 40%);
@@ -245,6 +273,9 @@
 }
 
 @media (max-width: 430px) {
+  .new-todo {
+    width: 90%;
+  }
   .form-control-radio {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -257,6 +288,20 @@
   .authentication {
     width: 90%;
   }
+  .signup form {
+    -ms-grid-rows: 40px 1fr;
+        grid-template-rows: 40px 1fr;
+  }
+  .signup form .inputs-field {
+    grid-column: 1/-1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
+  .signup form .image-profile {
+    grid-column: 1/-1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+  }
 }
 
 @media (max-width: 375px) {
@@ -265,6 +310,23 @@
   }
   .update-todo {
     width: 90%;
+  }
+}
+
+@media (max-width: 750px) {
+  .signup form {
+    -ms-grid-rows: 40px 1fr;
+        grid-template-rows: 40px 1fr;
+  }
+  .signup form .inputs-field {
+    grid-column: 1/-1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
+  .signup form .image-profile {
+    grid-column: 1/-1;
+    -ms-grid-row: 1;
+    grid-row: 1;
   }
 }
 /*# sourceMappingURL=NewTodo.style.css.map */

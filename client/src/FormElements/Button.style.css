@@ -39,6 +39,20 @@
   background-position: 0;
 }
 
+.btn--upload {
+  border-color: #4f9bff;
+  color: black;
+  background-image: linear-gradient(45deg, #4f9bff 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  -webkit-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+}
+
+.btn--upload:hover {
+  background-position: 0;
+}
+
 .btn--link {
   border-color: #000000;
   color: black;

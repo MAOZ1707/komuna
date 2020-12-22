@@ -44,9 +44,10 @@
 @media (max-width: 750px) {
 	.filter-todos--container {
 		display: flex;
-		position: fixed;
+		position: absolute;
 		flex-direction: row;
-		height: 100%;
+		flex-wrap: wrap;
+		height: max-content;
 		justify-content: center;
 		align-items: flex-start;
 		width: 100%;

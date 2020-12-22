@@ -6,9 +6,9 @@ const Button = (props) => {
 	return (
 		<button
 			className={`btn ${props.danger && "btn--danger"} ${props.link && "btn--link"} 
-       ${props.form && "btn--form"}  ${props.edit && "btn--edit"}  ${
-				props.create && "btn--create"
-			}`}
+       ${props.form && "btn--form"}  ${props.edit && "btn--edit"}  ${props.create && "btn--create"}
+		 ${props.upload && "btn--upload"}
+			`}
 			onClick={props.onClick}
 			type={props.type}
 			disabled={props.disabled}

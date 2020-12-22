@@ -16,18 +16,14 @@ export const useFetch = () => {
 			});
 
 			const data = await response.data;
-			console.log(data);
-			if (response.status >= 300) {
-				console.log("status code >= 300");
-				throw new Error(data.message);
-			}
 
 			setIsLoading(false);
 			return data;
-		} catch (error) {
-			setError(error.message);
+		} catch (err) {
+			console.log(err);
+			setError("Something get wrong, please try again later.");
 			setIsLoading(false);
-			throw error;
+			throw err;
 		}
 	}, []);
 
