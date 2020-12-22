@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import Card from "../../../UiElements/Card";
 
 const UserItem = (props) => {
-	console.log(props.image);
+	console.log(props.id);
+
 	return (
 		<li className="user-item">
 			<Card className="user-item__content">

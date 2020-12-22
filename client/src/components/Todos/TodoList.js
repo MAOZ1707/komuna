@@ -53,17 +53,20 @@ const TodoList = (props) => {
 		<React.Fragment>
 			<FilterTodos />
 			<ul className="todo-list">
-				{todos.map((task) => (
-					<TodoItem
-						key={task._id}
-						id={task._id}
-						title={task.title}
-						body={task.body}
-						category={task.category}
-						isComplete={task.isComplete}
-						createAt={task.createAt}
-					/>
-				))}
+				{todos.map((task) => {
+					return (
+						<TodoItem
+							key={task._id}
+							id={task._id}
+							creator={task.creator}
+							title={task.title}
+							body={task.body}
+							category={task.category}
+							isComplete={task.isComplete}
+							createAt={task.createAt}
+						/>
+					);
+				})}
 			</ul>
 		</React.Fragment>
 	);

@@ -36,7 +36,6 @@ const TodoItem = (props) => {
 		} catch (error) {
 			console.log(error);
 		}
-		console.log("task delete!!");
 	};
 
 	const completeTodo = async () => {
@@ -78,27 +77,31 @@ const TodoItem = (props) => {
 					{isLoading && <LoadingSpinner asOverlay />}
 					{isComplete && <p className="todo-item__message">COMPLETE</p>}
 					<div className={isComplete ? "todo-item__info complete" : "todo-item__info "}>
-						<h3>{props.title}</h3>
+						{props.category === "Outers" ? <h3>{props.title}</h3> : null}
 						<p>{props.body}</p>
 					</div>
 
 					<div className="todo-item__actions">
-						{authContext.isLoggedIn && (
+						{authContext.userId === props.creator && (
 							<React.Fragment>
 								{!isComplete && (
 									<button>
 										<Link to={`/todos/${props.id}`}>
-											<i class="far fa-edit"></i>
+											<i className="far fa-edit"></i>
 										</Link>
 									</button>
 								)}
 
 								<button onClick={showDeleteModal}>
-									<i class="far fa-trash-alt"></i>
+									<i className="far fa-trash-alt"></i>
 								</button>
 
 								<button onClick={completeTodo}>
-									{isComplete ? <i class="far fa-check-square"></i> : <i class="far fa-square"></i>}
+									{isComplete ? (
+										<i className="far fa-check-square"></i>
+									) : (
+										<i className="far fa-square"></i>
+									)}
 								</button>
 							</React.Fragment>
 						)}

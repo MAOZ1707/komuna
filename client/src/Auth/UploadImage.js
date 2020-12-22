@@ -71,7 +71,7 @@ const UploadImage = (props) => {
 				) : (
 					<div className="uploade-image--button">
 						<Button upload type="button" onClick={pickImage}>
-							<i class="fas fa-portrait"></i>
+							<i className="fas fa-portrait"></i>
 							Pick Image
 						</Button>
 					</div>
