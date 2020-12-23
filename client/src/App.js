@@ -18,6 +18,7 @@ const App = () => {
 	const [showTodos, setShowTodos] = useState("All");
 
 	const login = useCallback((uID) => {
+		console.log(uID);
 		setIsLoggedIn(true);
 		setUserId(uID);
 	}, []);

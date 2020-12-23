@@ -1,6 +1,7 @@
 .btn {
 	box-sizing: border-box;
 	appearance: none;
+
 	background-color: transparent;
 	border: 2px solid rgb(0, 0, 0);
 	border-radius: 0.6em;
@@ -15,7 +16,10 @@
 	text-align: center;
 	text-transform: uppercase;
 	font-weight: 500;
-
+	a {
+		text-decoration: none;
+		color: #000000;
+	}
 	&:hover,
 	&:focus {
 		color: rgb(0, 0, 0);
@@ -54,6 +58,7 @@
 	background-size: 400%;
 	-webkit-transition: background 300ms ease-in-out;
 	transition: background 300ms ease-in-out;
+
 	&:hover {
 		background-position: 0;
 	}
@@ -61,6 +66,11 @@
 	&:focus {
 		color: rgb(255, 255, 255);
 		outline: 0;
+
+		a {
+			text-decoration: none;
+			color: #ffffff;
+		}
 	}
 	margin-left: 10px;
 }
@@ -79,6 +89,11 @@
 	&:focus {
 		color: rgb(255, 255, 255);
 		outline: 0;
+
+		a {
+			text-decoration: none;
+			color: #ffffff;
+		}
 	}
 	margin-left: 10px;
 }
@@ -97,6 +112,11 @@
 	&:focus {
 		color: rgb(255, 255, 255);
 		outline: 0;
+
+		a {
+			text-decoration: none;
+			color: #ffffff;
+		}
 	}
 	margin-left: 10px;
 }
@@ -115,6 +135,11 @@
 	&:focus {
 		color: rgb(255, 255, 255);
 		outline: 0;
+
+		a {
+			text-decoration: none;
+			color: #ffffff;
+		}
 	}
 	margin-left: 10px;
 }

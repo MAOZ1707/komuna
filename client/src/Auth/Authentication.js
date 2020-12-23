@@ -47,7 +47,7 @@ const Authentication = () => {
 		if (isSignUp) {
 			try {
 				const responseData = await sendRequest(
-					" http://localhost:9000/api/user/login",
+					"/api/user/login",
 					"POST",
 					{
 						email: signUpState.email,
@@ -72,7 +72,6 @@ const Authentication = () => {
 				const responseData = await sendRequest("/api/user/signup", "POST", formData, {
 					"Content-Type": "multipart/form-data",
 				});
-				console.log(responseData);
 				authContext.login(responseData.user._id);
 			} catch (err) {}
 		}

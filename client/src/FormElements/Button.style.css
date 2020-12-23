@@ -20,6 +20,11 @@
   font-weight: 500;
 }
 
+.btn a {
+  text-decoration: none;
+  color: #000000;
+}
+
 .btn:hover, .btn:focus {
   color: black;
   outline: 0;
@@ -73,6 +78,11 @@
   outline: 0;
 }
 
+.btn--link:hover a, .btn--link:focus a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .btn--edit {
   border-color: #b76aff;
   color: black;
@@ -91,6 +101,11 @@
 .btn--edit:hover, .btn--edit:focus {
   color: white;
   outline: 0;
+}
+
+.btn--edit:hover a, .btn--edit:focus a {
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .btn--create {
@@ -113,6 +128,11 @@
   outline: 0;
 }
 
+.btn--create:hover a, .btn--create:focus a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .btn--danger {
   border-color: #ff3737;
   color: black;
@@ -131,5 +151,10 @@
 .btn--danger:hover, .btn--danger:focus {
   color: white;
   outline: 0;
+}
+
+.btn--danger:hover a, .btn--danger:focus a {
+  text-decoration: none;
+  color: #ffffff;
 }
 /*# sourceMappingURL=Button.style.css.map */

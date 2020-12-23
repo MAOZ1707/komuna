@@ -6,6 +6,8 @@ import FilterTodos from "./FilterTodos";
 import TodoItem from "./TodoItem";
 import "./TodoList.style.css";
 import { TodoContext } from "../../context/TodoContext";
+import noTaskImage from "../../assets/img/no-task.svg";
+import Button from "../../FormElements/Button";
 
 const TodoList = (props) => {
 	const { showTodos } = useContext(TodoContext);
@@ -14,13 +16,14 @@ const TodoList = (props) => {
 		return (
 			<div>
 				<Card className="todos-list--empty">
+					<img src={noTaskImage} alt="noTask" />
 					<h2>No tasks found, You want to create one? </h2>
-					<button>
+					<Button create>
 						<Link to="/todos/new">Create Task</Link>
-					</button>
-					<button>
+					</Button>
+					<Button link>
 						<Link to="/">Back to users</Link>
-					</button>
+					</Button>
 				</Card>
 			</div>
 		);
