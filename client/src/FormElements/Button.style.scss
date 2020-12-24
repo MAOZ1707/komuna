@@ -20,8 +20,7 @@
 		text-decoration: none;
 		color: #000000;
 	}
-	&:hover,
-	&:focus {
+	&:hover {
 		color: rgb(0, 0, 0);
 		outline: 0;
 	}
@@ -62,8 +61,7 @@
 	&:hover {
 		background-position: 0;
 	}
-	&:hover,
-	&:focus {
+	&:hover {
 		color: rgb(255, 255, 255);
 		outline: 0;
 
@@ -85,8 +83,7 @@
 	&:hover {
 		background-position: 0;
 	}
-	&:hover,
-	&:focus {
+	&:hover {
 		color: rgb(255, 255, 255);
 		outline: 0;
 
@@ -108,8 +105,7 @@
 	&:hover {
 		background-position: 0;
 	}
-	&:hover,
-	&:focus {
+	&:hover {
 		color: rgb(255, 255, 255);
 		outline: 0;
 
@@ -131,8 +127,7 @@
 	&:hover {
 		background-position: 0;
 	}
-	&:hover,
-	&:focus {
+	&:hover {
 		color: rgb(255, 255, 255);
 		outline: 0;
 
@@ -142,4 +137,8 @@
 		}
 	}
 	margin-left: 10px;
+}
+
+.btn--stretch {
+	grid-column: 1/-1;
 }

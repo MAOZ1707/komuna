@@ -1,6 +1,7 @@
 const express = require("express");
 const todosController = require("../controllers/todosController");
-const validateAuth = require("../middleware/auth-validate");
+
+const checkAuth = require("../middleware/auth-validate");
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.route("/").get(todosController.getAllTodos);
 router.route("/user/:id").get(todosController.getTodosByUserId);
 router.route("/:id").get(todosController.getTodoById);
 
-// router.use(validateAuth);
+router.use(checkAuth);
 
 router.route("/").post(todosController.createTodos);
 

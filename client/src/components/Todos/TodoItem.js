@@ -29,7 +29,9 @@ const TodoItem = (props) => {
 	const confirmDeleteModal = async () => {
 		setShowModal(false);
 		try {
-			await sendRequest(`/api/todos/${props.id}`, "DELETE");
+			await sendRequest(`/api/todos/${props.id}`, "DELETE", null, {
+				Authorization: "Bearer " + authContext.token,
+			});
 			todoContext.setLoadedTodos((prevState) => {
 				return prevState.filter((todo) => todo._id !== props.id);
 			});
@@ -40,9 +42,14 @@ const TodoItem = (props) => {
 
 	const completeTodo = async () => {
 		try {
-			await sendRequest(`/api/todos/${props.id}`, "PATCH", {
-				isComplete: !isComplete,
-			});
+			await sendRequest(
+				`/api/todos/${props.id}`,
+				"PATCH",
+				{
+					isComplete: !isComplete,
+				},
+				{ Authorization: "Bearer " + authContext.token }
+			);
 			setIsComplete((prevState) => !prevState);
 		} catch (error) {
 			console.log(error);

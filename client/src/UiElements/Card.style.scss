@@ -21,12 +21,16 @@ $success: #3498db;
 }
 
 .todos-list--empty {
-	color: #ffffff;
+	color: #000000;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr auto auto;
 	align-items: center;
 
+	p {
+		margin: 0;
+		padding: 0;
+	}
 	img {
 		grid-row: 1;
 		grid-column: 1/-1;

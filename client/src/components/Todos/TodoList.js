@@ -8,9 +8,11 @@ import "./TodoList.style.css";
 import { TodoContext } from "../../context/TodoContext";
 import noTaskImage from "../../assets/img/no-task.svg";
 import Button from "../../FormElements/Button";
+import { AuthContext } from "../../context/AuthContext";
 
 const TodoList = (props) => {
 	const { showTodos } = useContext(TodoContext);
+	const authContext = useContext(AuthContext);
 
 	if (props.items.length === 0) {
 		return (
@@ -19,7 +21,11 @@ const TodoList = (props) => {
 					<img src={noTaskImage} alt="noTask" />
 					<h2>No tasks found, You want to create one? </h2>
 					<Button create>
-						<Link to="/todos/new">Create Task</Link>
+						{authContext.isLoggedIn ? (
+							<Link to="/todos/new">Create Task</Link>
+						) : (
+							<Link to="/auth">Please Login</Link>
+						)}
 					</Button>
 					<Button link>
 						<Link to="/">Back to users</Link>

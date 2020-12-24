@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import MainNavigation from "./components/Navigation/MainNavigation";
@@ -10,27 +10,23 @@ import Authentication from "./Auth/Authentication";
 import { AuthContext } from "./context/AuthContext";
 import { TodoContext } from "./context/TodoContext";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { useAuth } from "./hooks/useAuth";
 
 const App = () => {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [userId, setUserId] = useState(null);
-	const [loadedTodos, setLoadedTodos] = useState([]);
-	const [showTodos, setShowTodos] = useState("All");
-
-	const login = useCallback((uID) => {
-		console.log(uID);
-		setIsLoggedIn(true);
-		setUserId(uID);
-	}, []);
-
-	const logout = useCallback(() => {
-		setIsLoggedIn(false);
-		setUserId(null);
-	}, []);
+	const {
+		login,
+		logout,
+		userId,
+		token,
+		showTodos,
+		loadedTodos,
+		setLoadedTodos,
+		setShowTodos,
+	} = useAuth();
 
 	let routes;
 
-	if (isLoggedIn) {
+	if (token) {
 		routes = (
 			<Switch>
 				<Route exact path="/">
@@ -70,7 +66,8 @@ const App = () => {
 
 	const authContextValue = {
 		userId: userId,
-		isLoggedIn: isLoggedIn,
+		isLoggedIn: !!token,
+		token: token,
 		login: login,
 		logout: logout,
 	};

@@ -34,6 +34,8 @@ const NewTodos = () => {
 		[formState]
 	);
 
+	console.log(authContext.token);
+
 	const creatTodoSubmitHandler = async (event) => {
 		event.preventDefault();
 		try {
@@ -50,6 +52,7 @@ const NewTodos = () => {
 				},
 				{
 					"Content-Type": "application/json",
+					Authorization: "Bearer " + authContext.token,
 				}
 			);
 

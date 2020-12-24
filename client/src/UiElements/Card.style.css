@@ -16,7 +16,7 @@
 }
 
 .todos-list--empty {
-  color: #ffffff;
+  color: #000000;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -26,6 +26,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.todos-list--empty p {
+  margin: 0;
+  padding: 0;
 }
 
 .todos-list--empty img {

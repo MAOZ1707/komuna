@@ -35,15 +35,6 @@ const usersSchema = new mongoose.Schema({
 
 usersSchema.plugin(uniqueValidator);
 
-// Todo->
-
-// usersSchema.pre("save", async function (next) {
-// 	if (!this.isModified) return next();
-
-// 	this.password = await bcrypt.hash(this.password, 12);
-// 	next();
-// });
-
 const User = mongoose.model("User", usersSchema);
 
 module.exports = User;

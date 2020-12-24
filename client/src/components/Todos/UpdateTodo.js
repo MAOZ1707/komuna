@@ -12,7 +12,7 @@ import "./NewTodo.style.css";
 
 const UpdateTodo = () => {
 	const todoId = useParams().todoId;
-	const { userId } = useContext(AuthContext);
+	const { userId, token } = useContext(AuthContext);
 	const history = useHistory();
 	const { isLoading, sendRequest } = useFetch();
 	const [loadedTodo, setLoadedTodos] = useState(null);
@@ -50,11 +50,18 @@ const UpdateTodo = () => {
 	const updateTodoSubmitHandler = async (event) => {
 		event.preventDefault();
 		try {
-			await sendRequest(`/api/todos/${todoId}`, "PATCH", {
-				title: updateState.title,
-				category: updateState.category,
-				body: updateState.body,
-			});
+			await sendRequest(
+				`/api/todos/${todoId}`,
+				"PATCH",
+				{
+					title: updateState.title,
+					category: updateState.category,
+					body: updateState.body,
+				},
+				{
+					Authorization: "Bearer " + token,
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}

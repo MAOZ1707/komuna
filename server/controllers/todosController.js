@@ -1,4 +1,3 @@
-// const mongoose = require("mongoose");
 const Todos = require("../models/todosModel");
 const User = require("../models/userModel");
 const HttpError = require("../models/errorModel");
@@ -84,64 +83,33 @@ exports.createTodos = async (req, res, next) => {
 	}
 };
 
-// exports.createTodos = async (req, res, next) => {
-// 	const { title, category, body, creator } = req.body;
-
-// 	const createTodo = new Todos({
-// 		title,
-// 		category,
-// 		body,
-// 		creator,
-// 	});
-
-// 	let user;
-// 	try {
-// 		user = await User.findById(creator);
-// 	} catch (err) {
-// 		const error = new HttpError(
-// 			"Creating place failed, please try again.",
-// 			500
-// 		);
-// 		return next(error);
-// 	}
-
-// 	if (!user) {
-// 		const error = new HttpError("Could not find user for provided id.", 404);
-// 		return next(error);
-// 	}
-
-// 	console.log(user);
-
-// 	try {
-// 		const sess = await mongoose.startSession();
-// 		sess.startTransaction();
-// 		await createTodo.save({ session: sess });
-// 		user.todos.push(createTodo);
-// 		await user.save({ session: sess });
-// 		await sess.commitTransaction();
-// 	} catch (err) {
-// 		const error = new HttpError(
-// 			"Creating place failed, please try again.",
-// 			500
-// 		);
-// 		return next(error);
-// 	}
-
-// 	res.status(201).json({ todos: createTodo });
-// };
-
 exports.updateTodos = async (req, res, next) => {
 	console.log(chalk.bgCyanBright.black("Request"), req.body);
 	const todoToUpdate = req.params.id;
+	let todo;
 	try {
-		const todo = await Todos.findByIdAndUpdate(todoToUpdate, req.body, {
+		todo = await Todos.findById(todoToUpdate);
+
+		console.log(chalk.bgWhiteBright.black(todo));
+	} catch (error) {
+		const err = new HttpError("Update Todo is failed, please check again .", 404);
+		return next(err);
+	}
+
+	if (todo.creator.toString() !== req.userData.userId) {
+		const err = new HttpError("You dont have permission.", 401);
+		return next(err);
+	}
+
+	try {
+		const todoId = await Todos.findByIdAndUpdate(todoToUpdate, req.body, {
 			new: true,
 		});
 		res.json({
-			todos: todo,
+			todos: todoId,
 		});
 
-		console.log(chalk.bgWhiteBright.green("Update success"));
+		console.log(chalk.bgWhiteBright.black("Update success"));
 	} catch (error) {
 		console.log(chalk.bold.red(error));
 		const err = new HttpError("Update Todo is failed, please check again .", 404);

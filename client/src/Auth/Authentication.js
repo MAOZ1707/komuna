@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 
 import Card from "../UiElements/Card";
 import ErrorModal from "../UiElements/ErrorModal";
@@ -22,8 +22,6 @@ const Authentication = () => {
 		password: "",
 		image: null,
 	});
-	console.log(signUpState);
-	console.log(img);
 
 	const { error, isLoading, sendRequest, clearError } = useFetch();
 
@@ -36,12 +34,10 @@ const Authentication = () => {
 	};
 
 	const uploadedFile = (value) => {
-		console.log(value);
 		setImg(value);
 	};
 
 	const handleSignUpSubmit = async (e) => {
-		console.log(signUpState);
 		e.preventDefault();
 
 		if (isSignUp) {
@@ -58,7 +54,7 @@ const Authentication = () => {
 					}
 				);
 
-				authContext.login(responseData.user._id);
+				authContext.login(responseData.user._id, responseData.token);
 			} catch (err) {}
 		} else {
 			try {
@@ -72,7 +68,8 @@ const Authentication = () => {
 				const responseData = await sendRequest("/api/user/signup", "POST", formData, {
 					"Content-Type": "multipart/form-data",
 				});
-				authContext.login(responseData.user._id);
+
+				authContext.login(responseData.user._id, responseData.token);
 			} catch (err) {}
 		}
 	};

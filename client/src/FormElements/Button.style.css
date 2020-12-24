@@ -25,7 +25,7 @@
   color: #000000;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover {
   color: black;
   outline: 0;
 }
@@ -73,12 +73,12 @@
   background-position: 0;
 }
 
-.btn--link:hover, .btn--link:focus {
+.btn--link:hover {
   color: white;
   outline: 0;
 }
 
-.btn--link:hover a, .btn--link:focus a {
+.btn--link:hover a {
   text-decoration: none;
   color: #ffffff;
 }
@@ -98,12 +98,12 @@
   background-position: 0;
 }
 
-.btn--edit:hover, .btn--edit:focus {
+.btn--edit:hover {
   color: white;
   outline: 0;
 }
 
-.btn--edit:hover a, .btn--edit:focus a {
+.btn--edit:hover a {
   text-decoration: none;
   color: #ffffff;
 }
@@ -123,12 +123,12 @@
   background-position: 0;
 }
 
-.btn--create:hover, .btn--create:focus {
+.btn--create:hover {
   color: white;
   outline: 0;
 }
 
-.btn--create:hover a, .btn--create:focus a {
+.btn--create:hover a {
   text-decoration: none;
   color: #ffffff;
 }
@@ -148,13 +148,17 @@
   background-position: 0;
 }
 
-.btn--danger:hover, .btn--danger:focus {
+.btn--danger:hover {
   color: white;
   outline: 0;
 }
 
-.btn--danger:hover a, .btn--danger:focus a {
+.btn--danger:hover a {
   text-decoration: none;
   color: #ffffff;
+}
+
+.btn--stretch {
+  grid-column: 1/-1;
 }
 /*# sourceMappingURL=Button.style.css.map */

@@ -28,7 +28,6 @@ const UploadImage = (props) => {
 		if (event.target.files && event.target.files.length === 1) {
 			pickFile = event.target.files[0];
 			setFile(pickFile);
-			console.log(file);
 		}
 		props.onInput(pickFile);
 	};
@@ -40,7 +39,6 @@ const UploadImage = (props) => {
 	}, [setWindowWidth]);
 
 	const pickImage = () => {
-		console.log(pickImageRef);
 		pickImageRef.current.click();
 	};
 
