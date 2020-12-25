@@ -156,6 +156,11 @@ const Authentication = () => {
 							</Button>
 						</p>
 					)}
+					{isSignUp && (
+						<Button link onClick={() => setIsSignUp((prevState) => !prevState)}>
+							Back
+						</Button>
+					)}
 				</div>
 			</Card>
 		</React.Fragment>

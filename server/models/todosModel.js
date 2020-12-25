@@ -7,12 +7,11 @@ const todosSchema = new mongoose.Schema({
 	},
 	title: {
 		type: String,
-		required: [true, "first name is required"],
 		trim: true,
 	},
 	body: {
 		type: String,
-		required: [true, "selected category is require"],
+		required: [true, "Please write your task"],
 		trim: true,
 	},
 	createAt: {

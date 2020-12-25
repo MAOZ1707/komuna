@@ -22,7 +22,6 @@ const NewTodos = () => {
 		body: "",
 	});
 
-	console.log(formState);
 	const { error, isLoading, sendRequest, clearError } = useFetch();
 	const inputHandler = useCallback(
 		(e) => {
@@ -33,8 +32,6 @@ const NewTodos = () => {
 		},
 		[formState]
 	);
-
-	console.log(authContext.token);
 
 	const creatTodoSubmitHandler = async (event) => {
 		event.preventDefault();
@@ -56,7 +53,7 @@ const NewTodos = () => {
 				}
 			);
 
-			history.push("/");
+			history.push(`/${authContext.userId}/todos`);
 		} catch (error) {}
 	};
 
@@ -101,16 +98,18 @@ const NewTodos = () => {
 							<span>Outers</span>
 						</label>
 					</div>
-					<div className="form-control">
-						<label htmlFor="title">Title</label>
-						<input
-							type="text"
-							id="title"
-							name="title"
-							value={formState.title}
-							onChange={inputHandler}
-						/>
-					</div>
+					{formState.category === "Outers" && (
+						<div className="form-control">
+							<label htmlFor="title">Title</label>
+							<input
+								type="text"
+								id="title"
+								name="title"
+								value={formState.title}
+								onChange={inputHandler}
+							/>
+						</div>
+					)}
 					<div className="form-control">
 						<label htmlFor="body">body</label>
 						<textarea
