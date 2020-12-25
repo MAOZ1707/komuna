@@ -1,1 +1,14 @@
-{}
+{
+	"name": "homey",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:MAOZ1707/komuna.git",
+	"author": "Maoz.C <36860867+MAOZ1707@users.noreply.github.com>",
+	"license": "MIT",
+	"scripts": {
+		"start": "concurrently \"cd client && yarn start\" \"cd server && nodemon server\""
+	},
+	"dependencies": {
+		"concurrently": "^5.3.0"
+	}
+}
