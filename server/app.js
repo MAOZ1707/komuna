@@ -1,6 +1,5 @@
 const path = require("path");
 const fs = require("fs");
-
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -22,6 +21,8 @@ app.use("/uploads/images", express.static(path.join("uploads", "images")));
 app.use("/api/home", homeRouter);
 app.use("/api/user", userRouter);
 app.use("/api/todos", todosRouter);
+
+app.use("/", express.static(path.join(__dirname, "../client/build")));
 
 // Error middleware
 
