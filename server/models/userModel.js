@@ -30,7 +30,7 @@ const usersSchema = new mongoose.Schema({
 		required: [true, "Please provide your password"],
 		minlength: [8, "Password must be more or equal to 8 characters"],
 	},
-	image: { type: String, required: true },
+	image: { type: String, required: false },
 });
 
 usersSchema.plugin(uniqueValidator);
