@@ -3,8 +3,8 @@ const dotenv = require("dotenv");
 const chalk = require("chalk");
 const mongoose = require("mongoose");
 const cors = require("cors");
-dotenv.config({ path: "./config.env" });
 const app = require("./app");
+dotenv.config({ path: "./config.env" });
 
 app.use(cors());
 app.use(cors({ origin: true, credentials: true }));
@@ -34,6 +34,7 @@ mongoose
 	})
 	.catch((err) => console.log(err, chalk.red.bold("DB connection failed!!")));
 
+console.log(process.env.PORT);
 // server
 const port = process.env.PORT || 9000;
 app.listen(port, () => {
