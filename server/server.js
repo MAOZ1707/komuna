@@ -4,6 +4,7 @@ const chalk = require("chalk");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = require("./app");
+const { login } = require("./controllers/authController");
 dotenv.config({ path: "./config.env" });
 
 app.use(cors());
@@ -21,9 +22,10 @@ app.use(function (req, res, next) {
 	next();
 });
 
-let dbUrl = process.env.DATABASE_LOCAL;
+let dbUrl = process.env.DATABASE;
 
 if (process.env.DB_URL) {
+	console.log(process.env.DB_URL);
 	dbUrl = process.env.DB_URL;
 }
 
