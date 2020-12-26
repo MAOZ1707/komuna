@@ -37,7 +37,7 @@ const NewTodos = () => {
 		event.preventDefault();
 		try {
 			await sendRequest(
-				"http://localhost:9000/api/todos",
+				"/api/todos",
 				"POST",
 				{
 					title: formState.title,

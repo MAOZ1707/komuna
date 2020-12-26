@@ -13,7 +13,7 @@ const User = () => {
 	useEffect(() => {
 		const fetchAllUsers = async () => {
 			try {
-				const responseData = await sendRequest("http://localhost:9000/api/user");
+				const responseData = await sendRequest("/api/user");
 				setUsers(responseData.users);
 			} catch (error) {}
 		};

@@ -44,7 +44,11 @@ mongoose
 
 console.log(process.env.PORT);
 // server
-const port = process.env.PORT || 9000;
+let port = 9000;
+if (process.env.PORT) {
+	port = process.env.PORT;
+}
+
 app.listen(port, () => {
 	console.log(chalk.magentaBright("App running !!"));
 });
