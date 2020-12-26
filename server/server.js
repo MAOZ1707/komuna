@@ -22,10 +22,12 @@ app.use(function (req, res, next) {
 	next();
 });
 
-let dbUrl = process.env.DATABASE;
+// let dbUrl = process.env.DATABASE;
+let dbUrl =
+	"mongodb+srv://mazuz:EvK2t93MBMhyPelg@cluster0.l2k7l.mongodb.net/home-care-app?retryWrites=true&w=majority";
 
 if (process.env.DB_URL) {
-	console.log(process.env.DB_URL);
+	console.log("DataBase----"), process.env.DB_URL;
 	dbUrl = process.env.DB_URL;
 }
 
