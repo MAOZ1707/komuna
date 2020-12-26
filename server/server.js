@@ -21,10 +21,14 @@ app.use(function (req, res, next) {
 	next();
 });
 
-const DB = process.env.DATABASE;
+let dbUrl = process.env.DATABASE_LOCAL;
+
+if (process.env.DB_URL) {
+	dbUrl = process.env.DB_URL;
+}
 
 mongoose
-	.connect(DB, {
+	.connect(dbUrl, {
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useFindAndModify: false,
