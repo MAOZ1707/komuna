@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Card from "../../UiElements/Card";
 import FilterTodos from "./FilterTodos";
@@ -14,14 +14,16 @@ const TodoList = (props) => {
 	const { showTodos } = useContext(TodoContext);
 	const authContext = useContext(AuthContext);
 
+	const params = useParams();
+
 	if (props.items.length === 0) {
 		return (
 			<div>
 				<Card className="todos-list--empty">
 					<img src={noTaskImage} alt="noTask" />
-					<h2>No tasks found, You want to create one? </h2>
+					<h2>No tasks were found, do You want to create one? </h2>
 					<Button create>
-						{authContext.isLoggedIn ? (
+						{authContext.isLoggedIn && authContext.userId === params.userId ? (
 							<Link to="/todos/new">Create Task</Link>
 						) : (
 							<Link to="/auth">Please Login</Link>
@@ -50,8 +52,8 @@ const TodoList = (props) => {
 		case "Shopping":
 			todos = props.items.filter((todo) => todo.category === "Shopping");
 			break;
-		case "Outers":
-			todos = props.items.filter((todo) => todo.category === "Outers");
+		case "Others":
+			todos = props.items.filter((todo) => todo.category === "Others");
 			break;
 
 		default:

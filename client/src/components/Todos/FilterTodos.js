@@ -29,8 +29,8 @@ const FilterTodos = () => {
 			>
 				Payments
 			</button>
-			<button className="filter-todos--outers" onClick={() => todoContext.setShowTodos("Outers")}>
-				Outers
+			<button className="filter-todos--others" onClick={() => todoContext.setShowTodos("Others")}>
+				Others
 			</button>
 		</div>
 	);

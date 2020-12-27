@@ -83,7 +83,7 @@ const TodoItem = (props) => {
 				<Card className={`todo-item__content ${props.category}`}>
 					{isLoading && <LoadingSpinner asOverlay />}
 					<div className={isComplete ? "todo-item__info complete" : "todo-item__info "}>
-						{props.category === "Outers" ? <h3>Task: {props.title}</h3> : <h3>{props.category}</h3>}
+						{props.category === "Others" ? <h3>Task: {props.title}</h3> : <h3>{props.category}</h3>}
 						<p>{props.body}</p>
 					</div>
 

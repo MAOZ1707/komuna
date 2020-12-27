@@ -54,7 +54,7 @@
   background: #66ff94;
 }
 
-.filter-todos--container .filter-todos--outers::before {
+.filter-todos--container .filter-todos--others::before {
   background: #7ccbff;
 }
 

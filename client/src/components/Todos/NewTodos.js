@@ -86,19 +86,19 @@ const NewTodos = () => {
 							<div className="radio__check"></div>
 							<span>Payments</span>
 						</label>
-						<label htmlFor="outers" className="radio">
+						<label htmlFor="others" className="radio">
 							<input
 								type="radio"
-								id="outers"
+								id="others"
 								name="category"
-								value="Outers"
+								value="Others"
 								onChange={inputHandler}
 							/>
 							<div className="radio__check"></div>
-							<span>Outers</span>
+							<span>Others</span>
 						</label>
 					</div>
-					{formState.category === "Outers" && (
+					{formState.category === "Others" && (
 						<div className="form-control">
 							<label htmlFor="title">Title</label>
 							<input

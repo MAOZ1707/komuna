@@ -4,7 +4,7 @@ import TodoFilterItem from "./TodoFilterItem";
 import "./TodoFilterList.style.css";
 
 const TodoFilterList = (props) => {
-	const categories = ["shopping", "payments", "outers"];
+	const categories = ["shopping", "payments", "others"];
 
 	const renderByCategory = categories.map((el) => {
 		const filterTodo = props.userTodos.filter(
