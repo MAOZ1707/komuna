@@ -25,5 +25,6 @@ export const useAuth = () => {
 			login(storageData.userId, storageData.token);
 		}
 	}, [login]);
+
 	return { login, logout, userId, token, showTodos, loadedTodos, setLoadedTodos, setShowTodos };
 };
