@@ -11,12 +11,12 @@ const FilterTodos = () => {
 			<button className="filter-todos--all" onClick={() => todoContext.setShowTodos("All")}>
 				All
 			</button>
-			{/* <button
+			<button
 				className="filter-todos--active"
 				onClick={() => todoContext.setShowTodos("UnCompleted")}
 			>
 				Active
-			</button> */}
+			</button>
 			<button
 				className="filter-todos--shopping"
 				onClick={() => todoContext.setShowTodos("Shopping")}

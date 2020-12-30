@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import defaultImage from "../assets/img/user-solid.svg";
 import Button from "../FormElements/Button";
-
 import "./UploadImage.style.css";
 
 const UploadImage = (props) => {

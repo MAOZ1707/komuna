@@ -20,8 +20,7 @@ export const useFetch = () => {
 			setIsLoading(false);
 			return data;
 		} catch (err) {
-			console.log(err);
-			setError("Something get wrong, please try again later.");
+			setError(err.response.data.message);
 			setIsLoading(false);
 			throw err;
 		}

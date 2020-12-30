@@ -33,8 +33,12 @@ const Authentication = () => {
 		});
 	};
 
-	const uploadedFile = (value) => {
-		setImg(value);
+	const uploadedFile = async (value) => {
+		try {
+			setImg(value);
+		} catch (error) {
+			setImg(undefined);
+		}
 	};
 
 	const handleSignUpSubmit = async (e) => {

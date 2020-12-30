@@ -43,9 +43,9 @@ const TodoList = (props) => {
 		case "All":
 			todos = props.items;
 			break;
-		// case "UnCompleted":
-		// 	todos = props.items.filter((todo) => todo.isComplete === false);
-		// 	break;
+		case "UnCompleted":
+			todos = props.items.filter((todo) => todo.isComplete === false);
+			break;
 		case "Payments":
 			todos = props.items.filter((todo) => todo.category === "Payments");
 			break;
