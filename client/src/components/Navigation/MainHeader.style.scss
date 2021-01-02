@@ -1,26 +1,16 @@
 .main-header {
 	width: 100%;
-	height: 3rem;
+	height: 4rem;
 	display: flex;
 	align-items: center;
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: #ffff;
 	padding: 0 1rem;
 	z-index: 5;
 
-	::before {
-		content: "";
-		position: absolute;
-		width: 100%;
-		height: 2px;
-		bottom: 0;
-		left: 0;
-		background-color: #00dbde;
-		background-image: linear-gradient(90deg, #00bdde 0%, #fc00ff 100%);
-		z-index: -1;
-	}
+	background: #e0e0e0;
+	box-shadow: 7px 7px 14px #a6a6a6, -7px -7px 14px #ffffff;
 }
 
 main {

@@ -27,8 +27,8 @@ const UploadImage = (props) => {
 		if (event.target.files && event.target.files.length === 1) {
 			pickFile = event.target.files[0];
 			setFile(pickFile);
+			props.onInput(pickFile);
 		}
-		props.onInput(pickFile);
 	};
 
 	useEffect(() => {

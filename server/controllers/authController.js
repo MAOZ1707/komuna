@@ -6,53 +6,44 @@ const jwt = require("jsonwebtoken");
 exports.signup = async (req, res, next) => {
 	const { firstname, lastname, email, password } = req.body;
 
-	console.log(req.body);
-
 	let existingUser;
 	try {
 		existingUser = await User.findOne({ email });
 	} catch (error) {
-		const err = new HttpError("Signup failed, please try again later .", 404);
-		return next(err);
+		res.status(404).json({ message: "Signup failed, please try again later " });
 	}
 
 	if (existingUser) {
-		const err = new HttpError("User exists already, please login instead.", 422);
-		return next(err);
+		res.status(422).json({ message: "User exists already, please login instead." });
 	}
 
 	let hashedPassword;
 	try {
 		hashedPassword = await bcrypt.hash(password, 12);
 	} catch (error) {
-		const err = new HttpError("User exists already, please login instead.", 422);
-		return next(err);
+		res.status(422).json({ message: "User exists already, please login instead." });
 	}
 
-	let imageUrl;
 	try {
-		imageUrl = req.file.path;
+		const newUser = await User.create({
+			firstname,
+			lastname,
+			email,
+			password: hashedPassword,
+			image: req.file.path,
+		});
+
+		const token = await jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+			expiresIn: process.env.JWT_EXPIRES_IN,
+		});
+
+		res.status(201).json({
+			token,
+			user: newUser,
+		});
 	} catch (error) {
-		const err = new HttpError("Sign up failed, please pick an image.", 401);
-		return next(err);
+		res.status(500).json({ message: "Please check your credentials." });
 	}
-
-	const newUser = await User.create({
-		firstname,
-		lastname,
-		email,
-		password: hashedPassword,
-		image: imageUrl,
-	});
-
-	const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-		expiresIn: process.env.JWT_EXPIRES_IN,
-	});
-
-	res.status(201).json({
-		token,
-		user: newUser,
-	});
 };
 
 exports.login = async (req, res, next) => {

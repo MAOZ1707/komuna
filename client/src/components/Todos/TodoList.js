@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import Card from "../../UiElements/Card";
@@ -13,7 +13,6 @@ import { AuthContext } from "../../context/AuthContext";
 const TodoList = (props) => {
 	const { showTodos } = useContext(TodoContext);
 	const authContext = useContext(AuthContext);
-
 	const params = useParams();
 
 	if (props.items.length === 0) {
@@ -44,7 +43,9 @@ const TodoList = (props) => {
 			todos = props.items;
 			break;
 		case "UnCompleted":
-			todos = props.items.filter((todo) => todo.isComplete === false);
+			todos = props.items.filter((todo) => {
+				return todo.isComplete === false;
+			});
 			break;
 		case "Payments":
 			todos = props.items.filter((todo) => todo.category === "Payments");

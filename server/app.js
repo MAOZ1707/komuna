@@ -3,6 +3,7 @@ const fs = require("fs");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const HttpError = require("./models/errorModel");
 
 const userRouter = require("./routers/userRoutes");
 const homeRouter = require("./routers/homeRouter");
@@ -25,6 +26,11 @@ app.use("/api/todos", todosRouter);
 app.use("/", express.static(path.join(__dirname, "../client/build")));
 
 // Error middleware
+
+app.use((req, res, next) => {
+	const error = new HttpError("Could not fined this page!.", 404);
+	throw error;
+});
 
 app.use((err, req, res, next) => {
 	if (req.file) {

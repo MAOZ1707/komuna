@@ -3,7 +3,6 @@ import { useParams, useHistory } from "react-router-dom";
 
 import { useFetch } from "../../hooks/useFetch";
 import Card from "../../UiElements/Card";
-import editTodo from "../../assets/img/edit-todo.svg";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 import Button from "../../FormElements/Button";
 import { AuthContext } from "../../context/AuthContext";
@@ -14,7 +13,7 @@ const UpdateTodo = () => {
 	const todoId = useParams().todoId;
 	const { userId, token } = useContext(AuthContext);
 	const history = useHistory();
-	const { isLoading, sendRequest } = useFetch();
+	const { isLoading, sendRequest, setIsLoading } = useFetch();
 	const [loadedTodo, setLoadedTodos] = useState(null);
 	const [updateState, setUpdateState] = useState({
 		title: "",
@@ -30,12 +29,11 @@ const UpdateTodo = () => {
 					title: responseData.todo.title,
 					body: responseData.todo.body,
 				});
-			} catch (error) {
-				console.log(error);
-			}
+				setIsLoading(false);
+			} catch (error) {}
 		};
 		fetchTodo();
-	}, [setUpdateState, sendRequest, todoId]);
+	}, [setUpdateState, sendRequest, todoId, setIsLoading]);
 
 	const inputHandler = useCallback(
 		(e) => {
@@ -62,9 +60,8 @@ const UpdateTodo = () => {
 					Authorization: "Bearer " + token,
 				}
 			);
-		} catch (error) {
-			console.log(error);
-		}
+			setIsLoading(false);
+		} catch (error) {}
 
 		history.push(`/${userId}/todos`);
 	};
@@ -77,16 +74,15 @@ const UpdateTodo = () => {
 		);
 	}
 
-	console.log("Update-Todo", loadedTodo.category);
 	return (
 		<React.Fragment>
 			<Card className="update-todo">
 				<form onSubmit={updateTodoSubmitHandler}>
 					{isLoading && <LoadingSpinner asOverlay />}
 					{loadedTodo && <h4 className="category-title">{loadedTodo.category}</h4>}
-					<div className="form-control">
-						<label htmlFor="title">Title</label>
-						{loadedTodo && (
+					{loadedTodo && loadedTodo.category === "Others" && (
+						<div className="form-control">
+							<label htmlFor="title">Title</label>
 							<input
 								type="text"
 								id="title"
@@ -95,8 +91,8 @@ const UpdateTodo = () => {
 								placeholder="title"
 								onChange={inputHandler}
 							/>
-						)}
-					</div>
+						</div>
+					)}
 					<div className="form-control">
 						<label htmlFor="body">Body</label>
 						{loadedTodo && (
@@ -114,10 +110,6 @@ const UpdateTodo = () => {
 						Update
 					</Button>
 				</form>
-
-				<div className="edit-todo-image-controller">
-					<img src={editTodo} alt="edit" className="edit-todo-image" />
-				</div>
 			</Card>
 		</React.Fragment>
 	);

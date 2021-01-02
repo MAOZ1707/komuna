@@ -14,35 +14,31 @@ const Dashboard = () => {
 	const userId = useParams().userId;
 	const [user, setUser] = useState();
 
-	const { isLoading, sendRequest } = useFetch();
+	const { isLoading, sendRequest, setIsLoading } = useFetch();
 
 	useEffect(() => {
 		const fetchUserById = async () => {
 			try {
 				const responseData = await sendRequest(`/api/user/${userId}`);
 				setUser(responseData.data.user);
-			} catch (err) {
-				console.log(err);
-			}
+				setIsLoading(false);
+			} catch (err) {}
 		};
 
 		fetchUserById();
-	}, [sendRequest, userId]);
+	}, [sendRequest, setIsLoading, userId]);
 
 	useEffect(() => {
 		const fetchTodosByUserId = async () => {
 			try {
-				const responseData = await sendRequest(`http://localhost:9000/api/todos/user/${userId}`);
+				const responseData = await sendRequest(`/api/todos/user/${userId}`);
 				setLoadedTodos(responseData.todos);
-			} catch (err) {
-				console.log(err);
-			}
+				setIsLoading(false);
+			} catch (err) {}
 		};
 
 		fetchTodosByUserId();
-	}, [sendRequest, setLoadedTodos, userId]);
-
-	console.log(loadedTodos.length);
+	}, [sendRequest, setIsLoading, setLoadedTodos, userId]);
 
 	return (
 		<React.Fragment>

@@ -30,6 +30,10 @@
   text-transform: uppercase;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  border-radius: 10px;
+  background: linear-gradient(225deg, #f0f0f0, #cacaca);
+  -webkit-box-shadow: -3px 5px 5px #b6b6b6, 4px -2px 3px #ffffff;
+          box-shadow: -3px 5px 5px #b6b6b6, 4px -2px 3px #ffffff;
   font-weight: 500;
 }
 
@@ -61,15 +65,23 @@
 .nav-links a.active {
   color: #48a6ff;
   font-weight: 800;
+  border-radius: 10px;
+  background: #e0e0e0;
+  -webkit-box-shadow: inset -6px 6px 4px #b8b8b8, inset 8px -8px 5px #ffffff;
+          box-shadow: inset -6px 6px 4px #b8b8b8, inset 8px -8px 5px #ffffff;
 }
 
 .nav-links button {
   cursor: pointer;
   color: #292929;
   padding: 0.1rem;
-  background-color: #fff;
-  border: 1px solid #48a6ff;
   font: inherit;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  background: linear-gradient(225deg, #bebdbd, #ffffff);
+  -webkit-box-shadow: -3px 5px 5px #84afe0, 4px -2px 3px #c1f0ff;
+          box-shadow: -3px 5px 5px #84afe0, 4px -2px 3px #c1f0ff;
 }
 
 .nav-links button:focus {
@@ -78,7 +90,7 @@
 
 .nav-links button:hover,
 .nav-links button:active {
-  background: #48a6ff;
+  background: linear-gradient(225deg, #bebdbd, #ffffff);
   color: black;
 }
 
@@ -97,12 +109,12 @@
     text-decoration: none;
   }
   .nav-links button {
-    border: 1px solid #48a6ff;
+    border: none;
     color: black;
   }
   .nav-links button:hover,
   .nav-links button:active {
-    background: #48a6ff;
+    background: linear-gradient(225deg, #9ce8fc, #ffffff);
     color: #292929;
   }
 }

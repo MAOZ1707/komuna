@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { AuthContext } from "../../context/AuthContext";
 import { TodoContext } from "../../context/TodoContext";
 import Card from "../../UiElements/Card";
@@ -8,16 +9,19 @@ import { useFetch } from "../../hooks/useFetch";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 import Modal from "../../UiElements/Modal";
 import Button from "../../FormElements/Button";
-import "./TodoItem.style.css";
 import ErrorModal from "../../UiElements/ErrorModal";
 import deleteTodo from "../../assets/img/delete-todo.svg";
+import { fetchTodos } from "../../hooks/util/requests";
+
+import "./TodoItem.style.css";
 
 const TodoItem = (props) => {
 	const authContext = useContext(AuthContext);
 	const todoContext = useContext(TodoContext);
 	const [showModal, setShowModal] = useState(false);
-	const { error, isLoading, sendRequest, clearError } = useFetch();
-	const [isComplete, setIsComplete] = useState(props.isComplete);
+	const { error, isLoading, sendRequest, clearError, setIsLoading } = useFetch();
+
+	const { isComplete } = props;
 
 	const showDeleteModal = () => {
 		setShowModal(true);
@@ -32,12 +36,10 @@ const TodoItem = (props) => {
 			await sendRequest(`/api/todos/${props.id}`, "DELETE", null, {
 				Authorization: "Bearer " + authContext.token,
 			});
-			todoContext.setLoadedTodos((prevState) => {
-				return prevState.filter((todo) => todo._id !== props.id);
-			});
-		} catch (error) {
-			console.log(error);
-		}
+			const todos = await fetchTodos(props.creator);
+			todoContext.setLoadedTodos(todos);
+			setIsLoading(false);
+		} catch (error) {}
 	};
 
 	const completeTodo = async () => {
@@ -50,10 +52,10 @@ const TodoItem = (props) => {
 				},
 				{ Authorization: "Bearer " + authContext.token }
 			);
-			setIsComplete((prevState) => !prevState);
-		} catch (error) {
-			console.log(error);
-		}
+			const todos = await fetchTodos(props.creator);
+			todoContext.setLoadedTodos(todos);
+			setIsLoading(false);
+		} catch (error) {}
 	};
 
 	return (
@@ -91,24 +93,32 @@ const TodoItem = (props) => {
 						{authContext.userId === props.creator && (
 							<React.Fragment>
 								{!isComplete && (
-									<button>
+									<motion.button whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
 										<Link to={`/todos/${props.id}`}>
 											<i className="far fa-edit"></i>
 										</Link>
-									</button>
+									</motion.button>
 								)}
 
-								<button onClick={showDeleteModal}>
+								<motion.button
+									onClick={showDeleteModal}
+									whileHover={{ scale: 1.1 }}
+									transition={{ duration: 0.2 }}
+								>
 									<i className="far fa-trash-alt"></i>
-								</button>
+								</motion.button>
 
-								<button onClick={completeTodo}>
+								<motion.button
+									whileHover={{ scale: 1.1 }}
+									transition={{ duration: 0.2 }}
+									onClick={completeTodo}
+								>
 									{isComplete ? (
 										<i className="far fa-check-square"></i>
 									) : (
 										<i className="far fa-square"></i>
 									)}
-								</button>
+								</motion.button>
 							</React.Fragment>
 						)}
 					</div>

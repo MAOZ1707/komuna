@@ -33,6 +33,7 @@
 .upload-image-control .image-upload .image-upload--preview {
   border: 3px solid #f0697f;
   border-radius: 10px;
+  background: #ffff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -43,12 +44,35 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin-bottom: 1em;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 216px;
   margin-left: 10px;
-  height: 80%;
+  height: 247px;
   text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.upload-image-control .image-upload .image-upload--preview::before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(145deg, #6de2f7, #dddddd);
+  border-radius: 1%;
+  -webkit-box-shadow: inset 5.41px 5.41px 3px #32b1c7, inset -5.41px -5.41px 3px #a6edff;
+          box-shadow: inset 5.41px 5.41px 3px #32b1c7, inset -5.41px -5.41px 3px #a6edff;
+  z-index: 0;
+  width: 115%;
+  border-radius: 8px;
+  height: 115%;
+}
+
+.upload-image-control .image-upload .image-upload--preview::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(145deg, #ffffff, #b8b8b8);
+  z-index: 1;
+  border-radius: 8px;
+  width: 105%;
+  height: 105%;
 }
 
 .upload-image-control .image-upload .image-upload--preview img {
@@ -57,6 +81,7 @@
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
+  z-index: 3;
 }
 
 .upload-image-control .image-upload .image-upload--preview .image-upload-default {
@@ -71,6 +96,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: #e2e2e2;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -79,15 +105,17 @@
 }
 
 .upload-image-control .image-upload .image-upload--preview .image-upload-default .default-image-profile {
-  opacity: 0.3;
+  opacity: 1;
   width: auto;
+  z-index: 4;
 }
 
 .upload-image-control .image-upload .image-upload--preview .image-upload-default p {
   position: absolute;
   font-size: 1.1rem;
+  z-index: 7;
   font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.61);
+  background-color: rgba(255, 255, 255, 0.829);
 }
 
 @media (max-width: 750px) {

@@ -37,7 +37,6 @@ exports.getHomeById = async (req, res) => {
 };
 
 exports.creatHome = async (req, res) => {
-	console.log(req.body);
 	try {
 		const newHome = await Home.create(req.body);
 

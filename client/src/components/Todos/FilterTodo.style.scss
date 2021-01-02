@@ -5,16 +5,32 @@
 	height: 100%;
 	justify-content: center;
 	align-items: baseline;
-	left: 50px;
+	left: 30px;
 	top: 0;
+
+	.filter-todo--box {
+		display: flex;
+		padding: 20px;
+		align-items: center;
+		height: 34%;
+		justify-content: space-evenly;
+		flex-direction: column;
+		border-radius: 2px;
+		background: linear-gradient(225deg, #f0f0f0, #cacaca);
+		box-shadow: -6px 6px 10px #929292, 6px -6px 10px #ffffff;
+	}
 
 	button {
 		cursor: pointer;
 		position: relative;
 		font-size: 1.1rem;
 		background-color: transparent;
+		display: flex;
 		border: none;
-		margin-bottom: 10px;
+		align-self: flex-start;
+
+		border-radius: 12%;
+		box-shadow: 2px 4px 5px #8d8c8c, -5px -3px 7px #ffffff;
 		&::before {
 			content: "";
 			width: 12px;
@@ -23,25 +39,51 @@
 			border-radius: 50%;
 			display: inline-flex;
 		}
+		&:active {
+			border-radius: 8px;
+			background: #e0e0e0;
+			box-shadow: inset -6px 6px 10px #929292, inset 6px -6px 10px #ffffff;
+		}
 	}
 
-	.filter-todos--all::before {
-		background: #ff2c2c;
+	.filter-todos--all {
+		display: flex;
+		align-items: center;
+		&::before {
+			background: #ff2c2c;
+		}
 	}
-	.filter-todos--active::before {
-		background: #ff52e8;
+	.filter-todos--active {
+		display: flex;
+		align-items: center;
+		&::before {
+			background: #ff52e8;
+		}
 	}
-	.filter-todos--shopping::before {
-		background: #fffd7e;
+	.filter-todos--shopping {
+		display: flex;
+		align-items: center;
+		&::before {
+			background: #fffd7e;
+		}
 	}
-	.filter-todos--payments::before {
-		background: #66ff94;
+	.filter-todos--payments {
+		display: flex;
+		align-items: center;
+		&::before {
+			background: #66ff94;
+		}
 	}
-	.filter-todos--others::before {
-		background: #7ccbff;
+	.filter-todos--others {
+		display: flex;
+		align-items: center;
+		&::before {
+			background: #7ccbff;
+		}
 	}
 }
-@media (max-width: 750px) {
+
+@media (max-width: 780px) {
 	.filter-todos--container {
 		display: flex;
 		position: absolute;
@@ -52,6 +94,17 @@
 		align-items: flex-start;
 		width: 100%;
 		left: 0;
-		top: 65px;
+		top: 70px;
+		.filter-todo--box {
+			display: flex;
+			padding: 10px;
+			width: 100%;
+			flex-wrap: wrap;
+			justify-content: center;
+			flex-direction: row;
+			button {
+				margin: 5px;
+			}
+		}
 	}
 }

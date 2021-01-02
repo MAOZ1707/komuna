@@ -1,16 +1,17 @@
 import React from "react";
 import "./UserItem.style.css";
 import Avatar from "../../../UiElements/Avatar";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Card from "../../../UiElements/Card";
 
 const UserItem = (props) => {
 	return (
-		<li className="user-item">
+		<motion.li whileHover={{ scale: 1.1 }} className="user-item">
 			<Card className="user-item__content">
 				<Link to={`/${props.id}/todos`}>
 					<div className="user-item__image">
-						<Avatar image={`http://localhost:9000/${props.image}`} alt={props.firstname} />
+						<Avatar image={props.image} alt={props.firstname} />
 					</div>
 					<div className="user-item__info">
 						<h2>
@@ -21,7 +22,7 @@ const UserItem = (props) => {
 					</div>
 				</Link>
 			</Card>
-		</li>
+		</motion.li>
 	);
 };
 

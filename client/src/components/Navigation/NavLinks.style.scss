@@ -3,7 +3,6 @@
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	// height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -21,7 +20,9 @@
 	font-size: 1rem;
 	text-transform: uppercase;
 	transition: 0.5s;
-
+	border-radius: 10px;
+	background: linear-gradient(225deg, #f0f0f0, #cacaca);
+	box-shadow: -3px 5px 5px #b6b6b6, 4px -2px 3px #ffffff;
 	font-weight: 500;
 
 	::after {
@@ -46,15 +47,22 @@
 .nav-links a.active {
 	color: #48a6ff;
 	font-weight: 800;
+	border-radius: 10px;
+	background: #e0e0e0;
+	box-shadow: inset -6px 6px 4px #b8b8b8, inset 8px -8px 5px #ffffff;
 }
 
 .nav-links button {
 	cursor: pointer;
 	color: #292929;
 	padding: 0.1rem;
-	background-color: #fff;
-	border: 1px solid #48a6ff;
 	font: inherit;
+
+	padding: 0.5rem;
+	font-size: 1rem;
+	border-radius: 10px;
+	background: linear-gradient(225deg, #bebdbd, #ffffff);
+	box-shadow: -3px 5px 5px #84afe0, 4px -2px 3px #c1f0ff;
 }
 
 .nav-links button:focus {
@@ -63,7 +71,7 @@
 
 .nav-links button:hover,
 .nav-links button:active {
-	background: #48a6ff;
+	background: linear-gradient(225deg, #bebdbd, #ffffff);
 	color: rgb(0, 0, 0);
 }
 
@@ -82,13 +90,13 @@
 	}
 
 	.nav-links button {
-		border: 1px solid #48a6ff;
+		border: none;
 		color: rgb(0, 0, 0);
 	}
 
 	.nav-links button:hover,
 	.nav-links button:active {
-		background: #48a6ff;
+		background: linear-gradient(225deg, #9ce8fc, #ffffff);
 		color: #292929;
 	}
 }

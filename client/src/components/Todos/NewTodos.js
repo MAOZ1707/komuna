@@ -8,7 +8,6 @@ import { useFetch } from "../../hooks/useFetch";
 import ErrorModal from "../../UiElements/ErrorModal";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 import Button from "../../FormElements/Button";
-import newTodoImage from "../../assets/img/new-todo.svg";
 
 import "./NewTodo.style.css";
 
@@ -22,7 +21,7 @@ const NewTodos = () => {
 		body: "",
 	});
 
-	const { error, isLoading, sendRequest, clearError } = useFetch();
+	const { error, isLoading, sendRequest, clearError, setIsLoading } = useFetch();
 	const inputHandler = useCallback(
 		(e) => {
 			setFormState({
@@ -36,24 +35,26 @@ const NewTodos = () => {
 	const creatTodoSubmitHandler = async (event) => {
 		event.preventDefault();
 		try {
-			await sendRequest(
-				"/api/todos",
-				"POST",
-				{
-					title: formState.title,
-					category: formState.category,
-					body: formState.body,
-					createAt: moment().calendar(),
-					isComplete: false,
-					creator: authContext.userId,
-				},
-				{
-					"Content-Type": "application/json",
-					Authorization: "Bearer " + authContext.token,
-				}
-			);
-
-			history.push(`/${authContext.userId}/todos`);
+			if (formState.body.length > 0 && formState.category.length > 0) {
+				await sendRequest(
+					"/api/todos",
+					"POST",
+					{
+						title: formState.title,
+						category: formState.category,
+						body: formState.body,
+						createAt: moment().calendar(),
+						isComplete: false,
+						creator: authContext.userId,
+					},
+					{
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + authContext.token,
+					}
+				);
+				setIsLoading(false);
+				history.push(`/${authContext.userId}/todos`);
+			}
 		} catch (error) {}
 	};
 
@@ -126,9 +127,6 @@ const NewTodos = () => {
 						Create Task
 					</Button>
 				</form>
-				<div className="new-todo-image-controller">
-					<img src={newTodoImage} alt="todo" className="new-todo-image" />
-				</div>
 			</Card>
 		</React.Fragment>
 	);

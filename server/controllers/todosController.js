@@ -47,7 +47,6 @@ exports.getTodoById = async (req, res, next) => {
 		res.status(200).json({
 			todo,
 		});
-		console.log(chalk.bgGreenBright("GET success"));
 	} catch (error) {
 		const err = new HttpError("Fetching this Todo failed, please try again later.", 404);
 		return next(err);
@@ -84,13 +83,10 @@ exports.createTodos = async (req, res, next) => {
 };
 
 exports.updateTodos = async (req, res, next) => {
-	console.log(chalk.bgCyanBright.black("Request"), req.body);
 	const todoToUpdate = req.params.id;
 	let todo;
 	try {
 		todo = await Todos.findById(todoToUpdate);
-
-		console.log(chalk.bgWhiteBright.black(todo));
 	} catch (error) {
 		const err = new HttpError("Update Todo is failed, please check again .", 404);
 		return next(err);
@@ -108,10 +104,7 @@ exports.updateTodos = async (req, res, next) => {
 		res.json({
 			todos: todoId,
 		});
-
-		console.log(chalk.bgWhiteBright.black("Update success"));
 	} catch (error) {
-		console.log(chalk.bold.red(error));
 		const err = new HttpError("Update Todo is failed, please check again .", 404);
 		return next(err);
 	}
@@ -123,10 +116,8 @@ exports.deleteTodos = async (req, res, next) => {
 
 		await Todos.findByIdAndDelete(todoId);
 
-		console.log(chalk.bgGreenBright.black("Delete success"));
 		res.json({ data: null });
 	} catch (error) {
-		console.log(chalk.bold.red(error));
 		const err = new HttpError("Update Todo is failed, please check again .", 404);
 		return next(err);
 	}

@@ -14,10 +14,7 @@ export const useFetch = () => {
 				data: body,
 				headers,
 			});
-
-			const data = await response.data;
-
-			setIsLoading(false);
+			const data = response.data;
 			return data;
 		} catch (err) {
 			setError(err.response.data.message);
@@ -30,5 +27,5 @@ export const useFetch = () => {
 		setError(null);
 	};
 
-	return { error, isLoading, sendRequest, clearError };
+	return { error, isLoading, sendRequest, clearError, setIsLoading };
 };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import Card from "../UiElements/Card";
 import ErrorModal from "../UiElements/ErrorModal";
@@ -23,22 +23,24 @@ const Authentication = () => {
 		image: null,
 	});
 
-	const { error, isLoading, sendRequest, clearError } = useFetch();
+	const { error, isLoading, sendRequest, clearError, setIsLoading } = useFetch();
 
 	const onChangeHandler = (e) => {
 		setSignUpState({
 			...signUpState,
-			image: img,
 			[e.target.name]: e.target.value,
 		});
 	};
 
-	const uploadedFile = async (value) => {
-		try {
-			setImg(value);
-		} catch (error) {
-			setImg(undefined);
-		}
+	useEffect(() => {
+		setSignUpState({
+			...signUpState,
+			image: img,
+		});
+	}, [img]);
+
+	const uploadedFile = (value) => {
+		setImg(value);
 	};
 
 	const handleSignUpSubmit = async (e) => {
@@ -59,6 +61,7 @@ const Authentication = () => {
 				);
 
 				authContext.login(responseData.user._id, responseData.token);
+				setIsLoading(false);
 			} catch (err) {}
 		} else {
 			try {
@@ -74,6 +77,8 @@ const Authentication = () => {
 				});
 
 				authContext.login(responseData.user._id, responseData.token);
+
+				setIsLoading(false);
 			} catch (err) {}
 		}
 	};
@@ -85,8 +90,8 @@ const Authentication = () => {
 	return (
 		<React.Fragment>
 			{<ErrorModal error={error} onClear={errorHandler} />}
+			{isLoading && <LoadingSpinner asOverlay />}
 			<Card className={`authentication ${!isSignUp ? "signup" : "login"}`}>
-				{isLoading && <LoadingSpinner asOverlay />}
 				<form onSubmit={handleSignUpSubmit}>
 					<div className="inputs-field">
 						{!isSignUp && (
@@ -136,7 +141,7 @@ const Authentication = () => {
 
 						<div>
 							<Button form type={"submit"}>
-								{isSignUp ? "LOG IN" : "SIGN UP"}
+								SIGN UP
 							</Button>
 						</div>
 					</div>
@@ -146,11 +151,11 @@ const Authentication = () => {
 						</div>
 					)}
 				</form>
-				{isSignUp && (
+				{/* {isSignUp && (
 					<div className="auth-image-controller">
 						<img src={loginImage} alt="authPic" />
 					</div>
-				)}
+				)} */}
 				<div className="footer-control">
 					{!isSignUp && (
 						<p>

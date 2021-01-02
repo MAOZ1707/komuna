@@ -4,6 +4,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -16,6 +17,7 @@
   display: block;
   border-radius: 50%;
   width: 100%;
+  z-index: 3;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;

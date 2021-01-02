@@ -1,7 +1,13 @@
 .todo-item {
-	margin: 1rem 0;
+	margin: 1.5rem 0;
 	width: 80%;
 	height: min-content;
+	display: flex;
+	flex-direction: column;
+
+	span {
+		margin-bottom: 14px;
+	}
 }
 
 .todo-item__info {
@@ -38,9 +44,9 @@
 
 .todo-item__actions {
 	text-align: center;
-	border-top: 2px solid rgb(5, 5, 5);
 	display: flex;
 	justify-content: center;
+
 	button {
 		cursor: pointer;
 		margin: 0 10px;
@@ -48,9 +54,14 @@
 		padding: 0;
 		background-color: transparent;
 		border: none;
-
 		i {
-			font-size: 20px;
+			background: linear-gradient(225deg, #f0f0f0, #cacaca);
+			box-shadow: -5px 5px 5px #a8a8a8, 5px -5px 5px #ffffff;
+			font-size: 18px;
+			&:hover {
+				background: linear-gradient(225deg, #f0f0f0, #cacaca);
+				box-shadow: -5px 5px 5px #a8a8a8, 4px -4px 6px #a8fdef;
+			}
 		}
 	}
 }
@@ -59,6 +70,10 @@
 	margin: 0.5rem;
 	text-decoration: none;
 	color: #050709;
+
+	border-radius: 7px;
+	background: linear-gradient(225deg, #f0f0f0, #cacaca);
+	box-shadow: -5px 5px 10px #a8a8a8, 5px -5px 10px #ffffff;
 }
 
 .todo-item__content {
@@ -104,13 +119,94 @@
 }
 
 .Shopping {
-	background: #fffd7e;
+	border-radius: 7px;
+	background: linear-gradient(225deg, #f0f0f0, #cacaca);
+	box-shadow: -5px 5px 10px #a8a8a8, 5px -5px 10px #ffffff;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0;
+	justify-content: center;
+
+	&::before {
+		content: "";
+		position: absolute;
+		background: linear-gradient(145deg, #ffffff, #b8b8b8);
+		box-shadow: 3px 3px 3px #b0b0b0, -8px -3px 3px #ffffff;
+		width: 60px;
+		height: 60px;
+		border-radius: 0px 50% 50% 0px;
+		z-index: 1;
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		background: linear-gradient(145deg, #ffdb0e, #ffee00);
+		box-shadow: inset 5.41px 5.41px 3px #ffe81b, inset -5.41px -5.41px 3px #ffea74;
+		width: 72px;
+		height: 80px;
+		border-radius: 0px 50% 50% 0px;
+	}
 }
 .Payments {
-	background: #66ff94;
+	border-radius: 7px;
+	background: linear-gradient(225deg, #f0f0f0, #cacaca);
+	box-shadow: -5px 5px 10px #a8a8a8, 5px -5px 10px #ffffff;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0;
+	justify-content: center;
+
+	&::before {
+		content: "";
+		position: absolute;
+		background: linear-gradient(145deg, #ffffff, #b8b8b8);
+		box-shadow: 3px 3px 3px #b0b0b0, -8px -3px 3px #ffffff;
+		width: 60px;
+		height: 60px;
+		border-radius: 0px 50% 50% 0px;
+		z-index: 1;
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		background: linear-gradient(145deg, #36ff0e, #00ff37);
+		box-shadow: inset 5.41px 5.41px 3px #04ff3a, inset -5.41px -5.41px 3px #94ff86;
+		width: 72px;
+		height: 80px;
+		border-radius: 0px 50% 50% 0px;
+	}
 }
 .Others {
-	background: #7ccbff;
+	border-radius: 7px;
+	background: linear-gradient(225deg, #f0f0f0, #cacaca);
+	box-shadow: -5px 5px 10px #a8a8a8, 5px -5px 10px #ffffff;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0;
+	justify-content: center;
+
+	&::before {
+		content: "";
+		position: absolute;
+		background: linear-gradient(145deg, #ffffff, #b8b8b8);
+		box-shadow: 3px 3px 3px #b0b0b0, -8px -3px 3px #ffffff;
+		width: 60px;
+		height: 60px;
+		border-radius: 0px 50% 50% 0px;
+		z-index: 1;
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		background: linear-gradient(145deg, #0eb3ff, #3ae1ff);
+		box-shadow: inset 5.41px 5.41px 3px #2cc3ff, inset -5.41px -5.41px 3px #84d8ff;
+		width: 72px;
+		height: 80px;
+		border-radius: 0px 50% 50% 0px;
+	}
 }
 
 @media (max-width: 430px) {

@@ -1,12 +1,12 @@
 const express = require("express");
+
 const userController = require("../controllers/usersController");
 const authController = require("../controllers/authController");
-
-const fileUpload = require("../middleware/file-upload");
+const parser = require("../middleware/cloudinary");
 
 const router = express.Router();
 
-router.post("/signup", fileUpload.single("image"), authController.signup);
+router.post("/signup", parser.single("image"), authController.signup);
 
 router.route("/login").post(authController.login);
 

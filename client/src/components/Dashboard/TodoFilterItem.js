@@ -4,8 +4,6 @@ import Card from "../../UiElements/Card";
 import "./TodoFilterItem.style.css";
 
 const TodoFilterItem = (props) => {
-	console.log(props);
-
 	return (
 		<Card className="todo-filter-item">
 			<h3 className="todo-filter-item__title">{props.category}</h3>
