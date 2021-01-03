@@ -70,7 +70,7 @@ const TodoItem = (props) => {
 						<Button link onClick={closeDeleteModal}>
 							Cancel
 						</Button>
-						<Button danger onClick={confirmDeleteModal}>
+						<Button edit onClick={confirmDeleteModal}>
 							Conform Delete
 						</Button>
 					</React.Fragment>
@@ -81,48 +81,55 @@ const TodoItem = (props) => {
 			</Modal>
 
 			<li className="todo-item">
+				{isLoading && <LoadingSpinner asOverlay />}
 				<span>{props.createAt}</span>
-				<Card className={`todo-item__content ${props.category}`}>
-					{isLoading && <LoadingSpinner asOverlay />}
-					<div className={isComplete ? "todo-item__info complete" : "todo-item__info "}>
-						{props.category === "Others" ? <h3>Task: {props.title}</h3> : <h3>{props.category}</h3>}
-						<p>{props.body}</p>
-					</div>
+				<div className={isComplete ? "todo-item__info complete" : "todo-item__info "}>
+					{props.category === "Others" ? <h3>{props.title}</h3> : <h3>{props.category}</h3>}
+					<p>{props.body}</p>
+				</div>
 
-					<div className="todo-item__actions">
-						{authContext.userId === props.creator && (
-							<React.Fragment>
-								{!isComplete && (
-									<motion.button whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
-										<Link to={`/todos/${props.id}`}>
-											<i className="far fa-edit"></i>
-										</Link>
-									</motion.button>
+				<div className="todo-item__actions">
+					{authContext.userId === props.creator && (
+						<React.Fragment>
+							{!isComplete && (
+								<motion.button
+									className="tooltip--edit"
+									data-tooltip="Edit"
+									whileHover={{ scale: 1.1 }}
+									transition={{ duration: 0.3 }}
+								>
+									<Link to={`/todos/${props.id}`}>
+										<i className="far fa-edit"></i>
+									</Link>
+								</motion.button>
+							)}
+
+							<motion.button
+								onClick={showDeleteModal}
+								className="tooltip--delete"
+								data-tooltip="Delete"
+								whileHover={{ scale: 1.1 }}
+								transition={{ duration: 0.3 }}
+							>
+								<i className="far fa-trash-alt"></i>
+							</motion.button>
+
+							<motion.button
+								whileHover={{ scale: 1.1 }}
+								className="tooltip--active"
+								data-tooltip={!isComplete ? "Check" : "Un-Check"}
+								transition={{ duration: 0.3 }}
+								onClick={completeTodo}
+							>
+								{isComplete ? (
+									<i className="far fa-check-square"></i>
+								) : (
+									<i className="far fa-square"></i>
 								)}
-
-								<motion.button
-									onClick={showDeleteModal}
-									whileHover={{ scale: 1.1 }}
-									transition={{ duration: 0.2 }}
-								>
-									<i className="far fa-trash-alt"></i>
-								</motion.button>
-
-								<motion.button
-									whileHover={{ scale: 1.1 }}
-									transition={{ duration: 0.2 }}
-									onClick={completeTodo}
-								>
-									{isComplete ? (
-										<i className="far fa-check-square"></i>
-									) : (
-										<i className="far fa-square"></i>
-									)}
-								</motion.button>
-							</React.Fragment>
-						)}
-					</div>
-				</Card>
+							</motion.button>
+						</React.Fragment>
+					)}
+				</div>
 			</li>
 		</React.Fragment>
 	);

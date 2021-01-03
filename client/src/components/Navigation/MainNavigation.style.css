@@ -39,6 +39,10 @@
   color: white;
 }
 
+.main-navigation__title span {
+  margin-left: 20px;
+}
+
 .main-navigation__title a {
   text-decoration: none;
   color: black;

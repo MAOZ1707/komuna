@@ -1,21 +1,69 @@
+.container {
+	display: flex;
+	width: 100%;
+	height: min-content;
+	flex-direction: row;
+}
+
+.filter--todo {
+	width: 170px;
+}
+
 .todo-list {
 	list-style: none;
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	flex-direction: column;
+	position: relative;
 	padding: 0;
 	width: 90%;
+	&::after {
+		content: "";
+		position: absolute;
+		width: 3px;
+		height: 100%;
+		background: #51c3f8;
+		left: 40px;
+	}
+
+	h3 {
+		width: 100%;
+		text-align: center;
+		padding: 0;
+		margin-bottom: 15px;
+	}
+	.category--title {
+		width: 80%;
+		text-align: start;
+		font-size: 1.2em;
+		span {
+			color: #969494;
+			font-size: 1.2em;
+		}
+	}
 }
 
 @media (max-width: 770px) {
+	.container {
+		flex-direction: column;
+	}
 	.todo-list {
 		margin-top: 30px;
 		align-items: center;
+		width: 100%;
+		&::after {
+			display: none;
+		}
 	}
 }
 
 @media (max-width: 470px) {
 	.todo-list {
 		margin-top: 80px;
+		.category--title {
+			align-items: center;
+			width: 100%;
+			font-size: 1.1em;
+		}
 	}
 }

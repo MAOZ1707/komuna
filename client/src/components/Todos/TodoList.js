@@ -6,7 +6,6 @@ import FilterTodos from "./FilterTodos";
 import TodoItem from "./TodoItem";
 import "./TodoList.style.css";
 import { TodoContext } from "../../context/TodoContext";
-import noTaskImage from "../../assets/img/no-task.svg";
 import Button from "../../FormElements/Button";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -19,7 +18,6 @@ const TodoList = (props) => {
 		return (
 			<div>
 				<Card className="todos-list--empty">
-					<img src={noTaskImage} alt="noTask" />
 					<h2>No tasks were found, do You want to create one? </h2>
 					<Button create>
 						{authContext.isLoggedIn && authContext.userId === params.userId ? (
@@ -42,7 +40,7 @@ const TodoList = (props) => {
 		case "All":
 			todos = props.items;
 			break;
-		case "UnCompleted":
+		case "Active":
 			todos = props.items.filter((todo) => {
 				return todo.isComplete === false;
 			});
@@ -63,23 +61,30 @@ const TodoList = (props) => {
 
 	return (
 		<React.Fragment>
-			<FilterTodos />
-			<ul className="todo-list">
-				{todos.map((task) => {
-					return (
-						<TodoItem
-							key={task._id}
-							id={task._id}
-							creator={task.creator}
-							title={task.title}
-							body={task.body}
-							category={task.category}
-							isComplete={task.isComplete}
-							createAt={task.createAt}
-						/>
-					);
-				})}
-			</ul>
+			<div className="container">
+				<div className="filter--todo">
+					<FilterTodos />
+				</div>
+				<ul className="todo-list">
+					<h3 className="category--title">
+						<span>Category:</span> {showTodos}
+					</h3>
+					{todos.map((task) => {
+						return (
+							<TodoItem
+								key={task._id}
+								id={task._id}
+								creator={task.creator}
+								title={task.title}
+								body={task.body}
+								category={task.category}
+								isComplete={task.isComplete}
+								createAt={task.createAt}
+							/>
+						);
+					})}
+				</ul>
+			</div>
 		</React.Fragment>
 	);
 };

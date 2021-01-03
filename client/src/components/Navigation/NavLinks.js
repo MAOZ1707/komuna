@@ -25,7 +25,7 @@ const NavLinks = () => {
 			)}
 			{!authContext.isLoggedIn && (
 				<li>
-					<NavLink to="/auth">AUTHENTICATE</NavLink>
+					<NavLink to="/auth">NEW USER</NavLink>
 				</li>
 			)}
 			{authContext.isLoggedIn && (

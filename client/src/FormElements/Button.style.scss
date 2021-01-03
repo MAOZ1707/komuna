@@ -2,7 +2,7 @@
 	box-sizing: border-box;
 	appearance: none;
 
-	background-color: transparent;
+	background: linear-gradient(90deg, #61e2fc 22%, #50cbe7 85%);
 	border: 2px solid rgb(0, 0, 0);
 	border-radius: 0.6em;
 	color: rgb(0, 0, 0);
@@ -85,7 +85,7 @@
 		background-position: 0;
 	}
 	&:hover {
-		color: rgb(255, 255, 255);
+		color: rgb(0, 0, 0);
 		outline: 0;
 
 		a {
@@ -107,7 +107,7 @@
 		background-position: 0;
 	}
 	&:hover {
-		color: rgb(255, 255, 255);
+		color: rgb(0, 0, 0);
 		outline: 0;
 
 		a {

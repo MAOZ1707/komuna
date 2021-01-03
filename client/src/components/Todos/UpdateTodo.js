@@ -106,7 +106,7 @@ const UpdateTodo = () => {
 							/>
 						)}
 					</div>
-					<Button edit type="submit">
+					<Button upload type="submit">
 						Update
 					</Button>
 				</form>

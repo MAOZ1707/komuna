@@ -30,58 +30,49 @@
   text-transform: uppercase;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 10px;
-  background: linear-gradient(225deg, #f0f0f0, #cacaca);
-  -webkit-box-shadow: -3px 5px 5px #b6b6b6, 4px -2px 3px #ffffff;
-          box-shadow: -3px 5px 5px #b6b6b6, 4px -2px 3px #ffffff;
+  border-radius: 5px;
+  position: relative;
   font-weight: 500;
 }
 
-.nav-links a ::after {
+.nav-links a::after {
   position: absolute;
   content: "";
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  -webkit-transition: -webkit-transform 0.5s;
-  transition: -webkit-transform 0.5s;
-  transition: transform 0.5s;
-  transition: transform 0.5s, -webkit-transform 0.5s;
-}
-
-.nav-links a:hover {
-  color: #48a6ff;
+  left: 43%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  bottom: -19px;
+  background: #50cbe7;
 }
 
 .nav-links a:hover::after {
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
-  -webkit-transform-origin: left;
-          transform-origin: left;
+  -webkit-transition: -webkit-transform 0.5s linear;
+  transition: -webkit-transform 0.5s linear;
+  transition: transform 0.5s linear;
+  transition: transform 0.5s linear, -webkit-transform 0.5s linear;
+  -webkit-transform: translateY(-12px);
+          transform: translateY(-12px);
 }
 
 .nav-links a:active,
 .nav-links a.active {
-  color: #48a6ff;
+  color: #50cbe7;
   font-weight: 800;
   border-radius: 10px;
-  background: #e0e0e0;
-  -webkit-box-shadow: inset -6px 6px 4px #b8b8b8, inset 8px -8px 5px #ffffff;
-          box-shadow: inset -6px 6px 4px #b8b8b8, inset 8px -8px 5px #ffffff;
 }
 
 .nav-links button {
   cursor: pointer;
   color: #292929;
+  position: relative;
   padding: 0.1rem;
   font: inherit;
+  border: 2px solid #50cbe7;
   padding: 0.5rem;
-  font-size: 1rem;
   border-radius: 10px;
-  background: linear-gradient(225deg, #bebdbd, #ffffff);
-  -webkit-box-shadow: -3px 5px 5px #84afe0, 4px -2px 3px #c1f0ff;
-          box-shadow: -3px 5px 5px #84afe0, 4px -2px 3px #c1f0ff;
+  font-size: 1rem;
+  background: #ffffff;
 }
 
 .nav-links button:focus {
@@ -90,7 +81,6 @@
 
 .nav-links button:hover,
 .nav-links button:active {
-  background: linear-gradient(225deg, #bebdbd, #ffffff);
   color: black;
 }
 
@@ -109,12 +99,10 @@
     text-decoration: none;
   }
   .nav-links button {
-    border: none;
     color: black;
   }
   .nav-links button:hover,
   .nav-links button:active {
-    background: linear-gradient(225deg, #9ce8fc, #ffffff);
     color: #292929;
   }
 }

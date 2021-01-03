@@ -140,7 +140,7 @@ const Authentication = () => {
 						</div>
 
 						<div>
-							<Button form type={"submit"}>
+							<Button upload type={"submit"}>
 								SIGN UP
 							</Button>
 						</div>
@@ -151,11 +151,6 @@ const Authentication = () => {
 						</div>
 					)}
 				</form>
-				{/* {isSignUp && (
-					<div className="auth-image-controller">
-						<img src={loginImage} alt="authPic" />
-					</div>
-				)} */}
 				<div className="footer-control">
 					{!isSignUp && (
 						<p>

@@ -10,14 +10,12 @@
 
 	.filter-todo--box {
 		display: flex;
-		padding: 20px;
+		padding: 0px 0px 0px 0px;
 		align-items: center;
 		height: 34%;
 		justify-content: space-evenly;
 		flex-direction: column;
-		border-radius: 2px;
-		background: linear-gradient(225deg, #f0f0f0, #cacaca);
-		box-shadow: -6px 6px 10px #929292, 6px -6px 10px #ffffff;
+		border-left: 2px solid #7ccbff;
 	}
 
 	button {
@@ -27,58 +25,84 @@
 		background-color: transparent;
 		display: flex;
 		border: none;
+		margin-left: 20px;
 		align-self: flex-start;
 
-		border-radius: 12%;
-		box-shadow: 2px 4px 5px #8d8c8c, -5px -3px 7px #ffffff;
+		transform: translateX(1px) translateZ(0px);
+		&:hover {
+			transform: translateX(20px) translateZ(0px);
+			transition: 0.3s;
+		}
+
 		&::before {
 			content: "";
 			width: 12px;
 			height: 12px;
+			position: absolute;
+			left: -28px;
 			margin-right: 10px;
 			border-radius: 50%;
 			display: inline-flex;
 		}
-		&:active {
-			border-radius: 8px;
-			background: #e0e0e0;
-			box-shadow: inset -6px 6px 10px #929292, inset 6px -6px 10px #ffffff;
+		&::after {
+			content: "";
+			width: 12px;
+			height: 3px;
+			background: #7ccbff;
+			position: absolute;
+			left: -10px;
+			margin-right: 10px;
+			display: inline-flex;
+			transform: scale(0);
+		}
+		&:hover::before {
+			transition: transform 0.3s ease;
+			transform: translateX(15px);
+		}
+		&:hover::after {
+			transition: transform 0.4s ease;
+			transform: scale(1);
+			left: -42px;
+			width: 30px;
 		}
 	}
 
+	.All {
+		color: #50cbe7;
+	}
 	.filter-todos--all {
 		display: flex;
 		align-items: center;
 		&::before {
-			background: #ff2c2c;
+			background: #50cbe7;
 		}
 	}
 	.filter-todos--active {
 		display: flex;
 		align-items: center;
 		&::before {
-			background: #ff52e8;
+			background: #50cbe7;
 		}
 	}
 	.filter-todos--shopping {
 		display: flex;
 		align-items: center;
 		&::before {
-			background: #fffd7e;
+			background: #50cbe7;
 		}
 	}
 	.filter-todos--payments {
 		display: flex;
 		align-items: center;
 		&::before {
-			background: #66ff94;
+			background: #50cbe7;
 		}
 	}
 	.filter-todos--others {
 		display: flex;
 		align-items: center;
 		&::before {
-			background: #7ccbff;
+			background: #50cbe7;
 		}
 	}
 }
@@ -102,8 +126,21 @@
 			flex-wrap: wrap;
 			justify-content: center;
 			flex-direction: row;
+
 			button {
-				margin: 5px;
+				border-bottom: 2px solid #50cbe7;
+				margin: 6px 8px 9px 10px;
+				&:hover {
+					transform: translateY(-4px) translateZ(0px);
+					transition: 0.2s;
+				}
+
+				&::before {
+					display: none;
+				}
+				&::after {
+					display: none;
+				}
 			}
 		}
 	}

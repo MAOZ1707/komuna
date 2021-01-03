@@ -3,9 +3,6 @@
   padding: 1rem;
   overflow: hidden;
   border-radius: 13px;
-  background: #e0e0e0;
-  -webkit-box-shadow: -7px 7px 13px #969696, 7px -7px 13px #ffffff;
-          box-shadow: -7px 7px 13px #969696, 7px -7px 13px #ffffff;
 }
 
 .update-todo {

@@ -5,7 +5,7 @@
 }
 
 html {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Calibri", "Open Sans", sans-serif;
 }
 
 body {
@@ -16,7 +16,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: #e0e0e0;
+  background: #ffffff;
 }
 
 .slide-in-left-enter {
