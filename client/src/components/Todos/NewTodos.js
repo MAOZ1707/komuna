@@ -43,7 +43,7 @@ const NewTodos = () => {
 						title: formState.title,
 						category: formState.category,
 						body: formState.body,
-						createAt: moment().calendar(),
+						createAt: moment().format("L"),
 						isComplete: false,
 						creator: authContext.userId,
 					},

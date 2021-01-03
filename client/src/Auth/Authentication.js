@@ -154,7 +154,7 @@ const Authentication = () => {
 				<div className="footer-control">
 					{!isSignUp && (
 						<p>
-							Already sign up?
+							Already signed up?
 							<Button link onClick={() => setIsSignUp((prevState) => !prevState)}>
 								Log in
 							</Button>
