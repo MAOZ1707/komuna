@@ -79,7 +79,6 @@ const TodoItem = (props) => {
 				<img src={deleteTodo} alt="delete-todo " />
 				<p>Do you sure you want to delete this task?</p>
 			</Modal>
-
 			<li className="todo-item">
 				{isLoading && <LoadingSpinner asOverlay />}
 				<span>{props.createAt}</span>
