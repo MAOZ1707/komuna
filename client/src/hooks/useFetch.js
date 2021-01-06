@@ -15,6 +15,7 @@ export const useFetch = () => {
 				headers,
 			});
 			const data = response.data;
+
 			return data;
 		} catch (err) {
 			setError(err.response.data.message);

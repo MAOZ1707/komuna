@@ -7,8 +7,9 @@ import UserTodos from "./components/Todos/UserTodos";
 import NewTodos from "./components/Todos/NewTodos";
 import UpdateTodo from "./components/Todos/UpdateTodo";
 import Authentication from "./Auth/Authentication";
-import { AuthContext } from "./context/AuthContext";
 import { TodoContext } from "./context/TodoContext";
+import { AuthContext } from "./context/AuthContext";
+import { UserContext } from "./context/UserContext";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { useAuth } from "./hooks/useAuth";
 
@@ -22,6 +23,8 @@ const App = () => {
 		loadedTodos,
 		setLoadedTodos,
 		setShowTodos,
+		users,
+		setUsers,
 	} = useAuth();
 
 	let routes;
@@ -50,9 +53,6 @@ const App = () => {
 	} else {
 		routes = (
 			<Switch>
-				<Route exact path="/">
-					<Users />
-				</Route>
 				<Route exact path="/:userId/todos">
 					<UserTodos />
 				</Route>
@@ -79,14 +79,21 @@ const App = () => {
 		setShowTodos,
 	};
 
+	const usersContextValue = {
+		users,
+		setUsers,
+	};
+
 	return (
 		<AuthContext.Provider value={authContextValue}>
-			<TodoContext.Provider value={todoContextValue}>
-				<Router>
-					<MainNavigation />
-					<main>{routes}</main>
-				</Router>
-			</TodoContext.Provider>
+			<UserContext.Provider value={usersContextValue}>
+				<TodoContext.Provider value={todoContextValue}>
+					<Router>
+						<MainNavigation />
+						<main>{routes}</main>
+					</Router>
+				</TodoContext.Provider>
+			</UserContext.Provider>
 		</AuthContext.Provider>
 	);
 };

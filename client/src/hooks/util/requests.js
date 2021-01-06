@@ -8,3 +8,14 @@ export const fetchTodos = async (id) => {
 		return [];
 	}
 };
+
+export const fetchUsers = async () => {
+	try {
+		const responseData = await fetch("/api/user");
+		const users = await responseData.json();
+		console.log(users);
+		return users;
+	} catch (error) {
+		console.log(error);
+	}
+};

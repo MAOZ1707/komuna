@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 import ErrorModal from "../../UiElements/ErrorModal";
-
 import UserList from "./components/UserList";
 import { useFetch } from "../../hooks/useFetch";
+import { AuthContext } from "../../context/AuthContext";
+import { UserContext } from "../../context/UserContext";
 
 const User = () => {
-	const [users, setUsers] = useState(null);
+	const authContext = useContext(AuthContext);
+	const userContext = useContext(UserContext);
+
 	const { error, isLoading, sendRequest, clearError, setIsLoading } = useFetch();
 
 	useEffect(() => {
 		const fetchAllUsers = async () => {
 			try {
-				const responseData = await sendRequest("/api/user");
-				setUsers(responseData.users);
+				const responseData = await sendRequest("/api/user", "GET", null, {
+					Authorization: "Bearer " + authContext.token,
+				});
 
+				userContext.setUsers(responseData.users);
 				setIsLoading(false);
 			} catch (error) {}
 		};
@@ -31,7 +35,7 @@ const User = () => {
 				</div>
 			)}
 			{error && <div>{error}</div>}
-			{users && <UserList items={users} />}
+			{userContext.users && !isLoading && <UserList items={userContext.users} />}
 		</React.Fragment>
 	);
 };

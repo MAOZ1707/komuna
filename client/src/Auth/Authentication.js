@@ -6,7 +6,6 @@ import LoadingSpinner from "../UiElements/LoadingSpinner";
 import Button from "../FormElements/Button";
 import { AuthContext } from "../context/AuthContext";
 import { useFetch } from "../hooks/useFetch";
-import loginImage from "../assets/img/login.jpg";
 import UploadImage from "./UploadImage";
 
 import "../components/Todos/NewTodo.style.css";

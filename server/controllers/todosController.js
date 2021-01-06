@@ -24,6 +24,7 @@ exports.getTodosByUserId = async (req, res, next) => {
 	let userTodos;
 	try {
 		userTodos = await Todos.find({ creator: userId });
+		console.log(userTodos);
 	} catch (error) {
 		const err = new HttpError("Fetching User Todo failed, please try again later.", 404);
 		return next(err);
@@ -36,6 +37,21 @@ exports.getTodosByUserId = async (req, res, next) => {
 
 	res.status(200).json({
 		todos: userTodos,
+	});
+};
+
+exports.deleteTodosByUserId = async (req, res, next) => {
+	const userId = req.params.id;
+
+	let userTodos;
+	try {
+		await Todos.deleteMany({ creator: userId });
+		await User.findByIdAndDelete({ _id: userId });
+		console.log(userTodos);
+	} catch (err) {}
+
+	res.status(200).json({
+		todos: null,
 	});
 };
 
@@ -118,7 +134,7 @@ exports.deleteTodos = async (req, res, next) => {
 
 		res.json({ data: null });
 	} catch (error) {
-		const err = new HttpError("Update Todo is failed, please check again .", 404);
+		const err = new HttpError("Delete Todo is failed, please check again .", 404);
 		return next(err);
 	}
 };

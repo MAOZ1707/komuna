@@ -87,4 +87,23 @@
   margin: 0;
   text-align: center;
 }
+
+.delete-user {
+  position: absolute;
+  background: transparent;
+  border: none;
+  border-radius: 20%;
+  width: 2.3em;
+  height: 2.3em;
+  top: 4px;
+  text-align: center;
+  cursor: pointer;
+  right: 4px;
+}
+
+.delete-user i {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ff2020;
+}
 /*# sourceMappingURL=UserItem.style.css.map */

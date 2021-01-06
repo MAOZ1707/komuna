@@ -24,13 +24,21 @@ exports.signup = async (req, res, next) => {
 		res.status(422).json({ message: "User exists already, please login instead." });
 	}
 
+	let imageFile;
+	try {
+		imageFile = req.file.path;
+	} catch (err) {
+		const error = new HttpError("Please pick an image.", 402);
+		return next(error);
+	}
+
 	try {
 		const newUser = await User.create({
 			firstname,
 			lastname,
 			email,
 			password: hashedPassword,
-			image: req.file.path,
+			image: imageFile,
 		});
 
 		const token = await jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {

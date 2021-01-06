@@ -7,9 +7,13 @@ const router = express.Router();
 
 router.route("/").get(todosController.getAllTodos);
 
-router.route("/user/:id").get(todosController.getTodosByUserId);
+router
+	.route("/user/:id")
+	.get(todosController.getTodosByUserId)
+	.delete(todosController.deleteTodosByUserId);
 router.route("/:id").get(todosController.getTodoById);
 
+// check TOKEN middleware
 router.use(checkAuth);
 
 router.route("/").post(todosController.createTodos);

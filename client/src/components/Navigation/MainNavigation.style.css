@@ -1,3 +1,8 @@
+@font-face {
+  font-family: appTitle;
+  src: url(../../assets/fonts/FEENC___.ttf);
+}
+
 .main-navigation__menu-btn {
   width: 3rem;
   height: 3rem;
@@ -54,7 +59,9 @@
 
 .main-navigation__title a {
   text-decoration: none;
+  font-size: 2em;
   color: black;
+  font-family: appTitle;
 }
 
 .main-navigation__title a span {
@@ -69,11 +76,11 @@
   content: attr(data-item);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  color: #2ca0ff;
+  color: #5dd9ff;
   position: absolute;
-  top: 0;
+  top: -2px;
   bottom: 0;
-  left: 0;
+  left: -0.5px;
   right: 0;
   width: 0;
   overflow: hidden;

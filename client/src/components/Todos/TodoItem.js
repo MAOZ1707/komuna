@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../context/AuthContext";
 import { TodoContext } from "../../context/TodoContext";
-import Card from "../../UiElements/Card";
 import { useFetch } from "../../hooks/useFetch";
 import LoadingSpinner from "../../UiElements/LoadingSpinner";
 import Modal from "../../UiElements/Modal";

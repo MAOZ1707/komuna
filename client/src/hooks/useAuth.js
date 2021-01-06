@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from "react";
 export const useAuth = () => {
 	const [token, setToken] = useState(null);
 	const [userId, setUserId] = useState(null);
+	const [users, setUsers] = useState(null);
 	const [loadedTodos, setLoadedTodos] = useState([]);
 	const [showTodos, setShowTodos] = useState("All");
 
@@ -26,5 +27,16 @@ export const useAuth = () => {
 		}
 	}, [login]);
 
-	return { login, logout, userId, token, showTodos, loadedTodos, setLoadedTodos, setShowTodos };
+	return {
+		login,
+		logout,
+		userId,
+		token,
+		showTodos,
+		loadedTodos,
+		setLoadedTodos,
+		setShowTodos,
+		setUsers,
+		users,
+	};
 };
