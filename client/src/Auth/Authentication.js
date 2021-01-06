@@ -140,7 +140,7 @@ const Authentication = () => {
 
 						<div>
 							<Button upload type={"submit"}>
-								SIGN UP
+								{!isSignUp ? "SIGN UP" : "LOG IN"}
 							</Button>
 						</div>
 					</div>
