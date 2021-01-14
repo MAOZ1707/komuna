@@ -22,6 +22,9 @@ const TodoItem = (props) => {
 
 	const { isComplete } = props;
 
+	console.log(props.creator);
+	console.log(authContext.userId);
+
 	const showDeleteModal = () => {
 		setShowModal(true);
 	};
@@ -35,7 +38,7 @@ const TodoItem = (props) => {
 			await sendRequest(`/api/todos/${props.id}`, "DELETE", null, {
 				Authorization: "Bearer " + authContext.token,
 			});
-			const todos = await fetchTodos(props.creator);
+			const todos = await fetchTodos(authContext.userId);
 			todoContext.setLoadedTodos(todos);
 			setIsLoading(false);
 		} catch (error) {}
@@ -51,7 +54,7 @@ const TodoItem = (props) => {
 				},
 				{ Authorization: "Bearer " + authContext.token }
 			);
-			const todos = await fetchTodos(props.creator);
+			const todos = await fetchTodos(authContext.userId);
 			todoContext.setLoadedTodos(todos);
 			setIsLoading(false);
 		} catch (error) {}

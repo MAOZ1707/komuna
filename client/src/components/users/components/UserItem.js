@@ -21,7 +21,7 @@ const UserItem = (props) => {
 		setShowModal(false);
 	};
 	const deleteUserAndTodos = async () => {
-		const deleteTodos = `/api/todos/user/${props.id}`;
+		const deleteTodos = `/api/todos/user/${userId}`;
 		try {
 			await Axios.delete(deleteTodos);
 			logout();
@@ -62,7 +62,7 @@ const UserItem = (props) => {
 							></motion.i>
 						</button>
 					) : null}
-					<Link to={`/${props.id}/todos`}>
+					<Link to={`/${userId}/todos`}>
 						<div className="user-item__image">
 							<Avatar image={props.image} alt={props.firstname} />
 						</div>

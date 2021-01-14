@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 exports.getAllUsers = async (req, res) => {
 	let users;
 	try {
-		users = await User.find();
+		users = await User.find({}, "-password");
 	} catch (error) {
 		res.status(404).json({
 			status: "fail",

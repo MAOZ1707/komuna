@@ -20,6 +20,7 @@ const User = () => {
 				});
 
 				userContext.setUsers(responseData.users);
+				console.log(responseData);
 				setIsLoading(false);
 			} catch (error) {}
 		};
